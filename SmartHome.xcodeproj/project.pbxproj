@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F242256600BE003A93BA /* AppDelegate.swift */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
-		2AC6F247256600BE003A93BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* ViewController.swift */; };
+		2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* DashboardViewController.swift */; };
 		2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F248256600BE003A93BA /* Main.storyboard */; };
 		2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24B256600BF003A93BA /* Assets.xcassets */; };
 		2AC6F24F256600BF003A93BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24D256600BF003A93BA /* LaunchScreen.storyboard */; };
+		2ACF255D25688F30008AD41E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF255C25688F30008AD41E /* Home.swift */; };
+		2ACF25612568900F008AD41E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25602568900F008AD41E /* Room.swift */; };
+		2ACF25642568902D008AD41E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25632568902D008AD41E /* Sensor.swift */; };
+		2ACF257525689F26008AD41E /* ViewHomeName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ACF257425689F26008AD41E /* ViewHomeName.xib */; };
+		2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF257925689FB8008AD41E /* HomeName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F242256600BE003A93BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2AC6F246256600BE003A93BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2AC6F246256600BE003A93BA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2AC6F249256600BE003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AC6F24B256600BF003A93BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC6F24E256600BF003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AC6F250256600BF003A93BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ACF255C25688F30008AD41E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		2ACF25602568900F008AD41E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		2ACF25632568902D008AD41E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		2ACF257425689F26008AD41E /* ViewHomeName.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewHomeName.xib; sourceTree = "<group>"; };
+		2ACF257925689FB8008AD41E /* HomeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +66,18 @@
 		2AC6F241256600BE003A93BA /* SmartHome */ = {
 			isa = PBXGroup;
 			children = (
+				2ACF257925689FB8008AD41E /* HomeName.swift */,
+				2ACF257425689F26008AD41E /* ViewHomeName.xib */,
 				2AC6F242256600BE003A93BA /* AppDelegate.swift */,
 				2AC6F244256600BE003A93BA /* SceneDelegate.swift */,
-				2AC6F246256600BE003A93BA /* ViewController.swift */,
+				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
 				2AC6F248256600BE003A93BA /* Main.storyboard */,
 				2AC6F24B256600BF003A93BA /* Assets.xcassets */,
 				2AC6F24D256600BF003A93BA /* LaunchScreen.storyboard */,
 				2AC6F250256600BF003A93BA /* Info.plist */,
+				2ACF255C25688F30008AD41E /* Home.swift */,
+				2ACF25602568900F008AD41E /* Room.swift */,
+				2ACF25632568902D008AD41E /* Sensor.swift */,
 			);
 			path = SmartHome;
 			sourceTree = "<group>";
@@ -125,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AC6F24F256600BF003A93BA /* LaunchScreen.storyboard in Resources */,
+				2ACF257525689F26008AD41E /* ViewHomeName.xib in Resources */,
 				2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */,
 				2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */,
 			);
@@ -137,9 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC6F247256600BE003A93BA /* ViewController.swift in Sources */,
+				2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */,
+				2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */,
+				2ACF25642568902D008AD41E /* Sensor.swift in Sources */,
 				2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */,
+				2ACF255D25688F30008AD41E /* Home.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
+				2ACF25612568900F008AD41E /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
