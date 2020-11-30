@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main View Controller-->
         <scene sceneID="DiQ-1Q-wHt">
             <objects>
-                <tabBarController id="sph-Fy-cMJ" sceneMemberID="viewController">
+                <tabBarController id="sph-Fy-cMJ" customClass="MainViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0d0-NW-ais">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -52,23 +52,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFr-TR-d1K" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
-                                <rect key="frame" x="10" y="95" width="408" height="170"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-52-oal" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="428" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wxa-52-oal" secondAttribute="height" multiplier="107:32" id="ZWc-w5-6go"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XRl-Kc-axf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wxa-52-oal" firstAttribute="centerX" secondItem="xFN-qQ-SOG" secondAttribute="centerX" id="47q-JS-SmC"/>
+                            <constraint firstItem="wxa-52-oal" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" id="6OH-Tx-bF1"/>
+                            <constraint firstAttribute="trailing" secondItem="wxa-52-oal" secondAttribute="trailing" id="YOq-D4-v61"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yOn-lz-IIg"/>
                     <connections>
-                        <outlet property="homeName" destination="wFr-TR-d1K" id="fVj-cg-oVe"/>
+                        <outlet property="homeName" destination="wxa-52-oal" id="scL-8v-2E6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UJ-S4-4mh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="473.83177570093454" y="1418.3585313174947"/>
+            <point key="canvasLocation" x="472.5" y="1417.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4eN-b9-Mpu">
@@ -80,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Uz5-nX-LVz" kind="relationship" relationship="rootViewController" id="kUt-jK-4kc"/>
+                        <segue destination="hxc-XZ-KYO" kind="relationship" relationship="rootViewController" id="Hha-gW-Zyg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkh-Wl-a3B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -104,21 +111,129 @@
             </objects>
             <point key="canvasLocation" x="2253" y="652"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="7Hu-3N-klg">
+        <!--Room Table View Controller-->
+        <scene sceneID="fri-JC-P5x">
             <objects>
-                <viewController id="Uz5-nX-LVz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2HJ-ws-OOl">
+                <tableViewController id="hxc-XZ-KYO" customClass="RoomTableViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M89-y0-aQC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="yRH-Pa-67g"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" id="NP6-KV-jU7" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NP6-KV-jU7" id="dBU-On-Nbv" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-pn-qbV">
+                                            <rect key="frame" x="0.0" y="-19" width="158" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-U3-cNR">
+                                            <rect key="frame" x="166" y="11" width="242" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="roomImageView" destination="aBF-pn-qbV" id="9ZC-5n-dBs"/>
+                                    <outlet property="roomNameLabel" destination="vrf-U3-cNR" id="ENc-qc-dMr"/>
+                                    <segue destination="26V-EV-icT" kind="show" id="KmN-au-WJJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hxc-XZ-KYO" id="NgP-Sy-0qJ"/>
+                            <outlet property="delegate" destination="hxc-XZ-KYO" id="vbo-r6-tQg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Xep-zV-akZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WcJ-EY-nZ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1292.5233644859813" y="1416.4146868250541"/>
+        </scene>
+        <!--Sensor Table View Controller-->
+        <scene sceneID="Ohv-GM-IMm">
+            <objects>
+                <tableViewController id="26V-EV-icT" customClass="SensorTableViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DTl-pS-h3G">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SensorTableViewCell" rowHeight="90" id="rEi-7X-W8a" customClass="SensorTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rEi-7X-W8a" id="qkJ-5Z-dHr">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-LB-awl">
+                                            <rect key="frame" x="0.0" y="-19" width="158" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNX-eA-y4M">
+                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sensorName" destination="jNX-eA-y4M" id="d2m-Wz-sMA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="26V-EV-icT" id="1BT-Fs-t8k"/>
+                            <outlet property="delegate" destination="26V-EV-icT" id="1eV-7r-98e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="6RU-Qg-HGs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8oL-fE-IQi">
+                            <connections>
+                                <segue destination="LAg-1N-Ork" kind="show" identifier="AddItem" id="CPq-gG-bNj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OW8-pa-dEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1314.9532710280373" y="2170.6263498920089"/>
+        </scene>
+        <!--New Sensor-->
+        <scene sceneID="e8a-KO-aux">
+            <objects>
+                <viewController id="LAg-1N-Ork" customClass="SensorViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qwZ-sr-qEp">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-1T-jxx">
+                                <rect key="frame" x="20" y="133" width="388" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EI3-V4-8bn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="y6k-qO-Muf"/>
+                    <navigationItem key="navigationItem" title="New Sensor" id="xgp-7d-3m0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="X3a-CX-mvy"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="62F-Yb-tPU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-Ll-8Hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="1418"/>
+            <point key="canvasLocation" x="2507.9439252336447" y="2176.4578833693308"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="E2F-so-NgS">

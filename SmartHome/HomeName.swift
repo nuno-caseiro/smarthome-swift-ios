@@ -11,43 +11,45 @@ import UIKit
     
     @IBOutlet weak var homeName: UILabel!
 
-    let nibName = "ViewHomeName"
+    let nibName = "HomeName"
    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
+        //self.getHomeName()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+        self.getHomeName()
     }
     
-    func commonInit() {
-        guard let view = loadViewFromNib() else { return }
-        view.frame = self.bounds
-        self.addSubview(view)
-        DispatchQueue.main.async(execute: {
-                // change label text after second calling.
-               // ??? How to change label text at first calling ???
-            self.getHomeName()
-          })
+        func commonInit() {
+            let nib = UINib(nibName: nibName, bundle: Bundle(for: type(of: self)))
 
-    }
+            guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+                fatalError("Failed to instantiate nib \(nib)")
+            }
+            self.addSubview(view)
+            view.frame = self.bounds
+            view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        }
+       
+       
+      
+
     
-    func loadViewFromNib() -> UIView? {
-        let nib = UINib(nibName: nibName, bundle: nil)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
-    }
+    
+   
     
     func getHomeName(){
         
         
-        guard let url = URL(string: "http://161.35.8.148/homes/1/") else {
+        guard let url = URL(string: "http://161.35.8.148/api/homes/1/") else {
             print("Error: cannot create URL")
             return
         }
-        
         
         //Create Header according to the documentation
         let userName = "smarthome" //Need to be replaced with correct value
@@ -82,17 +84,17 @@ import UIKit
                     print("Error: Cannot convert data to JSON object")
                     return
                 }
-                guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+          /*      guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
                     print("Error: Cannot convert JSON object to Pretty JSON data")
                     return
                 }
                 guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
                     print("Error: Could print JSON in String")
                     return
-                }
+                }*/
                 
                 let name = (jsonObject["name"] as AnyObject? as? String) ?? ""
-                
+                AppData.instance.home.name = name
                 DispatchQueue.main.async {
                         // change label text after second calling.
                        // ??? How to change label text at first calling ???self.homeName.text = aux

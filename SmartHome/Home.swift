@@ -10,10 +10,20 @@ import UIKit
 class Home{
      
     var name: String
+    var id: Int
     var rooms: [Room]
     
-    internal init(name: String, rooms: [Room]) {
+    internal init(name: String) {
         self.name = name
-        self.rooms = rooms
+        self.rooms = [Room]()
+        self.id = 0
     }
+    
+    init(){
+        self.name = ""
+        self.rooms = [Room]()
+        self.id = 0
+    }
+    
+    
 }
