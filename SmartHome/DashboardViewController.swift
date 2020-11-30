@@ -7,13 +7,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DashboardViewController: UIViewController {
 
+    
+    @IBOutlet weak var homeName: HomeName!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
-
+    
+   
 
 }
+    
+
 

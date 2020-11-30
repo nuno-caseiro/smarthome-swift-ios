@@ -1,24 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sph-Fy-cMJ">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Main View Controller-->
+        <scene sceneID="DiQ-1Q-wHt">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tabBarController id="sph-Fy-cMJ" customClass="MainViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0d0-NW-ais">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vvn-kh-LGJ" kind="relationship" relationship="viewControllers" id="X3K-Dz-KR2"/>
+                        <segue destination="xry-ti-Bc7" kind="relationship" relationship="viewControllers" id="pL7-Rz-YIE"/>
+                        <segue destination="SBs-hU-QKa" kind="relationship" relationship="viewControllers" id="faw-lb-cmU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6di-jT-dL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1315" y="-141"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wqN-20-aTE">
+            <objects>
+                <navigationController id="vvn-kh-LGJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="home_icon" id="yue-vr-WtH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PNf-Y3-6QD">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JQq-sa-zYx" kind="relationship" relationship="rootViewController" id="Afc-8Y-6MG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4u-zn-lwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="458" y="652"/>
+        </scene>
+        <!--Dashboard View Controller-->
+        <scene sceneID="klA-s4-wqn">
+            <objects>
+                <viewController id="JQq-sa-zYx" customClass="DashboardViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFN-qQ-SOG">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-52-oal" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="428" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wxa-52-oal" secondAttribute="height" multiplier="107:32" id="ZWc-w5-6go"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XRl-Kc-axf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wxa-52-oal" firstAttribute="centerX" secondItem="xFN-qQ-SOG" secondAttribute="centerX" id="47q-JS-SmC"/>
+                            <constraint firstItem="wxa-52-oal" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" id="6OH-Tx-bF1"/>
+                            <constraint firstAttribute="trailing" secondItem="wxa-52-oal" secondAttribute="trailing" id="YOq-D4-v61"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yOn-lz-IIg"/>
+                    <connections>
+                        <outlet property="homeName" destination="wxa-52-oal" id="scL-8v-2E6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6UJ-S4-4mh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472.5" y="1417.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4eN-b9-Mpu">
+            <objects>
+                <navigationController id="xry-ti-Bc7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="all_icon" id="BlK-I2-p4n"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eO4-mQ-ORS">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hxc-XZ-KYO" kind="relationship" relationship="rootViewController" id="Hha-gW-Zyg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hkh-Wl-a3B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1315" y="652"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zuY-XJ-sdF">
+            <objects>
+                <navigationController id="SBs-hU-QKa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="configurations_icon" id="6PK-gr-5tH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL2-PL-gSd">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ps4-nj-5A0" kind="relationship" relationship="rootViewController" id="j76-lR-9Vd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KF4-z0-Jmd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2253" y="652"/>
+        </scene>
+        <!--Room Table View Controller-->
+        <scene sceneID="fri-JC-P5x">
+            <objects>
+                <tableViewController id="hxc-XZ-KYO" customClass="RoomTableViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M89-y0-aQC">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" id="NP6-KV-jU7" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NP6-KV-jU7" id="dBU-On-Nbv" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-pn-qbV">
+                                            <rect key="frame" x="0.0" y="-19" width="158" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-U3-cNR">
+                                            <rect key="frame" x="166" y="11" width="242" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="roomImageView" destination="aBF-pn-qbV" id="9ZC-5n-dBs"/>
+                                    <outlet property="roomNameLabel" destination="vrf-U3-cNR" id="ENc-qc-dMr"/>
+                                    <segue destination="26V-EV-icT" kind="show" id="KmN-au-WJJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hxc-XZ-KYO" id="NgP-Sy-0qJ"/>
+                            <outlet property="delegate" destination="hxc-XZ-KYO" id="vbo-r6-tQg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Xep-zV-akZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WcJ-EY-nZ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1292.5233644859813" y="1416.4146868250541"/>
+        </scene>
+        <!--Sensor Table View Controller-->
+        <scene sceneID="Ohv-GM-IMm">
+            <objects>
+                <tableViewController id="26V-EV-icT" customClass="SensorTableViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DTl-pS-h3G">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SensorTableViewCell" rowHeight="90" id="rEi-7X-W8a" customClass="SensorTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rEi-7X-W8a" id="qkJ-5Z-dHr">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-LB-awl">
+                                            <rect key="frame" x="0.0" y="-19" width="158" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNX-eA-y4M">
+                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sensorName" destination="jNX-eA-y4M" id="d2m-Wz-sMA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="26V-EV-icT" id="1BT-Fs-t8k"/>
+                            <outlet property="delegate" destination="26V-EV-icT" id="1eV-7r-98e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="6RU-Qg-HGs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8oL-fE-IQi">
+                            <connections>
+                                <segue destination="LAg-1N-Ork" kind="show" identifier="AddItem" id="CPq-gG-bNj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OW8-pa-dEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1314.9532710280373" y="2170.6263498920089"/>
+        </scene>
+        <!--New Sensor-->
+        <scene sceneID="e8a-KO-aux">
+            <objects>
+                <viewController id="LAg-1N-Ork" customClass="SensorViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qwZ-sr-qEp">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-1T-jxx">
+                                <rect key="frame" x="20" y="133" width="388" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EI3-V4-8bn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Sensor" id="xgp-7d-3m0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="X3a-CX-mvy"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-Ll-8Hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507.9439252336447" y="2176.4578833693308"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="E2F-so-NgS">
+            <objects>
+                <viewController id="ps4-nj-5A0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xq0-kP-xVc">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hXX-X6-0RO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8uc-Pp-uHF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAc-Pf-r5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2253" y="1418"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="all_icon" width="29" height="25"/>
+        <image name="configurations_icon" width="24" height="25"/>
+        <image name="home_icon" width="29" height="25"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -7,23 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A244C192571F161005125F8 /* RoomTableViewController.swift */; };
+		2A3C8D3D2571A6B100EA4858 /* HomeName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3C8D3C2571A6B100EA4858 /* HomeName.xib */; };
+		2A9E6C7B257336610012924E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7A257336610012924E /* MainViewController.swift */; };
+		2A9E6C7E257340190012924E /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7D257340190012924E /* AppData.swift */; };
 		2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F242256600BE003A93BA /* AppDelegate.swift */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
-		2AC6F247256600BE003A93BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* ViewController.swift */; };
+		2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* DashboardViewController.swift */; };
 		2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F248256600BE003A93BA /* Main.storyboard */; };
 		2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24B256600BF003A93BA /* Assets.xcassets */; };
 		2AC6F24F256600BF003A93BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24D256600BF003A93BA /* LaunchScreen.storyboard */; };
+		2ACF255D25688F30008AD41E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF255C25688F30008AD41E /* Home.swift */; };
+		2ACF25612568900F008AD41E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25602568900F008AD41E /* Room.swift */; };
+		2ACF25642568902D008AD41E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25632568902D008AD41E /* Sensor.swift */; };
+		2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF257925689FB8008AD41E /* HomeName.swift */; };
+		2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */; };
+		2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */; };
+		2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */; };
+		2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6625748B7D00596765 /* SensorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A244C192571F161005125F8 /* RoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewController.swift; sourceTree = "<group>"; };
+		2A3C8D3C2571A6B100EA4858 /* HomeName.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeName.xib; sourceTree = "<group>"; };
+		2A9E6C7A257336610012924E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2A9E6C7D257340190012924E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F242256600BE003A93BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2AC6F246256600BE003A93BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2AC6F246256600BE003A93BA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2AC6F249256600BE003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AC6F24B256600BF003A93BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC6F24E256600BF003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AC6F250256600BF003A93BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ACF255C25688F30008AD41E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		2ACF25602568900F008AD41E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		2ACF25632568902D008AD41E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		2ACF257925689FB8008AD41E /* HomeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeName.swift; sourceTree = "<group>"; };
+		2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
+		2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		2AEE5E6625748B7D00596765 /* SensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +80,25 @@
 		2AC6F241256600BE003A93BA /* SmartHome */ = {
 			isa = PBXGroup;
 			children = (
+				2ACF257925689FB8008AD41E /* HomeName.swift */,
+				2A3C8D3C2571A6B100EA4858 /* HomeName.xib */,
 				2AC6F242256600BE003A93BA /* AppDelegate.swift */,
 				2AC6F244256600BE003A93BA /* SceneDelegate.swift */,
-				2AC6F246256600BE003A93BA /* ViewController.swift */,
+				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
 				2AC6F248256600BE003A93BA /* Main.storyboard */,
+				2AEE5E6625748B7D00596765 /* SensorViewController.swift */,
+				2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */,
+				2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */,
+				2A244C192571F161005125F8 /* RoomTableViewController.swift */,
+				2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */,
+				2A9E6C7A257336610012924E /* MainViewController.swift */,
 				2AC6F24B256600BF003A93BA /* Assets.xcassets */,
 				2AC6F24D256600BF003A93BA /* LaunchScreen.storyboard */,
 				2AC6F250256600BF003A93BA /* Info.plist */,
+				2ACF255C25688F30008AD41E /* Home.swift */,
+				2ACF25602568900F008AD41E /* Room.swift */,
+				2ACF25632568902D008AD41E /* Sensor.swift */,
+				2A9E6C7D257340190012924E /* AppData.swift */,
 			);
 			path = SmartHome;
 			sourceTree = "<group>";
@@ -127,6 +163,7 @@
 				2AC6F24F256600BF003A93BA /* LaunchScreen.storyboard in Resources */,
 				2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */,
 				2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */,
+				2A3C8D3D2571A6B100EA4858 /* HomeName.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +174,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC6F247256600BE003A93BA /* ViewController.swift in Sources */,
+				2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */,
+				2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */,
+				2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */,
+				2ACF25642568902D008AD41E /* Sensor.swift in Sources */,
+				2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */,
 				2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */,
+				2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */,
+				2ACF255D25688F30008AD41E /* Home.swift in Sources */,
+				2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */,
+				2A9E6C7B257336610012924E /* MainViewController.swift in Sources */,
+				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
+				2ACF25612568900F008AD41E /* Room.swift in Sources */,
+				2A9E6C7E257340190012924E /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
