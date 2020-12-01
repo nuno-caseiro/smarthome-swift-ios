@@ -10,7 +10,7 @@ import os.log
 
 class Sensor: NSObject, NSCoding, Codable {
     
-    var id: Int
+    var id: Int?
     var name: String
     var sensorType: String
     var value: Double?
@@ -28,6 +28,15 @@ class Sensor: NSObject, NSCoding, Codable {
         self.room = room
         self.gpio = gpio
     }
+    
+    init(name: String, sensorType: String, value: Double?, room: Int, gpio: Int) {
+       self.id = nil
+       self.name = name
+       self.sensorType = sensorType
+       self.value = value
+       self.room = room
+       self.gpio = gpio
+   }
     
     func encode(with coder: NSCoder) {
         coder.encode(id, forKey: PropertyKey.id)
