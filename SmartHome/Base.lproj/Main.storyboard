@@ -179,7 +179,14 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNX-eA-y4M">
-                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="166" y="11" width="242" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyC-6C-AYq">
+                                            <rect key="frame" x="166" y="40" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -189,6 +196,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="sensorName" destination="jNX-eA-y4M" id="d2m-Wz-sMA"/>
+                                    <outlet property="sensorValue" destination="lyC-6C-AYq" id="9dW-vX-gpY"/>
+                                    <segue destination="LAg-1N-Ork" kind="show" identifier="ShowDetail" id="bgN-BL-STM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -228,10 +237,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Sensor" id="xgp-7d-3m0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="X3a-CX-mvy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="X3a-CX-mvy">
+                            <connections>
+                                <segue destination="byo-Tq-nhc" kind="unwind" unwindAction="unwindToSensorListWithSender:" id="1yn-nu-oyB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="X3a-CX-mvy" id="PSK-y8-seF"/>
+                        <outlet property="sensorNameTextField" destination="Re5-1T-jxx" id="rco-H9-cHd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-Ll-8Hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="byo-Tq-nhc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2507.9439252336447" y="2176.4578833693308"/>
         </scene>
@@ -252,6 +270,9 @@
             <point key="canvasLocation" x="2253" y="1418"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bgN-BL-STM"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="all_icon" width="29" height="25"/>
         <image name="configurations_icon" width="24" height="25"/>

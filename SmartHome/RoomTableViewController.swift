@@ -165,6 +165,7 @@ class RoomTableViewController: UITableViewController {
         
         let selectedRoom = rooms[indexPath.row]
         sensorTableViewController.room = selectedRoom
+        
     }
   
 }
