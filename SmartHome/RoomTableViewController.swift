@@ -7,7 +7,7 @@
 
 import UIKit
 import os.log
-class RoomTableViewController: UITableViewController {
+class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
     
     var rooms = [Room]()
@@ -18,8 +18,9 @@ class RoomTableViewController: UITableViewController {
         //if let savedRooms = loadRooms() {
         // rooms += savedRooms
         // } else {
-            downloadRooms()
-            
+       
+        downloadRooms()
+        
          //}
         
     }

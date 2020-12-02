@@ -18,8 +18,8 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = editButtonItem
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
+        //navigationController?.interactivePopGestureRecognizer?.delegate = nil
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -115,24 +115,12 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                     self.addSensor(sensor)
                     }
                         self.insertSensorValueApi(sensor, completion: {(error) in
-                        print(error)
+                            print(error as Any)
                     })
-                    
                 })
-                
-               
-                
-                
             }
-            
-            
-            
         }
     }
-    
-    
-    
-    
     
     // MARK: - Navigation
     
@@ -165,7 +153,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - CALLS
+    //MARK: - CALLS -- TODO: Optimize calls
     
     func deleteSensorApi(_ sensor: Sensor){
         let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
