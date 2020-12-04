@@ -15,21 +15,26 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     static let SensorsValuesURL = "http://161.35.8.148/api/lastvaluesensor/"
     static let SensorsValuesPostURL = "http://161.35.8.148/api/sensorsvalues/"
     
+    //Create Header
+    let userName = "smarthome"
+    let password = "smarthome"
+    var toEncode: String = ""
+    var encoded: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = editButtonItem
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        //navigationController?.interactivePopGestureRecognizer?.delegate = nil
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        
+        toEncode = "\(userName):\(password)" //Form the String to be encoded
+        encoded = toEncode.data(using: .utf8)?.base64EncodedString() ?? "ERROR"
         //Necessário meter no disco??
-        downloadSensors()
-        
+        requestMethod(SensorTableViewController.SensorsURL, "GET", "getAllSensors", nil, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
         
     }
     
@@ -64,7 +69,11 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
             
             
             guard let sensor = room?.sensors?[indexPath.row] else { return  }
-            deleteSensorApi(sensor)
+            
+            let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+
+            requestMethod(stringForDelete, "DELETE", "DELETE", sensor, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+            
             // Delete the row from the data source
             room?.sensors?.remove(at: indexPath.row)
             // Delete the row from the data source
@@ -103,36 +112,28 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing sensor.
-                updateSensorApi(sensor)
+                
+                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+
+                requestMethod(stringForUpdate, "PUT", "updateSensor", sensor, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+                
                 room?.sensors?[selectedIndexPath.row] = sensor
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
-                insertSensorRoomApi(sensor, completion: { (newSensor, error) in
+                requestMethod(SensorTableViewController.SensorsURL, "POST", "insertSensorRoom", sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
                     DispatchQueue.main.async {
-                    self.addSensor(sensor)
+                        self.addSensor(sensor)
                     }
-                        self.insertSensorValueApi(sensor, completion: {(error) in
-                        print(error)
+                    self.requestMethod(SensorTableViewController.SensorsValuesPostURL, "POST", "insertSensorValue", sensor, completionToInsertSensor: nil, completionToInsertSensorValue: {(error) in
+                        print(error as Any)
                     })
-                    
-                })
-                
-               
-                
-                
+                },completionToInsertSensorValue: nil)
             }
-            
-            
-            
         }
     }
-    
-    
-    
-    
     
     // MARK: - Navigation
     
@@ -165,68 +166,66 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - CALLS
-    
-    func deleteSensorApi(_ sensor: Sensor){
-        let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+    //MARK: - CALLS -- TODO: Optimize calls
         
-        let url = URL(string: stringForUpdate)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "DELETE"
+    func requestMethod(_ urlString: String, _ method:String, _ action: String, _ sensor: Sensor?, completionToInsertSensor: ( (_ newSensor: Sensor?, _ error: Error?)->())?, completionToInsertSensorValue: ( (_ error: Error?) -> ())? ){
         
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        // Set HTTP Request Header
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            
-        }
-        task.resume()
-    }
-    
-    func downloadSensors() {
-        
-        guard let url = URL(string: SensorTableViewController.SensorsURL) else {
+        guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
         }
         
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        
-        var request = URLRequest(url: url)
-        //Add the header value
-        
         // Create the request
-        request.httpMethod = "GET"
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(self.encoded)", forHTTPHeaderField: "Authorization")
+        //request.addValue("Token 2db95cd10f66e4a58bbd4f19b10a8b2a0ecc4eb8", forHTTPHeaderField: "Authorization")
+        
+        var newSensor: Sensor? = nil
+        
+        //PREPARE DATA
+        switch action {
+        case "insertSensorRoom":
+            do{
+                let jsonData = try JSONEncoder().encode(sensor)
+                request.httpBody = jsonData
+                
+            } catch let parseError as NSError {
+                print(parseError.localizedDescription)
+            }
+        case "insertSensorValue":
+            // Create model
+            struct SensorValue: Codable {
+                let idsensor: Int
+                let value: Double
+            }
+            
+            // Add data to the model
+            let uploadDataModel = SensorValue(idsensor: sensor?.id ?? 0, value: sensor?.value ?? 0)
+            
+            // Convert model to JSON data
+            guard let jsonData = try? JSONEncoder().encode(uploadDataModel) else {
+                print("Error: Trying to convert model to JSON data")
+                return
+            }
+            request.httpBody = jsonData
+        case "updateSensor":
+            do{
+                let jsonData = try JSONEncoder().encode(sensor)
+                request.httpBody = jsonData
+                
+            } catch let parseError as NSError {
+                
+                print(parseError.localizedDescription)
+            }
+            
+        default:
+            print("DEFAULT FIRST PART OF REQUEST")
+        }
+       
+        //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
@@ -242,246 +241,75 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                 return
             }
             
-            do {
-                
-                let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
-                print(newSensors)
-                for sensor in newSensors {
+            switch action{
+            case "getAllSensors":
+                do {
+                    let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
+                    print(newSensors)
+                    for sensor in newSensors {
+                        // add downloaded meal without photo
+                        //let urlForValue = SensorTableViewController.SensorsValuesURL + "?idsensor=\(String(describing: sensor.id!))"
+
+                        //self.requestMethod(urlForValue, "GET", "sensorValue", sensor, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+                        DispatchQueue.main.async {
+                        self.addSensor(sensor)
+                        }
+                    }
+                    
+                } catch let parseError as NSError {
+                    
+                    print(parseError.localizedDescription)
+                }
+            case "insertSensorRoom":
+                do{
+                    newSensor = try JSONDecoder().decode(Sensor.self, from: data)
+                    completionToInsertSensor!(newSensor, error)
+                    
+                    print("todoItemModel id: \(newSensor?.id ?? 0)")
+                }catch let jsonErr{
+                    print(jsonErr)
+                }
+            case "insertSensorValue":
+                do{
+                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                        print("Error: Cannot convert data to JSON object")
+                        return
+                    }
+                    print(jsonObject)
+                }catch let jsonErr{
+                    print(jsonErr)
+                }
+            case "updateSensor":
+                do{
+                    newSensor = try JSONDecoder().decode(Sensor.self, from: data)
+                    print("todoItemModel id: \(newSensor?.id ?? 0)")
+                }catch let jsonErr{
+                    print(jsonErr)
+                }
+            case "sensorValue":
+                do {
+                    
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]]
+                    
+                    guard let value = (json?[0]["value"] as AnyObject? ) else{
+                        print ("Cant obtain value on action: sensorValue")
+                        return
+                    }
                     // add downloaded meal without photo
+                    DispatchQueue.main.async {
+                        sensor?.value = Double(value as! Substring)
+                        
+                        self.addSensor(sensor!)
+                    }
                     
-                    self.downloadValues(sensor)
+                } catch let parseError as NSError {
                     
-                    
-                    
+                    print(parseError.localizedDescription)
                 }
-                
-            } catch let parseError as NSError {
-                
-                print(parseError.localizedDescription)
+            default:
+                print("DEFAULT")
             }
             
-        }.resume()
-    }
-    
-    
-    
-    func insertSensorRoomApi(_ sensor: Sensor, completion: @escaping (_ newSensor: Sensor?, _ error: Error?)->()) {
-        let url = URL(string: SensorTableViewController.SensorsURL)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-        
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        // Set HTTP Request Header
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
-        do{
-            let jsonData = try JSONEncoder().encode(sensor)
-            request.httpBody = jsonData
-            
-        } catch let parseError as NSError {
-            print(parseError.localizedDescription)
-        }
-        
-        var newSensor: Sensor? = nil
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                print("Error took place \(error)")
-                completion(nil, error)
-                return
-            }
-            guard let data = data else {return}
-            do{
-                newSensor = try JSONDecoder().decode(Sensor.self, from: data)
-                completion(newSensor, error)
-                
-                print("todoItemModel id: \(newSensor?.id ?? 0)")
-            }catch let jsonErr{
-                print(jsonErr)
-            }
-            
-        }
-        task.resume()
-        
-    }
-    
-    func insertSensorValueApi(_ sensor: Sensor, completion: @escaping (_ error: Error?) -> ()) {
-        let url = URL(string: SensorTableViewController.SensorsValuesPostURL)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-        
-        // Create model
-        struct SensorValue: Codable {
-            let idsensor: Int
-            let value: Double
-        }
-        
-        // Add data to the model
-        let uploadDataModel = SensorValue(idsensor: sensor.id ?? 0, value: sensor.value ?? 0)
-        
-        // Convert model to JSON data
-        guard let jsonData = try? JSONEncoder().encode(uploadDataModel) else {
-            print("Error: Trying to convert model to JSON data")
-            return
-        }
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        // Set HTTP Request Header
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
-        request.httpBody = jsonData
-        
-        
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                print("Error took place \(error)")
-                completion(error)
-                return
-            }
-            guard let data = data else {return}
-            do{
-                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                    print("Error: Cannot convert data to JSON object")
-                    return
-                }
-                print(jsonObject)
-            }catch let jsonErr{
-                print(jsonErr)
-            }
-            
-        }
-        task.resume()
-        
-    }
-    
-    func updateSensorApi(_ sensor: Sensor){
-        let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
-        
-        let url = URL(string: stringForUpdate)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "PUT"
-        
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        // Set HTTP Request Header
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
-        do{
-            let jsonData = try JSONEncoder().encode(sensor)
-            request.httpBody = jsonData
-            
-        } catch let parseError as NSError {
-            
-            print(parseError.localizedDescription)
-        }
-        
-        var newSensor: Sensor? = nil
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            
-            do{
-                newSensor = try JSONDecoder().decode(Sensor.self, from: data)
-                print("todoItemModel id: \(newSensor?.id ?? 0)")
-            }catch let jsonErr{
-                print(jsonErr)
-            }
-            
-        }
-        task.resume()
-        
-    }
-    
-    
-    func downloadValues(_ sensor: Sensor) {
-        
-        let urlForValue = SensorTableViewController.SensorsValuesURL + "?idsensor=\(String(describing: sensor.id!))"
-        
-        guard let url = URL(string: urlForValue) else {
-            print("Error: cannot create URL")
-            return
-        }
-        
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        
-        var request = URLRequest(url: url)
-        //Add the header value
-        
-        // Create the request
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            
-            do {
-                
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]]
-                
-                let value = (json?[0]["value"] as AnyObject? as? String) ?? ""
-                // add downloaded meal without photo
-                DispatchQueue.main.async {
-                    sensor.value = Double(value)
-                    
-                    self.addSensor(sensor)
-                }
-                
-            } catch let parseError as NSError {
-                
-                print(parseError.localizedDescription)
-            }
             
         }.resume()
     }

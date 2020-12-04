@@ -20,13 +20,14 @@ class Sensor: NSObject, NSCoding, Codable {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("sensors")
     
-     init(id: Int, name: String, sensorType: String, value: Double?, room: Int, gpio: Int) {
+    init(id: Int, name: String, sensorType: String, value: Double?, room: Int, gpio: Int) {
         self.id = id
         self.name = name
         self.sensorType = sensorType
         self.value = value
         self.room = room
         self.gpio = gpio
+        
     }
     
     init(name: String, sensorType: String, value: Double?, room: Int, gpio: Int) {
@@ -83,6 +84,7 @@ class Sensor: NSObject, NSCoding, Codable {
         case sensorType = "sensortype"
         case room
         case gpio
+        case value
     }
     
 }

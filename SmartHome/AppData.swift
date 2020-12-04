@@ -10,16 +10,15 @@ import Foundation
 class AppData {
     //Singleton
     
-    //creates the instance and guarantees that it's unique
-       static let instance = AppData()
-       
-       private init() {
+    static let instance = AppData()
+    
+    private init() {
         
-       }
+    }
     
-       var home = Home()
+    var home = Home()
+    var authToken = ""
     
     
-        
-       
+    
 }

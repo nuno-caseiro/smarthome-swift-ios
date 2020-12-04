@@ -7,7 +7,7 @@
 
 import UIKit
 import os.log
-class RoomTableViewController: UITableViewController {
+class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
     
     var rooms = [Room]()
@@ -18,8 +18,9 @@ class RoomTableViewController: UITableViewController {
         //if let savedRooms = loadRooms() {
         // rooms += savedRooms
         // } else {
-            downloadRooms()
-            
+       
+        downloadRooms()
+        
          //}
         
     }
@@ -157,7 +158,7 @@ class RoomTableViewController: UITableViewController {
             fatalError("Unexpected destination: \(segue.destination)")
         }
          guard let selectedRoomCell = sender as? RoomTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
+            fatalError("Unexpected sender: \(String(describing: sender))")
         }
         guard let indexPath = tableView.indexPath(for: selectedRoomCell) else {
             fatalError("The selected cell is not being displayed by the table")
