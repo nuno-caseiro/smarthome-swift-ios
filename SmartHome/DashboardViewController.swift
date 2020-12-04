@@ -14,7 +14,8 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var roomsTable: UITableView!
     @IBOutlet weak var homeName: HomeName!
-    var rooms = [Room]()
+    weak var home = AppData.instance.home
+    
     static let RoomsURL = "http://161.35.8.148/api/rooms/"
     
     override func viewDidLoad() {
@@ -25,17 +26,12 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         downloadRooms()
     }
-    
-    
    
-   
-   
-    
     private func loadSampleRoom(){
         
         let room1 = Room(name: "Garagem", home: 1)
         
-        rooms.append(room1)
+        home?.rooms.append(room1)
         
     }
     
@@ -53,8 +49,8 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     fileprivate func addRoom(_ room: Room) {
         // Add a new meal.
-        let newIndexPath = IndexPath(row: rooms.count, section: 0)
-        rooms.append(room)
+        let newIndexPath = IndexPath(row: home?.rooms.count ?? 0, section: 0)
+        home?.rooms.append(room)
         roomsTable.insertRows(at: [newIndexPath], with: .automatic)
     }
     
@@ -101,6 +97,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                         DispatchQueue.main.async {
                             room.sensors = [Sensor]()
                             self.addRoom(room)
+                                                      
                         }
                     }
                     /*DispatchQueue.main.async {
@@ -125,8 +122,8 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Fetches the appropriate room for the data source layout.
         
-        let room = rooms[indexPath.row]
-        cell.roomNameLabel.text = room.name
+        let room = home?.rooms[indexPath.row]
+        cell.roomNameLabel.text = room?.name
         //cell.photoImageView.image = meal.photo
         //cell.ratingControl.rating = meal.rating
         return cell
@@ -134,18 +131,18 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
        
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rooms.count
+        return home?.rooms.count ?? 0
     }
     
-    private func saveRooms() {
+  /*  private func saveRooms() {
         do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: rooms, requiringSecureCoding: false)
+            let data = try NSKeyedArchiver.archivedData(withRootObject: home?.rooms, requiringSecureCoding: false)
             try data.write(to: Room.ArchiveURL)
             os_log("Rooms successfully saved.", log: OSLog.default, type: .debug)
         } catch {
             os_log("Failed to save rooms...", log: OSLog.default, type: .error)
         }
-    }
+    }*/
     
 
     /*
@@ -171,7 +168,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             fatalError("The selected cell is not being displayed by the table")
         }
         
-        let selectedRoom = rooms[indexPath.row]
+        let selectedRoom = home?.rooms[indexPath.row]
         sensorTableViewController.room = selectedRoom
         
     }

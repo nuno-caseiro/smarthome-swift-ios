@@ -11,6 +11,7 @@
 		2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A244C192571F161005125F8 /* RoomTableViewController.swift */; };
 		2A3C8D3D2571A6B100EA4858 /* HomeName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3C8D3C2571A6B100EA4858 /* HomeName.xib */; };
 		2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */; };
+		2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */; };
 		2A9E6C7B257336610012924E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7A257336610012924E /* MainViewController.swift */; };
 		2A9E6C7E257340190012924E /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7D257340190012924E /* AppData.swift */; };
 		2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F242256600BE003A93BA /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 		2A244C192571F161005125F8 /* RoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewController.swift; sourceTree = "<group>"; };
 		2A3C8D3C2571A6B100EA4858 /* HomeName.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeName.xib; sourceTree = "<group>"; };
 		2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
 		2A9E6C7A257336610012924E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A9E6C7D257340190012924E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				2A9E6C7D257340190012924E /* AppData.swift */,
 				2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */,
 				2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */,
+				2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */,
 			);
 			path = SmartHome;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				2ACF25642568902D008AD41E /* Sensor.swift in Sources */,
 				2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */,
 				2AC6F243256600BE003A93BA /* AppDelegate.swift in Sources */,
+				2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */,
 				2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */,
 				2ACF255D25688F30008AD41E /* Home.swift in Sources */,
 				2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */,

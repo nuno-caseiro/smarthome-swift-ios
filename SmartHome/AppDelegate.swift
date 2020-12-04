@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                       return
                   }
                   do {
-                      guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    guard (try JSONSerialization.jsonObject(with: data) as? [String: Any]) != nil else {
                           print("Error: Cannot convert data to JSON object")
                           return
                       }

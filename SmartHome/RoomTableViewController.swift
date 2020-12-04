@@ -9,8 +9,8 @@ import UIKit
 import os.log
 class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
-    
-    var rooms = [Room]()
+    //NAO ESTA A SER UTILIZADO
+    var rooms = AppData.instance.home.rooms
     static let RoomsURL = "http://161.35.8.148/api/rooms/"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
         // } else {
        
         downloadRooms()
-        
+      
          //}
         
     }
@@ -95,6 +95,7 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
                         DispatchQueue.main.async {
                             room.sensors = [Sensor]()
                             self.addRoom(room)
+                            
                         }
                     }
                     /*DispatchQueue.main.async {
@@ -153,7 +154,6 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
         guard let sensorTableViewController = segue.destination as? SensorTableViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }

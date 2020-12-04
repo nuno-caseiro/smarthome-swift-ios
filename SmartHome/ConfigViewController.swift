@@ -8,7 +8,8 @@
 import UIKit
 
 class ConfigViewController: UIViewController {
-    
+  
+
     @IBOutlet weak var turnOn: UIButton!
     var valor: Bool = false
     override func viewDidLoad() {
@@ -99,6 +100,7 @@ class ConfigViewController: UIViewController {
             }
         }.resume()
     }
+    
     /*
      // MARK: - Navigation
      
