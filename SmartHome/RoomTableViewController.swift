@@ -158,7 +158,7 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
             fatalError("Unexpected destination: \(segue.destination)")
         }
          guard let selectedRoomCell = sender as? RoomTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
+            fatalError("Unexpected sender: \(String(describing: sender))")
         }
         guard let indexPath = tableView.indexPath(for: selectedRoomCell) else {
             fatalError("The selected cell is not being displayed by the table")
