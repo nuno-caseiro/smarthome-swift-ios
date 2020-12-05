@@ -30,7 +30,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+     
         toEncode = "\(userName):\(password)" //Form the String to be encoded
         encoded = toEncode.data(using: .utf8)?.base64EncodedString() ?? "ERROR"
         //Necessário meter no disco??
@@ -59,7 +59,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         let sensor = room?.sensors?[indexPath.row]
         cell.sensorName.text = sensor?.name
         cell.sensorValue.text = String(sensor?.value ?? 0)
-        //cell.ratingControl.rating = meal.rating
+        cell.sensorImageView.image = sensor?.image
         return cell
     }
     
@@ -247,12 +247,20 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                     let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
                     print(newSensors)
                     for sensor in newSensors {
-                        // add downloaded meal without photo
-                        //let urlForValue = SensorTableViewController.SensorsValuesURL + "?idsensor=\(String(describing: sensor.id!))"
-
-                        //self.requestMethod(urlForValue, "GET", "sensorValue", sensor, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+                        
+                        switch sensor.sensorType{
+                            case "led":
+                                sensor.image = UIImage(named: "light_icon")
+                            case "camera":
+                                sensor.image = UIImage(named: "camera_icon")
+                            case "servo":
+                                sensor.image = UIImage(named: "door_icon")
+                            default:
+                                return
+                        }
+                      
                         DispatchQueue.main.async {
-                        self.addSensor(sensor)
+                            self.addSensor(sensor)
                         }
                     }
                     

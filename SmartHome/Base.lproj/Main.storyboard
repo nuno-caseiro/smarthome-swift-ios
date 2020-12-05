@@ -231,6 +231,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="sensorImageView" destination="NpQ-LB-awl" id="sKT-nA-MNk"/>
                                     <outlet property="sensorName" destination="jNX-eA-y4M" id="d2m-Wz-sMA"/>
                                     <outlet property="sensorValue" destination="lyC-6C-AYq" id="9dW-vX-gpY"/>
                                     <segue destination="LAg-1N-Ork" kind="show" identifier="ShowDetail" id="bgN-BL-STM"/>
@@ -262,11 +263,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8nh-q5-Sy8">
+                                <rect key="frame" x="20" y="110" width="182" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-1T-jxx">
-                                <rect key="frame" x="20" y="133" width="388" height="34"/>
+                                <rect key="frame" x="217" y="110" width="185" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9nc-mj-Jt8" customClass="DropDown" customModule="iOSDropDown">
+                                <rect key="frame" x="20" y="263" width="388" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OCn-rf-R6x">
+                                <rect key="frame" x="20" y="320" width="388" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EI3-V4-8bn"/>
@@ -280,14 +297,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gpioTextField" destination="OCn-rf-R6x" id="PfX-Sx-HeJ"/>
+                        <outlet property="imageViewSensor" destination="8nh-q5-Sy8" id="FCb-EN-q1S"/>
                         <outlet property="saveButton" destination="X3a-CX-mvy" id="PSK-y8-seF"/>
                         <outlet property="sensorNameTextField" destination="Re5-1T-jxx" id="rco-H9-cHd"/>
+                        <outlet property="sensorType" destination="9nc-mj-Jt8" id="Edf-ne-4PB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-Ll-8Hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="byo-Tq-nhc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="2154"/>
+            <point key="canvasLocation" x="1314.9532710280373" y="2153.7796976241902"/>
         </scene>
         <!--Config View Controller-->
         <scene sceneID="E2F-so-NgS">

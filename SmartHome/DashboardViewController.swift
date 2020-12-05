@@ -171,6 +171,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let selectedRoom = home?.rooms[indexPath.row]
         sensorTableViewController.room = selectedRoom
         
+        
     }
   
 }

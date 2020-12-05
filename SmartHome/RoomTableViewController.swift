@@ -15,14 +15,7 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //if let savedRooms = loadRooms() {
-        // rooms += savedRooms
-        // } else {
-       
         downloadRooms()
-      
-         //}
-        
     }
     
     private func loadSampleRoom(){
@@ -46,7 +39,6 @@ class RoomTableViewController: UITableViewController, UIGestureRecognizerDelegat
     }
     
     fileprivate func addRoom(_ room: Room) {
-        // Add a new meal.
         let newIndexPath = IndexPath(row: rooms.count, section: 0)
         rooms.append(room)
         tableView.insertRows(at: [newIndexPath], with: .automatic)
