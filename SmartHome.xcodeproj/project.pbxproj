@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A1D7D6F257A9A7E003B220A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */; };
-		2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A244C192571F161005125F8 /* RoomTableViewController.swift */; };
+		2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34004B257C0CCC00210C50 /* RoomViewController.swift */; };
 		2A3C8D3D2571A6B100EA4858 /* HomeName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3C8D3C2571A6B100EA4858 /* HomeName.xib */; };
 		2A4FCA6A257B0B0C0072E10C /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */; };
 		2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */; };
@@ -34,7 +34,7 @@
 /* Begin PBXFileReference section */
 		10F4FE5803998DECB167974A /* Pods-SmartHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHome.debug.xcconfig"; path = "Target Support Files/Pods-SmartHome/Pods-SmartHome.debug.xcconfig"; sourceTree = "<group>"; };
 		2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2A244C192571F161005125F8 /* RoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewController.swift; sourceTree = "<group>"; };
+		2A34004B257C0CCC00210C50 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2A3C8D3C2571A6B100EA4858 /* HomeName.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeName.xib; sourceTree = "<group>"; };
 		2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
@@ -107,11 +107,11 @@
 				2A3C8D3C2571A6B100EA4858 /* HomeName.xib */,
 				2AC6F242256600BE003A93BA /* AppDelegate.swift */,
 				2AC6F244256600BE003A93BA /* SceneDelegate.swift */,
-				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
 				2AEE5E6625748B7D00596765 /* SensorViewController.swift */,
 				2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */,
 				2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */,
-				2A244C192571F161005125F8 /* RoomTableViewController.swift */,
+				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
+				2A34004B257C0CCC00210C50 /* RoomViewController.swift */,
 				2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */,
 				2AC6F248256600BE003A93BA /* Main.storyboard */,
 				2A9E6C7A257336610012924E /* MainViewController.swift */,
@@ -261,11 +261,11 @@
 				2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */,
 				2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */,
 				2ACF255D25688F30008AD41E /* Home.swift in Sources */,
-				2A244C1A2571F161005125F8 /* RoomTableViewController.swift in Sources */,
 				2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */,
 				2A9E6C7B257336610012924E /* MainViewController.swift in Sources */,
 				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
+				2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */,
 				2ACF25612568900F008AD41E /* Room.swift in Sources */,
 				2A9E6C7E257340190012924E /* AppData.swift in Sources */,
 			);

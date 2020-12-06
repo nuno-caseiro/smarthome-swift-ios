@@ -73,6 +73,7 @@ class ConfigTableViewController: UITableViewController {
                 }
                 
                 AppData.instance.authToken = ""
+                AppData.instance.home = Home()
                 
                 DispatchQueue.main.async {
                     myActivityIndicator.removeFromSuperview()

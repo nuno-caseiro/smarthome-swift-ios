@@ -12,6 +12,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     
     var room: Room?
     static let SensorsURL = "http://161.35.8.148/api/sensors/"
+    static let SensorsRoomURL = "http://161.35.8.148/api/sensorsofroom/"
     static let SensorsValuesURL = "http://161.35.8.148/api/lastvaluesensor/"
     static let SensorsValuesPostURL = "http://161.35.8.148/api/sensorsvalues/"
     
@@ -34,7 +35,13 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         toEncode = "\(userName):\(password)" //Form the String to be encoded
         encoded = toEncode.data(using: .utf8)?.base64EncodedString() ?? "ERROR"
         //Necessário meter no disco??
-        requestMethod(SensorTableViewController.SensorsURL, "GET", "getAllSensors", nil, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+        
+        if(room != nil){
+            requestMethod(SensorTableViewController.SensorsRoomURL+"?room=\(String(describing: room!.id!))", "GET", "getAllSensors", nil, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+        }else{
+            print("Cant load room's sensors")
+        }
+      
         
     }
     
@@ -66,8 +73,6 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            
             guard let sensor = room?.sensors?[indexPath.row] else { return  }
             
             let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
@@ -79,9 +84,6 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            // Save the meals.
-            //saveMeals()
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -89,7 +91,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     
     
     fileprivate func addSensor(_ sensor: Sensor) {
-        // Add a new meal.
+        // Add a new sensor.
         
         if let validRooms = room?.sensors {
             for sensorAtual in validRooms {
@@ -140,16 +142,19 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        switch(segue.identifier ?? "") {
+        guard let sensorDetailViewController = segue.destination as? SensorViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
         
+       
+        switch(segue.identifier ?? "") {
+            
+            
         case "AddItem":
-            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+            os_log("Adding a new sensor.", log: OSLog.default, type: .debug)
+            sensorDetailViewController.roomId = room?.id
             
         case "ShowDetail":
-            guard let sensorDetailViewController = segue.destination as? SensorViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
             guard let selectedSensorCell = sender as? SensorTableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
@@ -160,7 +165,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
             
             let selectedSensor = room?.sensors?[indexPath.row]
             sensorDetailViewController.sensor = selectedSensor
-        //sensorDetailViewController.roomId = room.id
+            sensorDetailViewController.roomId = room?.id
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
@@ -187,6 +192,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         //PREPARE DATA
         switch action {
+        
         case "insertSensorRoom":
             do{
                 let jsonData = try JSONEncoder().encode(sensor)
@@ -246,6 +252,14 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                 do {
                     let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
                     print(newSensors)
+                    
+                    DispatchQueue.main.async {
+                        if (newSensors.count != self.room?.sensors?.count && self.room?.sensors?.count != 0) {
+                            self.room?.sensors?.removeAll()
+                            self.tableView.reloadData()
+                        }
+                    }
+
                     for sensor in newSensors {
                         
                         switch sensor.sensorType{

@@ -16,6 +16,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var imageViewSensor: UIImageView!
     @IBOutlet weak var gpioTextField: UITextField!
+    @IBOutlet weak var valueSensorLabel: UILabel!
     var sensor: Sensor?
     var roomId: Int? = nil
     
@@ -30,11 +31,13 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
          sensorNameTextField.text = sensor.name
          imageViewSensor.image = sensor.image
          gpioTextField.text = String(sensor.gpio)
+         valueSensorLabel.text = String(format: "%.1f", sensor.value ?? "0.0")
         }else{
             imageViewSensor.image = UIImage(named: "configurations_icon")
+            valueSensorLabel.text = "None"
         }
         
-        sensorType.optionArray = ["Led", "Camera", "Porta"]
+        sensorType.optionArray = ["Led", "Camera", "Door"]
        
         sensorType.selectedRowColor = .white
         
@@ -108,7 +111,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         
         //se existir, ja tem id = update
         if let sensor = sensor {
-            self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1, image: sensorImage)
+            self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage)
         }else{
             sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage )
         }
