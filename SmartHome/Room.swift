@@ -10,6 +10,7 @@ import os.log
 
 class Room: NSObject, NSCoding, Codable{
     
+    var id: Int?
     var name: String
     var home: Int
     var ip: String
@@ -18,11 +19,12 @@ class Room: NSObject, NSCoding, Codable{
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("rooms")
     
-    init(name: String, home: Int, ip: String, sensors: [Sensor]?) {
+    init(name: String, home: Int, ip: String, sensors: [Sensor]?, id: Int?) {
         self.name = name
         self.home = home
         self.ip = ip
         self.sensors = [Sensor]()
+        self.id = id
     }
     
     init(name: String, home: Int){
@@ -37,6 +39,7 @@ class Room: NSObject, NSCoding, Codable{
         coder.encode(home, forKey: PropertyKey.home)
         coder.encode(ip, forKey: PropertyKey.ip)
         coder.encode(sensors, forKey: PropertyKey.sensors)
+        coder.encode(id, forKey: PropertyKey.id)
     }
     
     required convenience init?(coder: NSCoder) {
@@ -52,7 +55,9 @@ class Room: NSObject, NSCoding, Codable{
         
         let sensors = coder.decodeObject(forKey: PropertyKey.sensors) as? [Sensor]
         
-        self.init(name: name, home: home, ip: ip, sensors: sensors)
+        let id = coder.decodeInteger(forKey: PropertyKey.id)
+        
+        self.init(name: name, home: home, ip: ip, sensors: sensors, id: id)
     }
     
     struct PropertyKey {
@@ -60,6 +65,7 @@ class Room: NSObject, NSCoding, Codable{
         static let home = "home"
         static let ip = "ip"
         static let sensors = "sensors"
+        static let id = "id"
         
     }
     
@@ -68,6 +74,7 @@ class Room: NSObject, NSCoding, Codable{
         case home
         case ip
         case sensors
+        case id
     }
     
 }

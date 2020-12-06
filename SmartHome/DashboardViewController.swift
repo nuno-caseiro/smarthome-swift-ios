@@ -9,14 +9,14 @@ import UIKit
 import os.log
 
 class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
-   
-
+    
+    
     @IBOutlet weak var roomsTable: UITableView!
     @IBOutlet weak var homeName: HomeName!
     weak var home = AppData.instance.home
     
-    static let RoomsURL = "http://161.35.8.148/api/rooms/"
+    static let RoomsURL = "http://161.35.8.148/api/roomsfortesting/"
+    static let RoomsForPostAndDelURL = "http://161.35.8.148/api/rooms/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         downloadRooms()
     }
-   
+    
     private func loadSampleRoom(){
         
         let room1 = Room(name: "Garagem", home: 1)
@@ -56,7 +56,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func downloadRooms() {
         
-        guard let url = URL(string: RoomTableViewController.RoomsURL) else {
+        guard let url = URL(string: DashboardViewController.RoomsURL) else {
             print("Error: cannot create URL")
             return
         }
@@ -89,31 +89,31 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                 print("Error: HTTP request failed")
                 return
             }
-                do {
-                    let newRooms: [Room] = try JSONDecoder().decode([Room].self, from: data)
-                    
-                    for room in newRooms {
-                        // add downloaded meal without photo
-                        DispatchQueue.main.async {
-                            room.sensors = [Sensor]()
-                            self.addRoom(room)
-                                                      
-                        }
+            do {
+                let newRooms: [Room] = try JSONDecoder().decode([Room].self, from: data)
+                
+                for room in newRooms {
+                    // add downloaded meal without photo
+                    DispatchQueue.main.async {
+                        room.sensors = [Sensor]()
+                        self.addRoom(room)
+                        
                     }
-                    /*DispatchQueue.main.async {
-                        self.saveRooms()
-                    }*/
-                } catch let parseError as NSError {
-                    
-                    print(parseError.localizedDescription)
                 }
-            }.resume()
-        }
+                /*DispatchQueue.main.async {
+                 self.saveRooms()
+                 }*/
+            } catch let parseError as NSError {
+                
+                print(parseError.localizedDescription)
+            }
+        }.resume()
+    }
     
     
     
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "RoomTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RoomTableViewCell else {
@@ -129,60 +129,186 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-       
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return home?.rooms.count ?? 0
     }
     
-  /*  private func saveRooms() {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: home?.rooms, requiringSecureCoding: false)
-            try data.write(to: Room.ArchiveURL)
-            os_log("Rooms successfully saved.", log: OSLog.default, type: .debug)
-        } catch {
-            os_log("Failed to save rooms...", log: OSLog.default, type: .error)
-        }
-    }*/
+    /*  private func saveRooms() {
+     do {
+     let data = try NSKeyedArchiver.archivedData(withRootObject: home?.rooms, requiringSecureCoding: false)
+     try data.write(to: Room.ArchiveURL)
+     os_log("Rooms successfully saved.", log: OSLog.default, type: .debug)
+     } catch {
+     os_log("Failed to save rooms...", log: OSLog.default, type: .error)
+     }
+     }*/
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let sensorTableViewController = segue.destination as? SensorTableViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
+        
+        switch(segue.identifier ?? "") {
+        case "AddItem":
+            os_log("Adding a new room.", log: OSLog.default, type: .debug)
+            
+        case "ShowDetail":
+            guard let sensorTableViewController = segue.destination as? SensorTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            
+            guard let selectedRoomCell = sender as? RoomTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            guard let indexPath = roomsTable.indexPath(for: selectedRoomCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedRoom = home?.rooms[indexPath.row]
+            sensorTableViewController.room = selectedRoom
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
-         guard let selectedRoomCell = sender as? RoomTableViewCell else {
-            fatalError("Unexpected sender: \(String(describing: sender))")
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            
+            guard let room = home?.rooms[indexPath.row] else { return  }
+                            
+            deleteRoom(room)
+            
+            // Delete the row from the data source
+            home?.rooms.remove(at: indexPath.row)
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
+            
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new
         }
-        guard let indexPath = roomsTable.indexPath(for: selectedRoomCell) else {
-            fatalError("The selected cell is not being displayed by the table")
+    }
+    
+    @IBAction func unwindToRoomList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? RoomViewController,
+           let room = sourceViewController.room {
+            
+            insertRoom(room, completionToInsertRoom: { (newRoom, error) in
+                room.id = newRoom?.id
+                DispatchQueue.main.async {
+                    self.addRoom(room)
+                }
+                
+                
+            })
+            
+            
+            
+            
+            
+        }
+    }
+    
+    func insertRoom(_ room: Room, completionToInsertRoom: ((_ newRoom: Room?, _ error: Error?)->())?) {
+        guard let url = URL(string: DashboardViewController.RoomsForPostAndDelURL) else {
+            print("Error: cannot create URL")
+            return
         }
         
-        let selectedRoom = home?.rooms[indexPath.row]
-        sensorTableViewController.room = selectedRoom
+        // Create the url request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
+        request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
+        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            let jsonData = try JSONEncoder().encode(room)
+            request.httpBody = jsonData
+            
+        } catch let parseError as NSError {
+            print(parseError.localizedDescription)
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: error calling POST")
+                print(error!)
+                return
+            }
+            guard let data = data else {
+                print("Error: Did not receive data")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            do{
+                let newRoom = try JSONDecoder().decode(Room.self, from: data)
+                completionToInsertRoom!(newRoom, error)
+                
+                print("todoItemModel id: \(newRoom.id ?? 0)")
+            }catch let jsonErr{
+                print(jsonErr)
+            }
+            
+        }.resume()
+    }
+    
+    
+    
+    func deleteRoom(_ room: Room) {
+        guard let url = URL(string: DashboardViewController.RoomsForPostAndDelURL + "\(String(describing: room.id!))/") else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        // Create the url request
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
+        request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
+        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: error calling DELETE")
+                print(error!)
+                return
+            }
+            guard data != nil else {
+                print("Error: Did not receive data")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+           
+        }.resume()
+        
         
     }
-  
+    
 }
 
-    
-    
-    
-   
-    
-   
 
 
-    
 
 
