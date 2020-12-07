@@ -33,12 +33,13 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
          gpioTextField.text = String(sensor.gpio)
          valueSensorLabel.text = String(format: "%.1f", sensor.value ?? "0.0")
         }else{
-            imageViewSensor.image = UIImage(named: "configurations_icon")
+            imageViewSensor.image = UIImage(named: "no_image_icon")
             valueSensorLabel.text = "None"
         }
         
         sensorType.optionArray = ["Led", "Camera", "Door"]
-       
+        
+        
         sensorType.selectedRowColor = .white
         
         if(sensor != nil){
@@ -63,7 +64,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 case 0:
                     self.imageViewSensor.image = UIImage(named: "light_icon")
                 case 1:
-                    self.imageViewSensor.image = UIImage(named: "camera_icon")
+                    self.imageViewSensor.image = UIImage(named: "camera_new_icon")
                 case 2:
                     self.imageViewSensor.image = UIImage(named: "door_icon")
                     
@@ -95,7 +96,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 self.imageViewSensor.image = UIImage(named: "light_icon")
                 sensorTypeValue = "led"
             case 1:
-                self.imageViewSensor.image = UIImage(named: "camera_icon")
+                self.imageViewSensor.image = UIImage(named: "camera_new_icon")
                 sensorTypeValue = "camera"
             case 2:
                 self.imageViewSensor.image = UIImage(named: "door_icon")

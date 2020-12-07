@@ -27,14 +27,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         downloadRooms()
     }
     
-    private func loadSampleRoom(){
-        
-        let room1 = Room(name: "Garagem", home: 1)
-        
-        home?.rooms.append(room1)
-        
-    }
-    
     private func loadRooms() -> [Room]? {
         do {
             let codedData = try Data(contentsOf: Room.ArchiveURL)
@@ -213,14 +205,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     self.addRoom(room)
                 }
-                
-                
             })
-            
-            
-            
-            
-            
         }
     }
     

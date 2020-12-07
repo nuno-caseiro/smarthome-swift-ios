@@ -15,24 +15,22 @@ class Room: NSObject, NSCoding, Codable{
     var home: Int
     var ip: String
     var sensors: [Sensor]?
+    var image: UIImage?
+    //var roomType: String
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("rooms")
     
-    init(name: String, home: Int, ip: String, sensors: [Sensor]?, id: Int?) {
+    init(name: String, home: Int, ip: String, sensors: [Sensor]?, id: Int?, image: UIImage?) {
         self.name = name
         self.home = home
         self.ip = ip
         self.sensors = [Sensor]()
         self.id = id
+        self.image = image
+        //self.roomType = roomType
     }
     
-    init(name: String, home: Int){
-        self.name = name
-        self.home = home
-        self.ip = ""
-        self.sensors = [Sensor]()
-    }
     
     func encode(with coder: NSCoder) {
         coder.encode(name, forKey: PropertyKey.name)
@@ -40,6 +38,8 @@ class Room: NSObject, NSCoding, Codable{
         coder.encode(ip, forKey: PropertyKey.ip)
         coder.encode(sensors, forKey: PropertyKey.sensors)
         coder.encode(id, forKey: PropertyKey.id)
+        coder.encode(image, forKey: PropertyKey.image)
+        //coder.encode(roomType, forKey: PropertyKey.roomType)
     }
     
     required convenience init?(coder: NSCoder) {
@@ -57,7 +57,9 @@ class Room: NSObject, NSCoding, Codable{
         
         let id = coder.decodeInteger(forKey: PropertyKey.id)
         
-        self.init(name: name, home: home, ip: ip, sensors: sensors, id: id)
+        let image = coder.decodeObject(forKey: PropertyKey.image) as? UIImage
+        
+        self.init(name: name, home: home, ip: ip, sensors: sensors, id: id, image: image)
     }
     
     struct PropertyKey {
@@ -66,6 +68,8 @@ class Room: NSObject, NSCoding, Codable{
         static let ip = "ip"
         static let sensors = "sensors"
         static let id = "id"
+        static let image = "image"
+        //static let roomType = "roomType"
         
     }
     
@@ -75,6 +79,7 @@ class Room: NSObject, NSCoding, Codable{
         case ip
         case sensors
         case id
+        //case roomtype
     }
     
 }

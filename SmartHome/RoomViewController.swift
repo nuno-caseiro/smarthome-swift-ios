@@ -54,7 +54,7 @@ class RoomViewController: UIViewController, UITextFieldDelegate {
         
         
        
-        room = Room(name: name, home: 1, ip: ipRoom, sensors: nil, id: nil )
+        room = Room(name: name, home: 1, ip: ipRoom, sensors: nil, id: nil , image: nil)
         
     }
     /*

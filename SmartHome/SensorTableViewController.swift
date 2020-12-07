@@ -266,7 +266,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                             case "led":
                                 sensor.image = UIImage(named: "light_icon")
                             case "camera":
-                                sensor.image = UIImage(named: "camera_icon")
+                                sensor.image = UIImage(named: "camera_new_icon")
                             case "servo":
                                 sensor.image = UIImage(named: "door_icon")
                             default:
