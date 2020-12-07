@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -107,6 +108,7 @@
                     <connections>
                         <segue destination="vvn-kh-LGJ" kind="relationship" relationship="viewControllers" id="X3K-Dz-KR2"/>
                         <segue destination="SBs-hU-QKa" kind="relationship" relationship="viewControllers" id="1nd-hG-c9N"/>
+                        <segue destination="KgJ-kn-DRe" kind="relationship" relationship="viewControllers" id="mji-Cq-3El"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6di-jT-dL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,7 +248,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ut3-L9-Rnq">
-                                <rect key="frame" x="0.0" y="229" width="320" height="202"/>
+                                <rect key="frame" x="0.0" y="204" width="320" height="227"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" rowHeight="90" id="GhW-lx-Z7n" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
@@ -256,18 +258,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qw0-CM-WoF">
-                                                    <rect key="frame" x="0.0" y="-19" width="158" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qw0-CM-WoF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="158" id="8Il-4l-ALT"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFG-0B-hSZ">
-                                                    <rect key="frame" x="166" y="11" width="242" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFG-0B-hSZ">
+                                                    <rect key="frame" x="166" y="11" width="154" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jFG-0B-hSZ" firstAttribute="top" secondItem="O6s-sr-Yjx" secondAttribute="topMargin" id="1lh-Pg-QX5"/>
+                                                <constraint firstAttribute="trailing" secondItem="jFG-0B-hSZ" secondAttribute="trailing" id="B2E-xN-EVf"/>
+                                                <constraint firstItem="qw0-CM-WoF" firstAttribute="leading" secondItem="O6s-sr-Yjx" secondAttribute="leading" id="J2S-PW-cII"/>
+                                                <constraint firstAttribute="bottom" secondItem="qw0-CM-WoF" secondAttribute="bottom" id="VTo-44-kuf"/>
+                                                <constraint firstItem="jFG-0B-hSZ" firstAttribute="leading" secondItem="qw0-CM-WoF" secondAttribute="trailing" constant="8" symbolic="YES" id="aPF-53-fHU"/>
+                                                <constraint firstItem="qw0-CM-WoF" firstAttribute="top" secondItem="O6s-sr-Yjx" secondAttribute="topMargin" constant="-11" id="pIl-Ec-Our"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="roomImageView" destination="qw0-CM-WoF" id="v32-BV-h0i"/>
@@ -288,7 +299,7 @@
                             <constraint firstAttribute="trailing" secondItem="wxa-52-oal" secondAttribute="trailing" id="YOq-D4-v61"/>
                             <constraint firstItem="ut3-L9-Rnq" firstAttribute="bottom" secondItem="XRl-Kc-axf" secondAttribute="bottom" id="ins-Qc-Pyg"/>
                             <constraint firstItem="ut3-L9-Rnq" firstAttribute="leading" secondItem="XRl-Kc-axf" secondAttribute="leading" id="kik-N5-APz"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" constant="185" id="p4O-JY-jQl"/>
+                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" constant="160" id="p4O-JY-jQl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yOn-lz-IIg">
@@ -305,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UJ-S4-4mh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472.42990654205607" y="1417.0626349892009"/>
+            <point key="canvasLocation" x="470.625" y="1416.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zuY-XJ-sdF">
@@ -529,7 +540,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw0-cK-ZRC">
-                                <rect key="frame" x="0.0" y="238" width="320" height="193"/>
+                                <rect key="frame" x="0.0" y="204" width="320" height="227"/>
                                 <connections>
                                     <segue destination="3Kv-EO-Ice" kind="embed" id="d4d-7e-0M0"/>
                                 </connections>
@@ -542,7 +553,7 @@
                             <constraint firstItem="1sR-Yo-L7Y" firstAttribute="leading" secondItem="hXX-X6-0RO" secondAttribute="leading" id="Joh-sH-o6E"/>
                             <constraint firstItem="1sR-Yo-L7Y" firstAttribute="top" secondItem="hXX-X6-0RO" secondAttribute="top" id="KOE-bM-3y2"/>
                             <constraint firstItem="1sR-Yo-L7Y" firstAttribute="trailing" secondItem="hXX-X6-0RO" secondAttribute="trailing" id="LSK-ht-6Pk"/>
-                            <constraint firstItem="xw0-cK-ZRC" firstAttribute="top" secondItem="hXX-X6-0RO" secondAttribute="top" constant="194" id="PLL-Ei-iDV"/>
+                            <constraint firstItem="xw0-cK-ZRC" firstAttribute="top" secondItem="hXX-X6-0RO" secondAttribute="top" constant="160" id="PLL-Ei-iDV"/>
                             <constraint firstItem="xw0-cK-ZRC" firstAttribute="bottom" secondItem="hXX-X6-0RO" secondAttribute="bottom" id="RyP-Ae-Y9X"/>
                             <constraint firstItem="xw0-cK-ZRC" firstAttribute="leading" secondItem="hXX-X6-0RO" secondAttribute="leading" id="Wm9-Cf-ep3"/>
                             <constraint firstItem="xw0-cK-ZRC" firstAttribute="trailing" secondItem="hXX-X6-0RO" secondAttribute="trailing" id="kAj-Bh-BKX"/>
@@ -557,12 +568,29 @@
             </objects>
             <point key="canvasLocation" x="1314.4000000000001" y="1415.7635467980297"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="1IR-4K-lFg">
+            <objects>
+                <navigationController id="KgJ-kn-DRe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="FLR-OK-UgL"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jHF-Yy-Nrp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y5b-nc-GlF" kind="relationship" relationship="rootViewController" id="UgM-a7-iXE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zWK-zZ-Mui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2396" y="639"/>
+        </scene>
         <!--Config Table View Controller-->
         <scene sceneID="se6-S5-EjA">
             <objects>
                 <tableViewController id="3Kv-EO-Ice" customClass="ConfigTableViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RZ4-5N-a2f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -604,7 +632,128 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDY-jo-1uV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2281" y="1424"/>
+            <point key="canvasLocation" x="2199" y="1416"/>
+        </scene>
+        <!--All Sensors Collection View Controller-->
+        <scene sceneID="FNg-g3-M4K">
+            <objects>
+                <viewController id="Y5b-nc-GlF" customClass="AllSensorsCollectionViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NYm-lG-iCw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MwL-KK-aTo">
+                                <rect key="frame" x="0.0" y="214" width="320" height="218"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="218" id="RSs-dY-e9p"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oIE-0i-HYL">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="40" minY="0.0" maxX="40" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="typeCell" id="hUF-x6-gOA" customClass="TypeCollectionViewCell" customModule="SmartHome" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LO0-bd-O4r" customClass="TypeCollectionViewCell" customModule="SmartHome" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtD-OG-6oS">
+                                                    <rect key="frame" x="0.0" y="40" width="100" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelType" destination="xtD-OG-6oS" id="s0P-ND-zDl"/>
+                                            <segue destination="RBy-ZH-deu" kind="show" identifier="segueType" id="MOz-CY-dfv"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-XQ-n0X" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="320" height="95.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95.5" id="Wmz-QB-4Kp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cjc-ns-Qgn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ve3-XQ-n0X" firstAttribute="leading" secondItem="cjc-ns-Qgn" secondAttribute="leading" id="6GQ-Hl-ZTd"/>
+                            <constraint firstItem="MwL-KK-aTo" firstAttribute="trailing" secondItem="cjc-ns-Qgn" secondAttribute="trailing" id="869-rY-r3S"/>
+                            <constraint firstItem="ve3-XQ-n0X" firstAttribute="top" secondItem="cjc-ns-Qgn" secondAttribute="top" id="9OB-gM-rPv"/>
+                            <constraint firstItem="ve3-XQ-n0X" firstAttribute="trailing" secondItem="cjc-ns-Qgn" secondAttribute="trailing" id="AM5-b3-1f9"/>
+                            <constraint firstItem="MwL-KK-aTo" firstAttribute="top" secondItem="cjc-ns-Qgn" secondAttribute="top" constant="170" id="Tvf-fC-K6X"/>
+                            <constraint firstItem="MwL-KK-aTo" firstAttribute="leading" secondItem="cjc-ns-Qgn" secondAttribute="leading" id="rcK-3A-2DH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TJd-2g-Uhf"/>
+                    <connections>
+                        <outlet property="typeCollectionView" destination="MwL-KK-aTo" id="vhi-mf-LmV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofE-Ig-uTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3198.75" y="1413.75"/>
+        </scene>
+        <!--Type View Controller-->
+        <scene sceneID="Iap-nR-Uev">
+            <objects>
+                <viewController id="RBy-ZH-deu" customClass="TypeViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dtd-Wf-cHq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zJB-DL-Hbe">
+                                <rect key="frame" x="0.0" y="176" width="320" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="O" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TypeSensorViewCell" rowHeight="90" id="tBA-RM-lvL">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TypeSensorViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tBA-RM-lvL" id="tD8-69-Yni" customClass="TypeCollectionViewCell" customModule="SmartHome" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zfx-my-cBw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bI-FL-RX5">
+                                                    <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lgH-vo-UgF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="30n-W5-VLi"/>
+                    <connections>
+                        <outlet property="typeSensorTableView" destination="zJB-DL-Hbe" id="kVZ-dC-kaw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WoD-t6-f79" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4260" y="1415"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
