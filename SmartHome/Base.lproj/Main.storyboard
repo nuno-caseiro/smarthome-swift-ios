@@ -120,7 +120,7 @@
                     <tabBarItem key="tabBarItem" title="" image="home_icon" id="yue-vr-WtH"/>
                     <navigationItem key="navigationItem" id="eqb-3D-s9f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PNf-Y3-6QD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -313,7 +313,7 @@
                 <navigationController id="SBs-hU-QKa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="configurations_icon" id="6PK-gr-5tH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL2-PL-gSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

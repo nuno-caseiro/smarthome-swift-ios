@@ -65,7 +65,14 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         // Fetches the appropriate meal for the data source layout.
         let sensor = room?.sensors?[indexPath.row]
         cell.sensorName.text = sensor?.name
-        cell.sensorValue.text = String(sensor?.value ?? 0)
+        
+        if(sensor?.value ?? 0 > 0){
+            cell.sensorValue.text = "Ligado"
+        }else{
+            cell.sensorValue.text = "Desligado"
+        }
+        //cell.sensorValue.text = String(sensor?.value ?? 0)
+        
         cell.sensorImageView.image = sensor?.image
         return cell
     }
