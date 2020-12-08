@@ -17,11 +17,12 @@ class Sensor: NSObject, NSCoding, Codable {
     var room: Int
     var gpio: Int
     var image: UIImage?
+    var roomtype: String?
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("sensors")
     
-    init(id: Int, name: String, sensorType: String, value: Double?, room: Int, gpio: Int, image: UIImage?) {
+    init(id: Int, name: String, sensorType: String, value: Double?, room: Int, gpio: Int, image: UIImage?, roomtype: String?) {
         self.id = id
         self.name = name
         self.sensorType = sensorType
@@ -29,9 +30,10 @@ class Sensor: NSObject, NSCoding, Codable {
         self.room = room
         self.gpio = gpio
         self.image = image
+        self.roomtype = roomtype
     }
     
-    init(name: String, sensorType: String, value: Double?, room: Int, gpio: Int, image: UIImage? ) {
+    init(name: String, sensorType: String, value: Double?, room: Int, gpio: Int, image: UIImage?, roomtype: String? ) {
        self.id = nil
        self.name = name
        self.sensorType = sensorType
@@ -39,6 +41,7 @@ class Sensor: NSObject, NSCoding, Codable {
        self.room = room
        self.gpio = gpio
        self.image = image
+       self.roomtype = roomtype
    }
     
     func encode(with coder: NSCoder) {
@@ -49,6 +52,7 @@ class Sensor: NSObject, NSCoding, Codable {
         coder.encode(room, forKey: PropertyKey.room)
         coder.encode(gpio, forKey: PropertyKey.gpio)
         coder.encode(image, forKey: PropertyKey.image)
+        coder.encode(roomtype, forKey: PropertyKey.roomtype)
     }
     
     required convenience init?(coder: NSCoder) {
@@ -70,7 +74,9 @@ class Sensor: NSObject, NSCoding, Codable {
         
         let image = coder.decodeObject(forKey: PropertyKey.image) as? UIImage
         
-        self.init(id: id, name: name, sensorType: sensorType, value: value, room: room, gpio: gpio, image: image)
+        let roomtype = coder.decodeObject(forKey: PropertyKey.roomtype) as? String
+        
+        self.init(id: id, name: name, sensorType: sensorType, value: value, room: room, gpio: gpio, image: image, roomtype: roomtype)
     }
     
     
@@ -82,6 +88,7 @@ class Sensor: NSObject, NSCoding, Codable {
         static let room = "room"
         static let gpio = "gpio"
         static let image = "image"
+        static let roomtype = "roomtype"
     }
     
     enum CodingKeys: String, CodingKey {
@@ -91,6 +98,7 @@ class Sensor: NSObject, NSCoding, Codable {
         case room
         case gpio
         case value
+        case roomtype
     }
     
 }

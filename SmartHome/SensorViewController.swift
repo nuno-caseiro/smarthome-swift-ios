@@ -119,9 +119,9 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
            
             //se existir, ja tem id => update
             if let sensor = sensor {
-                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage)
+                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage, roomtype: sensor.roomtype)
             }else{
-                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage )
+                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage, roomtype: sensor?.roomtype)
             }
         }
     }
