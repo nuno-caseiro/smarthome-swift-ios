@@ -126,16 +126,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         return home?.rooms.count ?? 0
     }
     
-    /*  private func saveRooms() {
-     do {
-     let data = try NSKeyedArchiver.archivedData(withRootObject: home?.rooms, requiringSecureCoding: false)
-     try data.write(to: Room.ArchiveURL)
-     os_log("Rooms successfully saved.", log: OSLog.default, type: .debug)
-     } catch {
-     os_log("Failed to save rooms...", log: OSLog.default, type: .error)
-     }
-     }*/
-    
+  
     
     /*
      // MARK: - Navigation

@@ -20,7 +20,7 @@
 		2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */; };
 		2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */; };
 		2A9E6C7E257340190012924E /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7D257340190012924E /* AppData.swift */; };
-		2AC4479C257D5B640041D44C /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */; };
+		2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */; };
 		2AC4479F257D5B660041D44C /* Pods_SmartHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
 		2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* DashboardViewController.swift */; };
@@ -34,6 +34,8 @@
 		2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */; };
 		2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */; };
 		2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6625748B7D00596765 /* SensorViewController.swift */; };
+		2AF13CFE257EFAD100B830F9 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF13CFD257EFAD100B830F9 /* M13Checkbox.framework */; };
+		2AF13D00257EFAD400B830F9 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF13CFF257EFAD400B830F9 /* iOSDropDown.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +50,10 @@
 		2A44EABA257E887D00D4F771 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A44EABE257E99E000D4F771 /* TypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		2A44EAC2257EA97700D4F771 /* TypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTableViewCell.swift; sourceTree = "<group>"; };
-		2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
 		2A9E6C7D257340190012924E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePopupFilterViewController.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2AC6F246256600BE003A93BA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,8 @@
 		2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
 		2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 		2AEE5E6625748B7D00596765 /* SensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewController.swift; sourceTree = "<group>"; };
+		2AF13CFD257EFAD100B830F9 /* M13Checkbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = M13Checkbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF13CFF257EFAD400B830F9 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		823A90B42C796D2C7126EE57 /* Pods-SmartHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHome.release.xcconfig"; path = "Target Support Files/Pods-SmartHome/Pods-SmartHome.release.xcconfig"; sourceTree = "<group>"; };
 		DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,7 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC4479C257D5B640041D44C /* iOSDropDown.framework in Frameworks */,
+				2AF13D00257EFAD400B830F9 /* iOSDropDown.framework in Frameworks */,
+				2AF13CFE257EFAD100B830F9 /* M13Checkbox.framework in Frameworks */,
 				2AC4479F257D5B660041D44C /* Pods_SmartHome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,7 +91,8 @@
 		230BAA237927AE5F62AE371A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */,
+				2AF13CFF257EFAD400B830F9 /* iOSDropDown.framework */,
+				2AF13CFD257EFAD100B830F9 /* M13Checkbox.framework */,
 				DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */,
 			);
 			name = Frameworks;
@@ -139,6 +145,7 @@
 				2A44EABA257E887D00D4F771 /* TypeCollectionViewCell.swift */,
 				2A44EABE257E99E000D4F771 /* TypeViewController.swift */,
 				2A44EAC2257EA97700D4F771 /* TypeTableViewCell.swift */,
+				2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */,
 			);
 			path = SmartHome;
 			sourceTree = "<group>";
@@ -280,6 +287,7 @@
 				2A0B33D5257DB6CB00CCBE4B /* Validation.swift in Sources */,
 				2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */,
 				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
+				2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */,
 				2A44EAC3257EA97700D4F771 /* TypeTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
 				2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */,

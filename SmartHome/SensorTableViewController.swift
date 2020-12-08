@@ -25,19 +25,13 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-     
         toEncode = "\(userName):\(password)" //Form the String to be encoded
         encoded = toEncode.data(using: .utf8)?.base64EncodedString() ?? "ERROR"
-        //Necessário meter no disco??
+        
         
         if(room != nil){
-            requestMethod(SensorTableViewController.SensorsRoomURL+"?room=\(String(describing: room!.id!))", "GET", "getAllSensors", nil, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
+            getAllSensors(SensorTableViewController.SensorsRoomURL+"?room=\(String(describing: room!.id!))")
+            //requestMethod(SensorTableViewController.SensorsRoomURL+"?room=\(String(describing: room!.id!))", "GET", "getAllSensors", nil, completionToInsertSensor: nil, completionToInsertSensorValue: nil)
         }else{
             print("Cant load room's sensors")
         }
@@ -133,6 +127,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
                 requestMethod(SensorTableViewController.SensorsURL, "POST", "insertSensorRoom", sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
+                    sensor.roomtype = newSensor?.roomtype
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }
@@ -180,6 +175,73 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - CALLS -- TODO: Optimize calls
         
+    func getAllSensors(_ urlString: String){
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        // Create the request
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: error calling PUT")
+                print(error!)
+                return
+            }
+            guard let data = data else {
+                print("Error: Did not receive data")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+           
+          
+                do {
+                    let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
+                    print(newSensors)
+                    
+                    DispatchQueue.main.async {
+                       /* if (newSensors.count != self.room?.sensors?.count && self.room?.sensors?.count != 0) {
+                            
+                        }*/
+                        self.room?.sensors?.removeAll()
+                        self.tableView.reloadData()
+                    }
+
+                    for sensor in newSensors {
+                        
+                        switch sensor.sensorType{
+                            case "led":
+                                sensor.image = UIImage(named: "light_icon")
+                            case "camera":
+                                sensor.image = UIImage(named: "camera_new_icon")
+                            case "servo":
+                                sensor.image = UIImage(named: "door_icon")
+                            default:
+                                return
+                        }
+                      
+                        DispatchQueue.main.async {
+                            self.addSensor(sensor)
+                        }
+                    }
+                    
+                } catch let parseError as NSError {
+                    
+                    print(parseError.localizedDescription)
+                }
+            }.resume()
+    }
+    
     func requestMethod(_ urlString: String, _ method:String, _ action: String, _ sensor: Sensor?, completionToInsertSensor: ( (_ newSensor: Sensor?, _ error: Error?)->())?, completionToInsertSensorValue: ( (_ error: Error?) -> ())? ){
         
         guard let url = URL(string: urlString) else {
@@ -255,40 +317,6 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
             }
             
             switch action{
-            case "getAllSensors":
-                do {
-                    let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
-                    print(newSensors)
-                    
-                    DispatchQueue.main.async {
-                        if (newSensors.count != self.room?.sensors?.count && self.room?.sensors?.count != 0) {
-                            self.room?.sensors?.removeAll()
-                            self.tableView.reloadData()
-                        }
-                    }
-
-                    for sensor in newSensors {
-                        
-                        switch sensor.sensorType{
-                            case "led":
-                                sensor.image = UIImage(named: "light_icon")
-                            case "camera":
-                                sensor.image = UIImage(named: "camera_new_icon")
-                            case "servo":
-                                sensor.image = UIImage(named: "door_icon")
-                            default:
-                                return
-                        }
-                      
-                        DispatchQueue.main.async {
-                            self.addSensor(sensor)
-                        }
-                    }
-                    
-                } catch let parseError as NSError {
-                    
-                    print(parseError.localizedDescription)
-                }
             case "insertSensorRoom":
                 do{
                     newSensor = try JSONDecoder().decode(Sensor.self, from: data)

@@ -9,7 +9,9 @@ import UIKit
 
 class TypeCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var labelType: UILabel!
+    
+    @IBOutlet weak var typeLogoImageView: UIImageView!
+    
     
     
    

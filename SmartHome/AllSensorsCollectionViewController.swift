@@ -12,7 +12,7 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
     
     @IBOutlet weak var typeCollectionView: UICollectionView!
     var types = ["Leds", "Camaras", "Doors", "Motion"]
-    
+    var indexPathSelected: IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,26 +36,67 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellIdentifier = "typeCell"
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier:cellIdentifier, for: indexPath) as! TypeCollectionViewCell
-        let type = types[indexPath.row]
+        //let type = types[indexPath.row]
         
         cell.isSelected = true
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
          
         cell.layer.borderWidth = 2.0
         cell.layer.borderColor = UIColor.gray.cgColor
-        cell.labelType.text = type
+        
+       
+        switch indexPath.row {
+        case 0:
+            cell.typeLogoImageView.image = UIImage(named: "light_icon")
+            
+        case 1:
+            cell.typeLogoImageView.image = UIImage(named: "camera_new_icon")
+           
+        case 2:
+            cell.typeLogoImageView.image = UIImage(named: "door_icon")
+            
+        case 3:
+            cell.typeLogoImageView.image = UIImage(named: "motion_icon")
+            
+        default:
+            print("DEFAULT TYPE")
+        }
         //cell.backgroundColor = .black
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("SEGUE")
+        guard let typeViewController = segue.destination as? TypeViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        switch indexPathSelected?.row {
+        case 0:
+            typeViewController.image = UIImage(named: "light_icon")
+            typeViewController.titleType = "Led"
+            typeViewController.type = "led"
+        case 1:
+            typeViewController.image = UIImage(named: "camera_new_icon")
+            typeViewController.titleType = "Camera"
+            typeViewController.type = "camera"
+        case 2:
+            typeViewController.image = UIImage(named: "door_icon")
+            typeViewController.titleType = "Door"
+            typeViewController.type = "servo"
+        case 3:
+            typeViewController.image = UIImage(named: "motion_icon")
+            typeViewController.titleType = "Motion"
+            typeViewController.type = "motion"
+        default:
+            print("DEFAULT TYPE")
+        }
     }
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        if (self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView))) != nil {
-    //Do your stuff here
+        if let indexPath = self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView))  {
+            
+        indexPathSelected = indexPath
         self.performSegue(withIdentifier: "segueType", sender: self)
     }
 }

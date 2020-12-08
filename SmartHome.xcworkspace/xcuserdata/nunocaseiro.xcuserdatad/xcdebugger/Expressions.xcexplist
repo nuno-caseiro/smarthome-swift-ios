@@ -13,5 +13,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
