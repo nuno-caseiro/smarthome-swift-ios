@@ -30,4 +30,11 @@ class Validation{
         }
         return true
     }
+    
+    public func validateRoom(value: String) -> Bool{
+        if(value.isEmpty){
+            return false
+        }
+        return true
+    }
 }

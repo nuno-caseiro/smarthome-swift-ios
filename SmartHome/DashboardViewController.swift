@@ -40,7 +40,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     fileprivate func addRoom(_ room: Room) {
-        // Add a new meal.
         let newIndexPath = IndexPath(row: home?.rooms.count ?? 0, section: 0)
         home?.rooms.append(room)
         roomsTable.insertRows(at: [newIndexPath], with: .automatic)

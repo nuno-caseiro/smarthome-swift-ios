@@ -3,21 +3,40 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TypeViewController.prepare(for:sender:):TypeViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "DashboardViewController.deleteRoom(_:):DashboardViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.home.rooms">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.home.rooms[index]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SensorTableViewController.tableView(_:numberOfRowsInSection:):SensorTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "room?.sensors?.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

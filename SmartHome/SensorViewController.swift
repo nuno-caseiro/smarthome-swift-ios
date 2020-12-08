@@ -26,7 +26,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         
         sensorNameTextField.delegate = self
         
-        sensorType.optionArray = ["Led", "Camera", "Door"]
+        sensorType.optionArray = ["Led", "Camera", "Door", "Motion"]
         sensorType.selectedRowColor = .white
         
         if let sensor = sensor {
@@ -46,6 +46,9 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
             case "servo":
                 
+                sensorType.selectedIndex = 2
+                sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
+            case "motion":
                 sensorType.selectedIndex = 2
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
             default:
@@ -74,7 +77,8 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 self.imageViewSensor.image = UIImage(named: "camera_new_icon")
             case 2:
                 self.imageViewSensor.image = UIImage(named: "door_icon")
-                
+            case 3:
+                self.imageViewSensor.image = UIImage(named: "motion_icon")
             default:
                 print("Default do select")
             }
@@ -109,6 +113,9 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             case 2:
                 self.imageViewSensor.image = UIImage(named: "door_icon")
                 sensorTypeValue = "servo"
+            case 3:
+                self.imageViewSensor.image = UIImage(named: "motion_icon")
+                sensorTypeValue = "motion"
             default:
                 return
             }
