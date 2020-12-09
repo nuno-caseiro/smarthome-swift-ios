@@ -33,7 +33,6 @@ class RoomViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let name = nameRoomTextField.text ?? ""
-        //var roomTypeValue = "garage"
        /* switch sensorType.selectedIndex{
             case 0:
                 self.imageViewSensor.image = UIImage(named: "light_icon")

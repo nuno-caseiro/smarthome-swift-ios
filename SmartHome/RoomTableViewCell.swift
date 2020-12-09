@@ -12,8 +12,6 @@ class RoomTableViewCell: UITableViewCell {
     @IBOutlet weak var roomNameLabel: UILabel!
     @IBOutlet weak var roomImageView: UIImageView!
     
-  
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

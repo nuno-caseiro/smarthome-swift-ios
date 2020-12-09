@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    static let UserDetails = "http://161.35.8.148/api/userdetails/"
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    
+    // MARK: Login methods
     @IBAction func loginButton(_ sender: Any) {
         
         let userName = usernameTextField.text
@@ -103,8 +103,10 @@ class LoginViewController: UIViewController {
                     self.showMessage("Error", "Key wasn't given")
                     return
                 }
-                print(acessToken)
-                AppData.instance.authToken = acessToken
+                
+                AppData.instance.user.token = acessToken
+                print(LoginViewController.UserDetails + "?username=\(userName!)")
+                self.populateUser(urlString: LoginViewController.UserDetails + "?username=\( userName!)")
                 
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -120,6 +122,51 @@ class LoginViewController: UIViewController {
             }
         }.resume()
         
+    }
+    
+    func populateUser(urlString: String){
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+        // Create the request
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
+        
+        //MAKE REQUEST
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: error calling PUT")
+                print(error!)
+                return
+            }
+            guard let data = data else {
+                print("Error: Did not receive data")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+            do{
+                let user = try JSONDecoder().decode([User].self, from: data)
+                print("user id: \(user[0].id ?? 0)")
+                
+                AppData.instance.user.id = user[0].id
+                AppData.instance.user.email = user[0].email
+                AppData.instance.user.username = user[0].username
+                AppData.instance.user.firstname = user[0].firstname
+                AppData.instance.user.lastname = user[0].lastname
+                
+            }catch let jsonErr{
+                print(jsonErr)
+            }
+            
+        }.resume()
     }
     
     
@@ -138,15 +185,5 @@ class LoginViewController: UIViewController {
         self.present(dialogMessage, animated: true, completion: nil)
         
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

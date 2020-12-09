@@ -37,4 +37,12 @@ class Validation{
         }
         return true
     }
+    
+    public func validateEmail(value: String)-> Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+             let trimmedString = value.trimmingCharacters(in: .whitespaces)
+             let validateEmail = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+             let isValidateEmail = validateEmail.evaluate(with: trimmedString)
+             return isValidateEmail
+    }
 }
