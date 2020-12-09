@@ -49,7 +49,6 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             
             self.typeImageView.image = UIImage(named: "camera_new_icon")
         case "servo":
-            
             self.typeImageView.image = UIImage(named: "door_icon")
         case "motion":
             self.typeImageView.image = UIImage(named: "motion_icon")
@@ -118,9 +117,9 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             showMessage("Error", "The GPIO is invalid")
         }
         
-        let isValidateRoom = self.validation.validateRoom(value: sensor?.roomtype ?? "")
+        let isValidateRoom = self.validation.validateRoom(value: roomId )
         if (isValidateRoom == false) {
-            showMessage("Error", "The sensor type is invalid")
+            showMessage("Error", "The room is invalid")
         }
         return true
     }

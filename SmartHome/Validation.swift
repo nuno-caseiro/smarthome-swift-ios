@@ -31,8 +31,8 @@ class Validation{
         return true
     }
     
-    public func validateRoom(value: String) -> Bool{
-        if(value.isEmpty){
+    public func validateRoom(value: Int) -> Bool{
+        if( value < 0){
             return false
         }
         return true
