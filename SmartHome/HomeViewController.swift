@@ -395,7 +395,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
             }
             do {
                 let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
-                print(String(decoding: data, as: UTF8.self))
+                //print(String(decoding: data, as: UTF8.self))
                 
                 DispatchQueue.main.async {
                     if(self.lastSelectedIndex == -1) {

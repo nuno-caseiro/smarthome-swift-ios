@@ -122,7 +122,7 @@
                     <tabBarItem key="tabBarItem" title="" image="home_icon" id="yue-vr-WtH"/>
                     <navigationItem key="navigationItem" id="eqb-3D-s9f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PNf-Y3-6QD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -238,7 +238,7 @@
                 <navigationController id="SBs-hU-QKa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="configurations_icon" id="6PK-gr-5tH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL2-PL-gSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -626,7 +626,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-5R-v1b">
-                                                    <rect key="frame" x="20" y="11" width="404" height="22"/>
+                                                    <rect key="frame" x="16" y="11" width="304" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1147,7 +1147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jnB-ib-g0f" userLabel="Rooms Table View">
-                                <rect key="frame" x="0.0" y="204" width="320" height="227"/>
+                                <rect key="frame" x="0.0" y="214" width="320" height="217"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeRoomTableViewCell" rowHeight="201" id="R99-7o-uVZ" customClass="HomeRoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
@@ -1314,7 +1314,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jnB-ib-g0f" firstAttribute="leading" secondItem="3cr-14-aMZ" secondAttribute="leading" id="5H0-xL-pk3"/>
-                            <constraint firstItem="jnB-ib-g0f" firstAttribute="top" secondItem="3cr-14-aMZ" secondAttribute="top" constant="160" id="8pc-aM-YpY"/>
+                            <constraint firstItem="jnB-ib-g0f" firstAttribute="top" secondItem="3cr-14-aMZ" secondAttribute="top" constant="170" id="8pc-aM-YpY"/>
                             <constraint firstItem="hs0-AH-yWH" firstAttribute="leading" secondItem="3cr-14-aMZ" secondAttribute="leading" id="96m-aX-cvO"/>
                             <constraint firstItem="jnB-ib-g0f" firstAttribute="bottom" secondItem="3cr-14-aMZ" secondAttribute="bottom" id="G3M-fi-ueF"/>
                             <constraint firstItem="3cr-14-aMZ" firstAttribute="trailing" secondItem="5IM-ud-vm5" secondAttribute="trailing" id="ITO-8q-sd7"/>

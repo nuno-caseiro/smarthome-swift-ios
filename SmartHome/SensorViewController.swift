@@ -49,7 +49,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 sensorType.selectedIndex = 2
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
             case "motion":
-                sensorType.selectedIndex = 2
+                sensorType.selectedIndex = 3
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
             default:
                 print("Default do select1")
