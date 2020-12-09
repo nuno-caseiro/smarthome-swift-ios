@@ -100,33 +100,6 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func unwindToSensorList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? SensorViewController,
-           let sensor = sourceViewController.sensor {
-            
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing sensor.
-                
-                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
-
-                updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
-                room?.sensors?[selectedIndexPath.row] = sensor
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            }
-            else {
-                //fazer post e editar id com a resposta; fazer método que recebe o id
-                insertSensorRequest(urlString: SensorTableViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
-                    sensor.id = newSensor?.id
-                    sensor.roomtype = newSensor?.roomtype
-                    DispatchQueue.main.async {
-                        self.addSensor(sensor)
-                    }
-                    self.insertSensorValueRequest(urlString: SensorTableViewController.SensorsValuesPostURL, sensor: sensor)
-                    
-                })
-            }
-        }
-    }
     
     // MARK: - Navigation
     
@@ -162,6 +135,35 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    
+    @IBAction func unwindToSensorList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? SensorViewController,
+           let sensor = sourceViewController.sensor {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing sensor.
+                
+                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+
+                updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
+                room?.sensors?[selectedIndexPath.row] = sensor
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                //fazer post e editar id com a resposta; fazer método que recebe o id
+                insertSensorRequest(urlString: SensorTableViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
+                    sensor.id = newSensor?.id
+                    sensor.roomtype = newSensor?.roomtype
+                    DispatchQueue.main.async {
+                        self.addSensor(sensor)
+                    }
+                    self.insertSensorValueRequest(urlString: SensorTableViewController.SensorsValuesPostURL, sensor: sensor)
+                    
+                })
+            }
+        }
+    }
+    
     //MARK: - Requests
         
     func getAllSensors(_ urlString: String){
@@ -174,7 +176,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
@@ -239,7 +241,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
         
         do{
             let jsonData = try JSONEncoder().encode(sensor)
@@ -290,7 +292,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
 
         var newSensor: Sensor? = nil
         
@@ -339,7 +341,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         request.httpMethod = "DELETE"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
      
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -372,7 +374,7 @@ class SensorTableViewController: UITableViewController, UITextFieldDelegate {
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
 
         
         // Create model

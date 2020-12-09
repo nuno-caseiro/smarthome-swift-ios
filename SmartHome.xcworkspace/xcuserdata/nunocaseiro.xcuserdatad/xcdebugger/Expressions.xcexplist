@@ -3,6 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SensorTableViewController.tableView(_:numberOfRowsInSection:):SensorTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "room?.sensors?.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TypeViewController.unwindToList(sender:):TypeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TypeViewController.getSensorsOfType(_:):TypeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.user.token">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,7 +30,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TypeViewController.prepare(for:sender:):TypeViewController.swift">
+         contextName = "ConfigViewController.unwindToSave(sender:):ConfigViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.user.token">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.home.rooms[index]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "DashboardViewController.deleteRoom(_:):DashboardViewController.swift">
@@ -25,20 +57,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "AppData.instance.home.rooms[index]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "TypeViewController.prepare(for:sender:):TypeViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SensorTableViewController.tableView(_:numberOfRowsInSection:):SensorTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "room?.sensors?.count">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in TypeViewController.unwindToList(sender:):TypeViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

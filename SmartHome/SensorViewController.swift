@@ -133,6 +133,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Mark: Validations
     
     func validate() -> Bool {
         guard let name = sensorNameTextField.text, let gpio = gpioTextField.text else {

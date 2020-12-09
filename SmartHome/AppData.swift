@@ -17,7 +17,7 @@ class AppData {
     }
     
     var home = Home()
-    var authToken = ""
+    var user = User()
     
     
     

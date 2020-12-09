@@ -51,21 +51,14 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Error: cannot create URL")
             return
         }
-        
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
-        
+     
         var request = URLRequest(url: url)
         //Add the header value
         
         // Create the request
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
@@ -210,7 +203,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
         request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
         
         do{
             let jsonData = try JSONEncoder().encode(room)
@@ -259,7 +252,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         request.httpMethod = "DELETE"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
         request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
-        request.addValue("Token \(AppData.instance.authToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
