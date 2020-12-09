@@ -50,7 +50,7 @@ class ConfigViewController: UIViewController {
         }
         
         let userName = "smarthome"
-        let password = "smarthome"
+        let password = "meicm123"
         
         
         var toEncode: String = ""

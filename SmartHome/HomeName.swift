@@ -53,7 +53,7 @@ import UIKit
         
         //Create Header according to the documentation
         let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
+        let password = "meicm123" //Need to be replaced with correct value
         let toEncode = "\(userName):\(password)" //Form the String to be encoded
         let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
         

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		179E092C257DB91C00A9A969 /* HomeRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E092B257DB91C00A9A969 /* HomeRoomTableViewCell.swift */; };
+		179E092F257DBDFF00A9A969 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E092E257DBDFF00A9A969 /* HomeViewController.swift */; };
+		179E093C257EC3B900A9A969 /* HomeRoomSensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E093B257EC3B900A9A969 /* HomeRoomSensorTableViewCell.swift */; };
 		2A0B33CE257D951D00CCBE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0B33CD257D951C00CCBE4B /* AppDelegate.swift */; };
 		2A1C260E257D814100EF9F14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C260D257D814100EF9F14 /* LaunchScreen.storyboard */; };
 		2A1D7D6F257A9A7E003B220A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */; };
-		2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34004B257C0CCC00210C50 /* RoomViewController.swift */; };
 		2A3C8D3D2571A6B100EA4858 /* HomeName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3C8D3C2571A6B100EA4858 /* HomeName.xib */; };
 		2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */; };
 		2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */; };
@@ -18,25 +20,22 @@
 		2AC4479C257D5B640041D44C /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */; };
 		2AC4479F257D5B660041D44C /* Pods_SmartHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
-		2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* DashboardViewController.swift */; };
 		2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F248256600BE003A93BA /* Main.storyboard */; };
 		2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24B256600BF003A93BA /* Assets.xcassets */; };
 		2ACF255D25688F30008AD41E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF255C25688F30008AD41E /* Home.swift */; };
 		2ACF25612568900F008AD41E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25602568900F008AD41E /* Room.swift */; };
 		2ACF25642568902D008AD41E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25632568902D008AD41E /* Sensor.swift */; };
 		2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF257925689FB8008AD41E /* HomeName.swift */; };
-		2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */; };
-		2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */; };
-		2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */; };
-		2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6625748B7D00596765 /* SensorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10F4FE5803998DECB167974A /* Pods-SmartHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHome.debug.xcconfig"; path = "Target Support Files/Pods-SmartHome/Pods-SmartHome.debug.xcconfig"; sourceTree = "<group>"; };
+		179E092B257DB91C00A9A969 /* HomeRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoomTableViewCell.swift; sourceTree = "<group>"; };
+		179E092E257DBDFF00A9A969 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		179E093B257EC3B900A9A969 /* HomeRoomSensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoomSensorTableViewCell.swift; sourceTree = "<group>"; };
 		2A0B33CD257D951C00CCBE4B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1C260D257D814100EF9F14 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2A34004B257C0CCC00210C50 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2A3C8D3C2571A6B100EA4858 /* HomeName.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeName.xib; sourceTree = "<group>"; };
 		2A4FCA69257B0B0C0072E10C /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +43,6 @@
 		2A9E6C7D257340190012924E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2AC6F246256600BE003A93BA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2AC6F249256600BE003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AC6F24B256600BF003A93BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC6F250256600BF003A93BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,10 +50,6 @@
 		2ACF25602568900F008AD41E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		2ACF25632568902D008AD41E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		2ACF257925689FB8008AD41E /* HomeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeName.swift; sourceTree = "<group>"; };
-		2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
-		2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
-		2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
-		2AEE5E6625748B7D00596765 /* SensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewController.swift; sourceTree = "<group>"; };
 		823A90B42C796D2C7126EE57 /* Pods-SmartHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHome.release.xcconfig"; path = "Target Support Files/Pods-SmartHome/Pods-SmartHome.release.xcconfig"; sourceTree = "<group>"; };
 		DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,13 +102,9 @@
 				2A3C8D3C2571A6B100EA4858 /* HomeName.xib */,
 				2A0B33CD257D951C00CCBE4B /* AppDelegate.swift */,
 				2AC6F244256600BE003A93BA /* SceneDelegate.swift */,
-				2AEE5E6625748B7D00596765 /* SensorViewController.swift */,
-				2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */,
-				2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */,
-				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
-				2A34004B257C0CCC00210C50 /* RoomViewController.swift */,
-				2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */,
+				179E092B257DB91C00A9A969 /* HomeRoomTableViewCell.swift */,
 				2AC6F248256600BE003A93BA /* Main.storyboard */,
+				179E093B257EC3B900A9A969 /* HomeRoomSensorTableViewCell.swift */,
 				2AC6F24B256600BF003A93BA /* Assets.xcassets */,
 				2AC6F250256600BF003A93BA /* Info.plist */,
 				2ACF255C25688F30008AD41E /* Home.swift */,
@@ -124,6 +114,7 @@
 				2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */,
 				2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */,
 				2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */,
+				179E092E257DBDFF00A9A969 /* HomeViewController.swift */,
 			);
 			path = SmartHome;
 			sourceTree = "<group>";
@@ -253,20 +244,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */,
-				2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */,
-				2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */,
 				2A1D7D6F257A9A7E003B220A /* LoginViewController.swift in Sources */,
 				2ACF25642568902D008AD41E /* Sensor.swift in Sources */,
-				2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */,
+				179E092F257DBDFF00A9A969 /* HomeViewController.swift in Sources */,
 				2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */,
-				2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */,
 				2ACF255D25688F30008AD41E /* Home.swift in Sources */,
 				2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */,
-				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
-				2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */,
+				179E093C257EC3B900A9A969 /* HomeRoomSensorTableViewCell.swift in Sources */,
 				2ACF25612568900F008AD41E /* Room.swift in Sources */,
 				2A0B33CE257D951D00CCBE4B /* AppDelegate.swift in Sources */,
+				179E092C257DB91C00A9A969 /* HomeRoomTableViewCell.swift in Sources */,
 				2A9E6C7E257340190012924E /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SmartHome/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,6 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SmartHome/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

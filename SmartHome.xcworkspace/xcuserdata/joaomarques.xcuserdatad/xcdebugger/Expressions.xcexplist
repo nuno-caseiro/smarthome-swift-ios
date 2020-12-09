@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:heightForRowAt:):HomeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HomeRoomTableViewCell.awakeFromNib():HomeRoomTableViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HomeRoomTableViewCell.tableView(_:numberOfRowsInSection:):HomeRoomTableViewCell.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
