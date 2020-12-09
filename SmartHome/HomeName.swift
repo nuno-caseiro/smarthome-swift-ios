@@ -42,12 +42,6 @@ import UIKit
             return
         }
         
-        //Create Header according to the documentation
-        let userName = "smarthome" //Need to be replaced with correct value
-        let password = "smarthome" //Need to be replaced with correct value
-        let toEncode = "\(userName):\(password)" //Form the String to be encoded
-        let encoded = toEncode.data(using: .utf8)?.base64EncodedString()
-        
         
         var request = URLRequest(url: url)
         //Add the header value
@@ -55,7 +49,7 @@ import UIKit
         // Create the request
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(encoded!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Token \(AppData.instance.user.token!)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")

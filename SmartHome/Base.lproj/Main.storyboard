@@ -122,11 +122,11 @@
                     <tabBarItem key="tabBarItem" title="" image="home_icon" id="yue-vr-WtH"/>
                     <navigationItem key="navigationItem" id="eqb-3D-s9f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PNf-Y3-6QD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JQq-sa-zYx" kind="relationship" relationship="rootViewController" id="Afc-8Y-6MG"/>
+                        <segue destination="TeM-9l-7Ir" kind="relationship" relationship="rootViewController" id="o4b-h2-5dV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4u-zn-lwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -142,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyV-zV-EKt">
-                                <rect key="frame" x="0.0" y="44" width="320" height="350"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-s8-y8l">
                                         <rect key="frame" x="105" y="10" width="111" height="145"/>
@@ -232,101 +232,13 @@
             </objects>
             <point key="canvasLocation" x="-260.74766355140184" y="2152.4838012958967"/>
         </scene>
-        <!--Dashboard View Controller-->
-        <scene sceneID="klA-s4-wqn">
-            <objects>
-                <viewController storyboardIdentifier="DashboardViewControllerID" id="JQq-sa-zYx" customClass="DashboardViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xFN-qQ-SOG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-52-oal" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="320" height="95.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="wxa-52-oal" secondAttribute="height" multiplier="107:32" id="ZWc-w5-6go"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ut3-L9-Rnq">
-                                <rect key="frame" x="0.0" y="214" width="320" height="217"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomTableViewCell" rowHeight="90" id="GhW-lx-Z7n" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GhW-lx-Z7n" id="O6s-sr-Yjx" customClass="RoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airconditioner_icon" translatesAutoresizingMaskIntoConstraints="NO" id="qw0-CM-WoF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="90"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="158" id="4tm-R1-Tc3"/>
-                                                        <constraint firstAttribute="height" constant="90" id="IYA-US-jCD"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFG-0B-hSZ">
-                                                    <rect key="frame" x="176" y="11" width="144" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="qw0-CM-WoF" firstAttribute="top" secondItem="O6s-sr-Yjx" secondAttribute="top" id="FOf-Ee-Fub"/>
-                                                <constraint firstAttribute="bottom" secondItem="jFG-0B-hSZ" secondAttribute="bottom" constant="58" id="JSc-al-mYD"/>
-                                                <constraint firstItem="qw0-CM-WoF" firstAttribute="leading" secondItem="O6s-sr-Yjx" secondAttribute="leading" id="KNb-BF-Cph"/>
-                                                <constraint firstAttribute="trailing" secondItem="jFG-0B-hSZ" secondAttribute="trailing" id="UUY-m6-qqh"/>
-                                                <constraint firstItem="jFG-0B-hSZ" firstAttribute="leading" secondItem="qw0-CM-WoF" secondAttribute="trailing" constant="18" id="dC0-xJ-5bu"/>
-                                                <constraint firstAttribute="bottom" secondItem="qw0-CM-WoF" secondAttribute="bottom" id="uPl-NP-uft"/>
-                                                <constraint firstItem="jFG-0B-hSZ" firstAttribute="top" secondItem="O6s-sr-Yjx" secondAttribute="top" constant="11" id="uYo-x9-qiv"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="roomImageView" destination="qw0-CM-WoF" id="v32-BV-h0i"/>
-                                            <outlet property="roomNameLabel" destination="jFG-0B-hSZ" id="2Z2-co-hi8"/>
-                                            <segue destination="26V-EV-icT" kind="show" identifier="ShowDetail" id="QjT-MB-A6y"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="XRl-Kc-axf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="wxa-52-oal" firstAttribute="centerX" secondItem="xFN-qQ-SOG" secondAttribute="centerX" id="47q-JS-SmC"/>
-                            <constraint firstItem="wxa-52-oal" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" id="6OH-Tx-bF1"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="trailing" secondItem="XRl-Kc-axf" secondAttribute="trailing" id="VJW-Xu-8ew"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="bottom" secondItem="XRl-Kc-axf" secondAttribute="bottom" id="XeN-Ua-BQn"/>
-                            <constraint firstAttribute="trailing" secondItem="wxa-52-oal" secondAttribute="trailing" id="YOq-D4-v61"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="bottom" secondItem="XRl-Kc-axf" secondAttribute="bottom" id="ins-Qc-Pyg"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="leading" secondItem="XRl-Kc-axf" secondAttribute="leading" id="kik-N5-APz"/>
-                            <constraint firstItem="ut3-L9-Rnq" firstAttribute="top" secondItem="XRl-Kc-axf" secondAttribute="top" constant="170" id="p4O-JY-jQl"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="yOn-lz-IIg">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bRJ-Tg-gIw">
-                            <connections>
-                                <segue destination="pOk-7T-GkS" kind="show" identifier="AddItem" id="wdx-yx-h50"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="homeName" destination="wxa-52-oal" id="scL-8v-2E6"/>
-                        <outlet property="roomsTable" destination="ut3-L9-Rnq" id="ukv-WS-7xr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6UJ-S4-4mh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="470.625" y="1416.25"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="zuY-XJ-sdF">
             <objects>
                 <navigationController id="SBs-hU-QKa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="configurations_icon" id="6PK-gr-5tH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL2-PL-gSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -415,11 +327,11 @@
             <objects>
                 <viewController id="LAg-1N-Ork" customClass="SensorViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qwZ-sr-qEp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaw-eK-OzF">
-                                <rect key="frame" x="0.0" y="44" width="320" height="392"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joP-mz-rNh">
                                         <rect key="frame" x="126" y="210" width="141" height="21"/>
@@ -681,7 +593,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAc-Pf-r5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1314" y="1548"/>
+            <point key="canvasLocation" x="1312.5" y="1547.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="1IR-4K-lFg">
@@ -1231,13 +1143,154 @@
             </objects>
             <point key="canvasLocation" x="4724.2990654205605" y="2283.3693304535641"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="Art-xk-F7z">
+            <objects>
+                <viewController id="TeM-9l-7Ir" customClass="HomeViewController" customModule="SmartHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4D0-ia-YfH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jnB-ib-g0f" userLabel="Rooms Table View">
+                                <rect key="frame" x="0.0" y="204" width="320" height="227"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeRoomTableViewCell" rowHeight="203" id="R99-7o-uVZ" customClass="HomeRoomTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="203"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R99-7o-uVZ" id="4eH-Ij-2dx">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="203"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evw-UT-rNk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veN-5d-kZW">
+                                                            <rect key="frame" x="0.0" y="8" width="320" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                </view>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-Gf-BVh" userLabel="Sensors Table View">
+                                                    <rect key="frame" x="39" y="52" width="260" height="162"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeRoomSensorTableViewCell" rowHeight="80" id="FT5-5n-dKV" customClass="HomeRoomSensorTableViewCell" customModule="SmartHome" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="260" height="80"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FT5-5n-dKV" id="3iO-IO-Rae">
+                                                                <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLS-bm-Deh">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jqn-j8-x5b">
+                                                                                <rect key="frame" x="15" y="15" width="50" height="50"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="50" id="4kM-r5-yQV"/>
+                                                                                    <constraint firstAttribute="height" constant="50" id="UUW-Ix-vNO"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="Jqn-j8-x5b" secondAttribute="bottom" constant="15" id="Gid-Mc-m1H"/>
+                                                                            <constraint firstItem="Jqn-j8-x5b" firstAttribute="top" secondItem="mLS-bm-Deh" secondAttribute="top" constant="15" id="JH2-JX-t3c"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Jqn-j8-x5b" secondAttribute="trailing" constant="15" id="TEc-qR-xfx"/>
+                                                                            <constraint firstItem="Jqn-j8-x5b" firstAttribute="leading" secondItem="mLS-bm-Deh" secondAttribute="leading" constant="15" id="wXa-g3-TsP"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-y8-KJh">
+                                                                        <rect key="frame" x="88" y="51" width="37" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkC-I2-d9F">
+                                                                        <rect key="frame" x="88" y="11" width="46" height="23"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="EkC-I2-d9F" firstAttribute="leading" secondItem="mLS-bm-Deh" secondAttribute="trailing" constant="8" symbolic="YES" id="2wu-hf-t6c"/>
+                                                                    <constraint firstItem="m6R-y8-KJh" firstAttribute="bottom" secondItem="3iO-IO-Rae" secondAttribute="bottomMargin" id="9uC-S7-JTM"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="mLS-bm-Deh" secondAttribute="bottom" id="BLJ-GT-SeI"/>
+                                                                    <constraint firstItem="mLS-bm-Deh" firstAttribute="leading" secondItem="3iO-IO-Rae" secondAttribute="leading" id="MIB-Pw-FM8"/>
+                                                                    <constraint firstItem="EkC-I2-d9F" firstAttribute="top" secondItem="3iO-IO-Rae" secondAttribute="topMargin" id="dvj-Y6-yIg"/>
+                                                                    <constraint firstItem="mLS-bm-Deh" firstAttribute="top" secondItem="3iO-IO-Rae" secondAttribute="top" id="e99-3O-S0W"/>
+                                                                    <constraint firstItem="m6R-y8-KJh" firstAttribute="top" secondItem="EkC-I2-d9F" secondAttribute="bottom" constant="17" id="fqg-RM-FlA"/>
+                                                                    <constraint firstItem="m6R-y8-KJh" firstAttribute="leading" secondItem="mLS-bm-Deh" secondAttribute="trailing" constant="8" symbolic="YES" id="sRM-ft-huj"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="sensorRoomImage" destination="Jqn-j8-x5b" id="oYt-J7-cdr"/>
+                                                                <outlet property="sensorRoomName" destination="EkC-I2-d9F" id="iM7-47-TQE"/>
+                                                                <outlet property="sensorRoomValue" destination="m6R-y8-KJh" id="qv3-C2-c1I"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                </tableView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="roomName" destination="veN-5d-kZW" id="2be-7H-wR0"/>
+                                            <outlet property="sensorsTable" destination="NG1-Gf-BVh" id="UCI-iO-oHM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TeM-9l-7Ir" id="Lpm-0Y-EIw"/>
+                                    <outlet property="delegate" destination="TeM-9l-7Ir" id="BrB-2L-GnX"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs0-AH-yWH" customClass="HomeName" customModule="SmartHome" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="320" height="123.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="123.5" id="PR8-3H-2RB"/>
+                                    <constraint firstAttribute="height" constant="123.5" id="TUH-6h-3Gs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3cr-14-aMZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jnB-ib-g0f" firstAttribute="leading" secondItem="3cr-14-aMZ" secondAttribute="leading" id="5H0-xL-pk3"/>
+                            <constraint firstItem="jnB-ib-g0f" firstAttribute="top" secondItem="3cr-14-aMZ" secondAttribute="top" constant="160" id="8pc-aM-YpY"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="leading" secondItem="3cr-14-aMZ" secondAttribute="leading" id="96m-aX-cvO"/>
+                            <constraint firstItem="jnB-ib-g0f" firstAttribute="bottom" secondItem="3cr-14-aMZ" secondAttribute="bottom" id="G3M-fi-ueF"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="top" secondItem="3cr-14-aMZ" secondAttribute="top" id="NLZ-TO-bUq"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="top" secondItem="3cr-14-aMZ" secondAttribute="top" id="Tdd-WW-lR0"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="leading" secondItem="3cr-14-aMZ" secondAttribute="leading" id="UEa-KO-y6k"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="trailing" secondItem="3cr-14-aMZ" secondAttribute="trailing" id="gcp-Nq-Rt6"/>
+                            <constraint firstItem="jnB-ib-g0f" firstAttribute="trailing" secondItem="3cr-14-aMZ" secondAttribute="trailing" id="iC9-FW-hGz"/>
+                            <constraint firstItem="hs0-AH-yWH" firstAttribute="trailing" secondItem="3cr-14-aMZ" secondAttribute="trailing" id="wyO-15-8TX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KHG-L3-dlV"/>
+                    <connections>
+                        <outlet property="roomsTable" destination="jnB-ib-g0f" id="2dj-OP-u1Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tz-yU-lgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-789.375" y="1413.75"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7h4-wO-BKP"/>
         <segue reference="CPq-gG-bNj"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="airconditioner_icon" width="494" height="439"/>
         <image name="all_icon" width="29" height="25"/>
         <image name="configurations_icon" width="24" height="25"/>
         <image name="home_icon" width="29" height="25"/>
@@ -1247,6 +1300,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
