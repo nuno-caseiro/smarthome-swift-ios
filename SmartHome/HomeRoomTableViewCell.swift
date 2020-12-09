@@ -49,9 +49,11 @@ class HomeRoomTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedIndex = indexPath.row
+        self.homeViewController?.selectedIndexSensor = indexPath.row
         self.selectedSensor = room?.sensors?[indexPath.row]
-        homeViewController?.performSegue(withIdentifier: "editSensor", sender: homeViewController)
+        self.homeViewController?.selectedSensor = self.selectedSensor
+        homeViewController?.performSegue(withIdentifier: "editSensor", sender: self)
+        sensorsTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
