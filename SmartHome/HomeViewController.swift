@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.room = home?.rooms[indexPath.row]
         cell.roomName.text = home?.rooms[indexPath.row].name
-        
+        cell.homeViewController = self
         return cell
     }
     

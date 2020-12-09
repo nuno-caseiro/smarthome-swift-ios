@@ -12,8 +12,10 @@ class HomeRoomTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var roomName: UILabel!
     @IBOutlet weak var sensorsTable: UITableView!
     
+    var homeViewController: HomeViewController?
     var room: Room?
-    
+    var selectedIndex = 0
+    var selectedSensor: Sensor? = nil
     static let SensorsURL = "http://161.35.8.148/api/sensors/"
     static let SensorsRoomURL = "http://161.35.8.148/api/sensorsofroom/"
     static let SensorsValuesURL = "http://161.35.8.148/api/lastvaluesensor/"
@@ -46,6 +48,12 @@ class HomeRoomTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDa
         return room?.sensors?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.row
+        self.selectedSensor = room?.sensors?[indexPath.row]
+        homeViewController?.performSegue(withIdentifier: "editSensor", sender: homeViewController)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeRoomSensorTableViewCell") as? HomeRoomSensorTableViewCell else {
             fatalError("The dequeued cell is not an instance of HomeRoomSensorTableViewCell.")
@@ -59,4 +67,5 @@ class HomeRoomTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDa
 
         return cell
     }
+    
 }
