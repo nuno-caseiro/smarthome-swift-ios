@@ -44,7 +44,7 @@
         </view>
     </objects>
     <resources>
-        <image name="logo2" width="2142" height="1464"/>
+        <image name="logo2" width="512" height="350"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

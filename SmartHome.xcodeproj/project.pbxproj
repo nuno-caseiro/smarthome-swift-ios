@@ -23,6 +23,9 @@
 		2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */; };
 		2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */; };
 		2A9E6C7E257340190012924E /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E6C7D257340190012924E /* AppData.swift */; };
+		2AB3886F258076DB00D330EB /* HomeRoomSensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3886C258076DB00D330EB /* HomeRoomSensorTableViewCell.swift */; };
+		2AB38870258076DB00D330EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3886D258076DB00D330EB /* HomeViewController.swift */; };
+		2AB38871258076DB00D330EB /* HomeRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3886E258076DB00D330EB /* HomeRoomTableViewCell.swift */; };
 		2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */; };
 		2AC4479F257D5B660041D44C /* Pods_SmartHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
@@ -59,6 +62,9 @@
 		2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
 		2A9E6C7D257340190012924E /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		2AB3886C258076DB00D330EB /* HomeRoomSensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRoomSensorTableViewCell.swift; sourceTree = "<group>"; };
+		2AB3886D258076DB00D330EB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2AB3886E258076DB00D330EB /* HomeRoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRoomTableViewCell.swift; sourceTree = "<group>"; };
 		2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePopupFilterViewController.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +131,9 @@
 		2AC6F241256600BE003A93BA /* SmartHome */ = {
 			isa = PBXGroup;
 			children = (
+				2AB3886C258076DB00D330EB /* HomeRoomSensorTableViewCell.swift */,
+				2AB3886E258076DB00D330EB /* HomeRoomTableViewCell.swift */,
+				2AB3886D258076DB00D330EB /* HomeViewController.swift */,
 				2A1C260D257D814100EF9F14 /* LaunchScreen.storyboard */,
 				2AC6F248256600BE003A93BA /* Main.storyboard */,
 				2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */,
@@ -297,13 +306,16 @@
 				2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */,
 				2A3B54E3257FD8AB003652A2 /* TypeAddSensorViewController.swift in Sources */,
 				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
+				2AB38870258076DB00D330EB /* HomeViewController.swift in Sources */,
 				2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */,
 				2A44EAC3257EA97700D4F771 /* TypeTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
 				2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */,
+				2AB38871258076DB00D330EB /* HomeRoomTableViewCell.swift in Sources */,
 				2ACF25612568900F008AD41E /* Room.swift in Sources */,
 				2A0B33D8257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift in Sources */,
 				2A3B54E725802330003652A2 /* User.swift in Sources */,
+				2AB3886F258076DB00D330EB /* HomeRoomSensorTableViewCell.swift in Sources */,
 				2A44EABF257E99E000D4F771 /* TypeViewController.swift in Sources */,
 				2A0B33CE257D951D00CCBE4B /* AppDelegate.swift in Sources */,
 				2A3B54EB2580555F003652A2 /* EditProfileViewController.swift in Sources */,

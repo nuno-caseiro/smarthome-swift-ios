@@ -109,8 +109,11 @@ class LoginViewController: UIViewController {
                 self.populateUser(urlString: LoginViewController.UserDetails + "?username=\( userName!)")
                 
                 DispatchQueue.main.async {
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let mainTabBarController = storyboard.instantiateViewController(identifier: "MainViewControllerId")
+                    
+
                     mainTabBarController.modalPresentationStyle = .fullScreen
                     
                     self.present(mainTabBarController, animated: true, completion: nil)
@@ -156,12 +159,13 @@ class LoginViewController: UIViewController {
                 let user = try JSONDecoder().decode([User].self, from: data)
                 print("user id: \(user[0].id ?? 0)")
                 
+                DispatchQueue.main.async {
                 AppData.instance.user.id = user[0].id
                 AppData.instance.user.email = user[0].email
                 AppData.instance.user.username = user[0].username
                 AppData.instance.user.firstname = user[0].firstname
                 AppData.instance.user.lastname = user[0].lastname
-                
+                }
             }catch let jsonErr{
                 print(jsonErr)
             }
