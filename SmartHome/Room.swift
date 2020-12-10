@@ -16,7 +16,6 @@ class Room: NSObject, NSCoding, Codable{
     var ip: String
     var sensors: [Sensor]?
     var image: UIImage?
-    //var roomType: String
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in:.userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("rooms")
@@ -28,7 +27,6 @@ class Room: NSObject, NSCoding, Codable{
         self.sensors = [Sensor]()
         self.id = id
         self.image = image
-        //self.roomType = roomType
     }
     
     
@@ -39,7 +37,6 @@ class Room: NSObject, NSCoding, Codable{
         coder.encode(sensors, forKey: PropertyKey.sensors)
         coder.encode(id, forKey: PropertyKey.id)
         coder.encode(image, forKey: PropertyKey.image)
-        //coder.encode(roomType, forKey: PropertyKey.roomType)
     }
     
     required convenience init?(coder: NSCoder) {
@@ -69,7 +66,6 @@ class Room: NSObject, NSCoding, Codable{
         static let sensors = "sensors"
         static let id = "id"
         static let image = "image"
-        //static let roomType = "roomType"
         
     }
     
@@ -79,7 +75,6 @@ class Room: NSObject, NSCoding, Codable{
         case ip
         case sensors
         case id
-        //case roomtype
     }
     
 }
