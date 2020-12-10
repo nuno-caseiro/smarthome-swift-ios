@@ -52,6 +52,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     
+    //MARK: Validation
     func validate() -> Bool {
         guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let email = emailTextField.text else {
             return false
@@ -59,16 +60,19 @@ class EditProfileViewController: UIViewController {
         let isValidateFirstName = self.validation.validateNames(name: firstName)
         if (isValidateFirstName == false) {
             showMessage("Error", "The sensor name is invalid")
+            return false
         }
         
         let isValidateLastName = self.validation.validateNames(name: lastName)
         if (isValidateLastName == false) {
             showMessage("Error", "The GPIO is invalid")
+            return false
         }
         
         let isValidateEmail = self.validation.validateEmail(value:  email)
         if (isValidateEmail == false) {
             showMessage("Error", "The sensor type is invalid")
+            return false
         }
         return true
     }

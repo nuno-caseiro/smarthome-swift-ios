@@ -436,7 +436,7 @@
                 <navigationController id="KgJ-kn-DRe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="all_icon" id="FLR-OK-UgL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jHF-Yy-Nrp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1111,20 +1111,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5IM-ud-vm5">
                                 <rect key="frame" x="0.0" y="202" width="320" height="33"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aa0-WB-WHW">
-                                        <rect key="frame" x="162" y="8" width="134" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aa0-WB-WHW">
+                                        <rect key="frame" x="128" y="8" width="168" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1l-P6-LSQ">
-                                        <rect key="frame" x="148" y="10" width="6" height="21"/>
+                                        <rect key="frame" x="114" y="10" width="6" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.8105280399" blue="0.87124174830000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Bem-vindo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWh-8W-hpj">
-                                        <rect key="frame" x="49" y="8" width="97" height="21"/>
+                                        <rect key="frame" x="15" y="8" width="97" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1132,7 +1132,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="EWh-8W-hpj" firstAttribute="leading" secondItem="5IM-ud-vm5" secondAttribute="leading" constant="49" id="5Xc-TW-Khr"/>
+                                    <constraint firstItem="EWh-8W-hpj" firstAttribute="leading" secondItem="5IM-ud-vm5" secondAttribute="leading" constant="15" id="5Xc-TW-Khr"/>
                                     <constraint firstItem="m1l-P6-LSQ" firstAttribute="leading" secondItem="EWh-8W-hpj" secondAttribute="trailing" constant="2" id="78u-FD-0kn"/>
                                     <constraint firstItem="Aa0-WB-WHW" firstAttribute="leading" secondItem="m1l-P6-LSQ" secondAttribute="trailing" constant="8" id="8Nt-UX-5er"/>
                                     <constraint firstAttribute="trailing" secondItem="Aa0-WB-WHW" secondAttribute="trailing" constant="24" id="Bat-Yg-VRS"/>

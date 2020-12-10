@@ -23,7 +23,6 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeHideKeyboard()
         sensorNameTextField.delegate = self
         
         sensorType.optionArray = ["Led", "Camera", "Door", "Plug"]
@@ -87,22 +86,6 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func initializeHideKeyboard(){
-            //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-                target: self,
-                action: #selector(dismissMyKeyboard))
-            
-            //Add this tap gesture recognizer to the parent view
-            view.addGestureRecognizer(tap)
-        }
-        
-        @objc func dismissMyKeyboard(){
-            //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
-            //In short- Dismiss the active keyboard.
-            view.endEditing(true)
-        }
-    
     // MARK: - Navigation
     
    
@@ -160,16 +143,19 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         let isValidateName = self.validation.validateNames(name: name)
         if (isValidateName == false) {
             showMessage("Error", "The sensor name is invalid")
+            return false
         }
         
         let isValidateGPIO = self.validation.validateGpio(value: gpio)
         if (isValidateGPIO == false) {
             showMessage("Error", "The GPIO is invalid")
+            return false
         }
         
         let isValidateSensorType = self.validation.validateSensorType(value: sensorType.text ?? "")
         if (isValidateSensorType == false) {
             showMessage("Error", "The sensor type is invalid")
+            return false
         }
         return true
     }
