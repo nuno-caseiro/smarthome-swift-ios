@@ -47,6 +47,8 @@ class EditProfileViewController: UIViewController {
             AppData.instance.user.email = email
             AppData.instance.user.firstname = firstName
             AppData.instance.user.lastname = lastName
+            NotificationCenter.default.post(name: NSNotification.Name("com.user.login.success"), object: nil)
+
         }
     }
     

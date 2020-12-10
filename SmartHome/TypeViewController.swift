@@ -19,6 +19,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var sensorOfTypeBackup = [Sensor]()
     var type = ""
     var validation = Validation()
+    var selectedIndex: IndexPath?
     
 
     
@@ -133,7 +134,26 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath
+    }
     
+    @IBAction func unwindToDelete(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? TypeAddSensorViewController,
+           let sensor = sourceViewController.sensor{
+            let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+
+            deleteSensor(urlString: stringForDelete)
+            // Delete the row from the data source
+            sensorOfType.remove(at: selectedIndex!.row)
+            // Delete the row from the data source
+            typeSensorTableView.deleteRows(at: [selectedIndex!], with: .fade)
+            NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
+
+        }
+    }
+    
+
     func checkSensorToInsert(sourceViewController: TypePopupFilterViewController ,sensor: Sensor){
         if(sensor.roomtype == "bedroom" && sourceViewController.bedroom == true ){
             !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
@@ -188,6 +208,8 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             sensorOfType.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
+
             
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -216,14 +238,15 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if sensor.value! >= 1{
             cell.switchSensor.setOn(true, animated: true)
+            cell.backgroundColor = hexStringToUIColor(hex: "#CFFFE2")
         }else{
             cell.switchSensor.setOn(false, animated: true)
+            cell.backgroundColor = hexStringToUIColor(hex: "#FFC1C1")
         }
         
-        // assign the index of the youtuber to button tag
-          cell.switchSensor.tag = indexPath.row
-          
-          // call the subscribeTapped method when tapped
+        
+        cell.switchSensor.tag = indexPath.row
+        
         cell.switchSensor.addTarget(self, action: #selector(valueChange), for:UIControl.Event.valueChanged)
         
         cell.roomLabel.text = sensor.roomtype?.firstUppercased
@@ -231,19 +254,50 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        print("hi")
+    }
+    
     @objc func valueChange(mySwitch: UISwitch) {
            let sensor = sensorOfType[mySwitch.tag]
             
         if (mySwitch.isOn){
             sensor.value = 1.0
+            //typeSensorTableView.cellForRow(at: IndexPath(index: mySwitch.tag))!.backgroundColor = hexStringToUIColor(hex: "#CFFFE2")
         }else{
             sensor.value = 0.0
+            //typeSensorTableView.cellForRow(at: IndexPath(index: mySwitch.tag))!.backgroundColor = hexStringToUIColor(hex: "#FFC1C1")
         }
         
+        typeSensorTableView.reloadRows(at: [IndexPath(item: mySwitch.tag, section: 0)], with: .automatic)
+        
         updateSensorValue(sensor: sensor, completionToInsertSensorValue: {() in
-            self.getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(self.type)")
+            //self.getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(self.type)")
         })
        }
+    
     
     //MARK: Requests
     
@@ -277,7 +331,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
+                print("Error: error calling POST")
                 print(error!)
                 return
             }
@@ -352,11 +406,11 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     case "led":
                         sensor.image = UIImage(named: "light_icon")
                     case "camera":
-                        sensor.image = UIImage(named: "camera_new_icon")
+                        sensor.image = UIImage(named: "camera_icon")
                     case "servo":
                         sensor.image = UIImage(named: "door_icon")
-                    case "motion":
-                        sensor.image = UIImage(named: "motion_icon")
+                    case "plug":
+                        sensor.image = UIImage(named: "plug_icon")
                     default:
                         return
                     }

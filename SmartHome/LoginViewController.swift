@@ -182,6 +182,7 @@ class LoginViewController: UIViewController {
                 AppData.instance.user.username = user[0].username
                 AppData.instance.user.firstname = user[0].firstname
                 AppData.instance.user.lastname = user[0].lastname
+                NotificationCenter.default.post(name: NSNotification.Name("com.user.login.success"), object: nil)
                 }
             }catch let jsonErr{
                 print(jsonErr)

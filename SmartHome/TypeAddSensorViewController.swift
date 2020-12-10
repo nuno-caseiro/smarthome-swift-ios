@@ -14,6 +14,7 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var gpioTextField: UITextField!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var trashButton: UIBarButtonItem!
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var sensorNameTextField: UITextField!
     @IBOutlet weak var saveSensorButton: UIBarButtonItem!
@@ -39,6 +40,7 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
                 valueLabel.text = "Desligado"
             }
         } else{
+            trashButton.isEnabled = false
             valueLabel.text = "None"
         }
         
@@ -47,11 +49,11 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             self.typeImageView.image = UIImage(named: "light_icon")
         case "camera":
             
-            self.typeImageView.image = UIImage(named: "camera_new_icon")
+            self.typeImageView.image = UIImage(named: "camera_icon")
         case "servo":
             self.typeImageView.image = UIImage(named: "door_icon")
-        case "motion":
-            self.typeImageView.image = UIImage(named: "motion_icon")
+        case "plug":
+            self.typeImageView.image = UIImage(named: "plug_icon")
         default:
             print("Default do select1")
         }
@@ -96,6 +98,8 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             }else{
                 sensor = Sensor(name: name, sensorType: typeStr , value: 1.0, room: roomId , gpio: gpioValue ?? 1 , image: sensorImage, roomtype: sensor?.roomtype)
             }
+            NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
+
         }
         
 //Mark: validations
@@ -110,16 +114,19 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
         let isValidateName = self.validation.validateNames(name: name)
         if (isValidateName == false) {
             showMessage("Error", "The sensor name is invalid")
+            return false
         }
         
         let isValidateGPIO = self.validation.validateGpio(value: gpio)
         if (isValidateGPIO == false) {
             showMessage("Error", "The GPIO is invalid")
+            return false
         }
         
         let isValidateRoom = self.validation.validateRoom(value: roomId )
         if (isValidateRoom == false) {
             showMessage("Error", "The room is invalid")
+            return false
         }
         return true
     }
