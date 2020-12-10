@@ -22,11 +22,18 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
     var sensor: Sensor? = nil
     var typeStr: String = ""
     var roomId: Int = 0
+    var roomName: String?
     var validation = Validation()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         sensorNameTextField.delegate = self
         roomsDropdown.isSearchEnable = false
+        for room in AppData.instance.home.rooms {
+            roomsDropdown.optionArray.append(room.name)
+        }
+        roomsDropdown.selectedRowColor = .white
+        
         if let sensor = sensor{
             navigationItem.title = sensor.name
             sensorNameTextField.text = sensor.name
@@ -38,9 +45,16 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             }else{
                 valueLabel.text = "Desligado"
             }
+            for i in 0..<roomsDropdown.optionArray.count {
+                if ( sensor.roomname == roomsDropdown.optionArray[i] ){
+                    roomsDropdown.selectedIndex = i
+                    self.roomName = sensor.roomname
+                }
+            }
         } else{
             trashButton.isEnabled = false
             valueLabel.text = "None"
+            roomsDropdown.selectedIndex = 0
         }
         
         switch typeStr {
@@ -57,23 +71,29 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             print("Default do select1")
         }
         
-        for room in AppData.instance.home.rooms {
-            roomsDropdown.optionArray.append(room.name)
-        }
-        roomsDropdown.selectedRowColor = .white
-        roomsDropdown.selectedIndex = 0
+        
         roomsDropdown.text = roomsDropdown.optionArray[roomsDropdown.selectedIndex ?? 0]
         self.roomId = AppData.instance.home.rooms[roomsDropdown.selectedIndex ?? 0].id ?? 7
         
         roomsDropdown.didSelect{(selectedText , index ,id) in
             
             self.roomId = AppData.instance.home.rooms[index].id ?? 0
+            self.roomName = AppData.instance.home.rooms[index].name
+            
             print("Selected String: \(selectedText) \n index: \(index)")
         }
         
     }
     
     //MARK: Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let valid = validate()
+        if valid {
+            return true
+            
+        }
+        return false
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -82,29 +102,21 @@ class TypeAddSensorViewController: UIViewController, UITextFieldDelegate {
             os_log("The save button was not pressed, cancelling", log:OSLog.default, type: .debug)
             return
         }
-        
-        
-        let valid = validate()
-        
-        if valid {
-            
+
             let name = sensorNameTextField.text ?? ""
             let gpioValue = Int(gpioTextField.text ?? "")
             let sensorImage = self.typeImageView.image
            
             //se existir, ja tem id => update
             if let sensor = sensor {
-                self.sensor = Sensor(id: sensor.id ?? 0 , name: name, sensorType: typeStr , value: 1.0, room: roomId , gpio: gpioValue ?? 1, image: sensorImage, roomtype: sensor.roomtype)
+                self.sensor = Sensor(id: sensor.id ?? 0 , name: name, sensorType: typeStr , value: 1.0, room: roomId , gpio: gpioValue ?? 1, image: sensorImage, roomname: self.roomName)
             }else{
-                sensor = Sensor(name: name, sensorType: typeStr , value: 1.0, room: roomId , gpio: gpioValue ?? 1 , image: sensorImage, roomtype: sensor?.roomtype)
+                sensor = Sensor(name: name, sensorType: typeStr , value: 1.0, room: roomId , gpio: gpioValue ?? 1 , image: sensorImage, roomname:  self.roomName)
             }
             NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
-
-        }
-        
-//MARK: validations
-    
     }
+    
+    //MARK: validations
     
     func validate() -> Bool {
         guard let name = sensorNameTextField.text, let gpio = gpioTextField.text else {

@@ -88,6 +88,16 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Navigation
     
+    //MARK: Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let valid = validate()
+        if valid {
+            return true
+            
+        }
+        return false
+    }
+    
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -97,9 +107,6 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let valid = validate()
-        if valid {
-            
             let name = sensorNameTextField.text ?? ""
             var sensorTypeValue = ""
             switch sensorType.selectedIndex{
@@ -118,6 +125,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             default:
                 return
             }
+           
             
             
             let gpioValue = Int(gpioTextField.text ?? "")
@@ -125,13 +133,13 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
            
             //se existir, ja tem id => update
             if let sensor = sensor {
-                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage, roomtype: sensor.roomtype)
+                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage, roomname: sensor.roomname)
             }else{
-                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage, roomtype: sensor?.roomtype)
+                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage, roomname: sensor?.roomname)
             }
 
         }
-    }
+    
     
     //Mark: Validations
     

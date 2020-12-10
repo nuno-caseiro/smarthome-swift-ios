@@ -17,10 +17,10 @@
          contextName = "HomeViewController.tableView(_:heightForRowAt:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(home?.rooms[selectedIndex].sensors!.count)!">
+               value = "AppData.instance.user">
             </PersistentString>
             <PersistentString
-               value = "AppData.instance.user">
+               value = "(home?.rooms[selectedIndex].sensors!.count)!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -73,6 +73,20 @@
       </ContextState>
       <ContextState
          contextName = "closure #1 in TypeViewController.unwindToList(sender:):TypeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TypeViewController.tableView(_:cellForRowAt:):TypeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sensor.roomname">
+            </PersistentString>
+            <PersistentString
+               value = "cell.roomLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "sensor.roomname?.firstUppercased">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">

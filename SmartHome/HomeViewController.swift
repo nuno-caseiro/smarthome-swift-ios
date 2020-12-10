@@ -174,7 +174,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //fazer post e editar id com a resposta; fazer método que recebe o id
                 insertSensorRequest(urlString: HomeViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
-                    sensor.roomtype = newSensor?.roomtype
+                    sensor.roomname = newSensor?.roomname
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }

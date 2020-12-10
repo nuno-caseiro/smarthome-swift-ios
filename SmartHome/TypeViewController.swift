@@ -131,7 +131,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //fazer post e editar id com a resposta; fazer método que recebe o id
                 insertSensorRequest(urlString: HomeViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
-                    sensor.roomtype = newSensor?.roomtype
+                    sensor.roomname = newSensor?.roomname
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }
@@ -165,18 +165,18 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 //MARK: Filters
     func checkSensorToInsert(sourceViewController: TypePopupFilterViewController ,sensor: Sensor){
-        if(sensor.roomtype == "bedroom" && sourceViewController.bedroom == true ){
+        if(sensor.roomname == "Bedroom" && sourceViewController.bedroom == true ){
             !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
         }
-        if(sensor.roomtype == "garage" && sourceViewController.garage == true ){
-            !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
-        }
-        
-        if(sensor.roomtype == "kitchen" && sourceViewController.kitchen == true ){
+        if(sensor.roomname == "Garage" && sourceViewController.garage == true ){
             !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
         }
         
-        if(sensor.roomtype == "living" && sourceViewController.living == true ){
+        if(sensor.roomname == "Kitchen" && sourceViewController.kitchen == true ){
+            !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
+        }
+        
+        if(sensor.roomname == "Living room" && sourceViewController.living == true ){
             !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
         }
         
@@ -240,7 +240,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Fetches the appropriate meal for the data source layout.
         let sensor = sensorOfType[indexPath.row]
         cell.sensorNameLabel.text = sensor.name
-        cell.roomLabel.text = sensor.roomtype
         
         if sensor.value! >= 1{
             cell.switchSensor.setOn(true, animated: true)
@@ -255,7 +254,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.switchSensor.addTarget(self, action: #selector(valueChange), for:UIControl.Event.valueChanged)
         
-        cell.roomLabel.text = sensor.roomtype?.firstUppercased
+        cell.roomLabel.text = sensor.roomname?.firstUppercased
        
         return cell
     }
