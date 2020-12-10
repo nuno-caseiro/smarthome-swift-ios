@@ -45,6 +45,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
+    
+    @objc func loginSuccess(_ notification: Notification){
+           
+        self.firstName.text = AppData.instance.user.firstname
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if self.selectedIndex == indexPath.row && isCollapsed == true  {
@@ -52,11 +58,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             return 65
         }
-    }
-    
-    @objc func loginSuccess(_ notification: Notification){
-           
-        self.firstName.text = AppData.instance.user.firstname
     }
     
     @objc func sensorAdded(_ notification: Notification){
@@ -71,6 +72,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         roomsTable.deselectRow(at: IndexPath(index: self.selectedIndex), animated: true)
         self.selectedIndex = -1
     }
+    
+    //MARK: TABLE VIEW
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return home?.rooms.count ?? 0
@@ -107,6 +110,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+    fileprivate func addSensor(_ sensor: Sensor) {
+        // Add a new sensor.
+        home?.rooms[self.selectedIndex].sensors?.append(sensor)
+        //roomsTable.reloadData()
+        
+    }
+    //MARK: Navigation
     // ------------------------------------------------------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -136,7 +146,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func unwindToSensorListWithDelete(sender: UIStoryboardSegue) {
         
-        let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: self.home!.rooms[self.selectedIndex].sensors![ self.selectedIndexSensor].id!))/"
+        let stringForDelete = HomeViewController.SensorsURL + "\(String(describing: self.home!.rooms[self.selectedIndex].sensors![ self.selectedIndexSensor].id!))/"
         deleteSensor(urlString: stringForDelete)
         
         self.home?.rooms[self.selectedIndex].sensors?.remove(at: self.selectedIndexSensor)
@@ -153,7 +163,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if  selectedIndexSensor != -1 {
                 // Update an existing sensor.
                 
-                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+                let stringForUpdate = HomeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
                 self.updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
                 home?.rooms[self.selectedIndex].sensors?[selectedIndexSensor] = sensor
@@ -162,13 +172,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             else {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
-                insertSensorRequest(urlString: SensorTableViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
+                insertSensorRequest(urlString: HomeViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
                     sensor.roomtype = newSensor?.roomtype
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }
-                    self.insertSensorValueRequest(urlString: SensorTableViewController.SensorsValuesPostURL, sensor: sensor)
+                    self.insertSensorValueRequest(urlString: HomeViewController.SensorsValuesPostURL, sensor: sensor)
                     
                 })
            
@@ -178,12 +188,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     }
 
-fileprivate func addSensor(_ sensor: Sensor) {
-    // Add a new sensor.
-    home?.rooms[self.selectedIndex].sensors?.append(sensor)
-    //roomsTable.reloadData()
+
     
-}
+    //MARK: Requests
     
     func deleteSensor(urlString: String){
         guard let url = URL(string: urlString) else {

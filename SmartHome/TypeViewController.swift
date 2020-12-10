@@ -9,6 +9,7 @@ import UIKit
 import os.log
 class TypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     static let SensorsValuesPostURL = "http://161.35.8.148/api/sensorsvalues/"
+    static let SensorsURL = "http://161.35.8.148/api/sensors/"
     @IBOutlet weak var typeSensorTableView: UITableView!
     @IBOutlet weak var typeTitleLabel: UILabel!
     @IBOutlet weak var typeImage: UIImageView!
@@ -38,11 +39,18 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(type)")
     }
     
-    //Mark: Navigation
-    @IBAction func clearFilters(_ sender: Any) {
-        getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(type)")
+    
+    fileprivate func addSensor(_ sensor: Sensor) {
+        // Add a new sensor.
+        let newIndexPath = IndexPath(row: sensorOfType.count , section: 0)
+        sensorOfType.append(sensor)
+        sensorOfTypeBackup.append(sensor)
+        typeSensorTableView.insertRows(at: [newIndexPath], with: .automatic)
+        
     }
     
+    
+    //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -113,7 +121,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let selectedIndexPath = typeSensorTableView.indexPathForSelectedRow {
                 // Update an existing sensor.
                 
-                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+                let stringForUpdate = TypeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
                 updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
                 sensorOfType[selectedIndexPath.row] = sensor
@@ -121,27 +129,23 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             else {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
-                insertSensorRequest(urlString: SensorTableViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
+                insertSensorRequest(urlString: HomeViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
                     sensor.roomtype = newSensor?.roomtype
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }
-                    self.insertSensorValueRequest(urlString: SensorTableViewController.SensorsValuesPostURL, sensor: sensor)
+                    self.insertSensorValueRequest(urlString: TypeViewController.SensorsValuesPostURL, sensor: sensor)
                     
                 })
             }
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedIndex = indexPath
-    }
-    
     @IBAction func unwindToDelete(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? TypeAddSensorViewController,
            let sensor = sourceViewController.sensor{
-            let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+            let stringForDelete = TypeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
             deleteSensor(urlString: stringForDelete)
             // Delete the row from the data source
@@ -153,7 +157,13 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath
+    }
+    
+    
+    
+//MARK: Filters
     func checkSensorToInsert(sourceViewController: TypePopupFilterViewController ,sensor: Sensor){
         if(sensor.roomtype == "bedroom" && sourceViewController.bedroom == true ){
             !checkDuplicate(sensor: sensor) ? sensorOfTypeAux.append(sensor) : print("duplicate")
@@ -184,15 +194,11 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return false
     }
     
-    
-    fileprivate func addSensor(_ sensor: Sensor) {
-        // Add a new sensor.
-        let newIndexPath = IndexPath(row: sensorOfType.count , section: 0)
-        sensorOfType.append(sensor)
-        sensorOfTypeBackup.append(sensor)
-        typeSensorTableView.insertRows(at: [newIndexPath], with: .automatic)
-        
+    @IBAction func clearFilters(_ sender: Any) {
+        getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(type)")
     }
+    
+   
     
     // MARK: - Table view data source
     
@@ -201,7 +207,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .delete {
              let sensor = sensorOfType[indexPath.row]
             
-            let stringForDelete = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+            let stringForDelete = TypeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
             deleteSensor(urlString: stringForDelete)
             // Delete the row from the data source
@@ -254,27 +260,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-
-        var rgbValue:UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&rgbValue)
-
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
+   
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         print("hi")
@@ -285,17 +271,13 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         if (mySwitch.isOn){
             sensor.value = 1.0
-            //typeSensorTableView.cellForRow(at: IndexPath(index: mySwitch.tag))!.backgroundColor = hexStringToUIColor(hex: "#CFFFE2")
         }else{
             sensor.value = 0.0
-            //typeSensorTableView.cellForRow(at: IndexPath(index: mySwitch.tag))!.backgroundColor = hexStringToUIColor(hex: "#FFC1C1")
         }
         
         typeSensorTableView.reloadRows(at: [IndexPath(item: mySwitch.tag, section: 0)], with: .automatic)
         
-        updateSensorValue(sensor: sensor, completionToInsertSensorValue: {() in
-            //self.getSensorsOfType(TypeViewController.SensorTypeURL + "?type=\(self.type)")
-        })
+        updateSensorValue(sensor: sensor, completionToInsertSensorValue: {() in        })
        }
     
     
@@ -614,13 +596,35 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }.resume()
     }
     
-    
+    //MARK: Utilities
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 }
 
-//MARK: Utilities
+
 
 extension StringProtocol {
     var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }
+
 

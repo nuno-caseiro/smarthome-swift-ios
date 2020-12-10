@@ -25,6 +25,8 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
         self.typeCollectionView.isUserInteractionEnabled = true
     }
     
+    //MARK: Collection view
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1     //return number of sections in collection view
     }
@@ -65,6 +67,7 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
         return cell
     }
     
+    //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let typeViewController = segue.destination as? TypeViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
