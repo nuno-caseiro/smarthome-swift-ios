@@ -11,7 +11,7 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
    
     
     @IBOutlet weak var typeCollectionView: UICollectionView!
-    var types = ["Leds", "Camaras", "Doors", "Motion"]
+    var types = ["Leds", "Camaras", "Doors", "Plug"]
     var indexPathSelected: IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
         self.typeCollectionView.addGestureRecognizer(tap)
         self.typeCollectionView.isUserInteractionEnabled = true
     }
+    
+    //MARK: Collection view
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1     //return number of sections in collection view
@@ -50,13 +52,13 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
             cell.typeLogoImageView.image = UIImage(named: "light_icon")
             
         case 1:
-            cell.typeLogoImageView.image = UIImage(named: "camera_new_icon")
+            cell.typeLogoImageView.image = UIImage(named: "camera_icon")
            
         case 2:
             cell.typeLogoImageView.image = UIImage(named: "door_icon")
             
         case 3:
-            cell.typeLogoImageView.image = UIImage(named: "motion_icon")
+            cell.typeLogoImageView.image = UIImage(named: "plug_icon")
             
         default:
             print("DEFAULT TYPE")
@@ -65,6 +67,7 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
         return cell
     }
     
+    //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let typeViewController = segue.destination as? TypeViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
@@ -76,7 +79,7 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
             typeViewController.titleType = "Led"
             typeViewController.type = "led"
         case 1:
-            typeViewController.image = UIImage(named: "camera_new_icon")
+            typeViewController.image = UIImage(named: "camera_icon")
             typeViewController.titleType = "Camera"
             typeViewController.type = "camera"
         case 2:
@@ -84,9 +87,9 @@ class AllSensorsCollectionViewController: UIViewController,UICollectionViewDeleg
             typeViewController.titleType = "Door"
             typeViewController.type = "servo"
         case 3:
-            typeViewController.image = UIImage(named: "motion_icon")
-            typeViewController.titleType = "Motion"
-            typeViewController.type = "motion"
+            typeViewController.image = UIImage(named: "plug_icon")
+            typeViewController.titleType = "Plug"
+            typeViewController.type = "plug"
         default:
             print("DEFAULT TYPE")
         }

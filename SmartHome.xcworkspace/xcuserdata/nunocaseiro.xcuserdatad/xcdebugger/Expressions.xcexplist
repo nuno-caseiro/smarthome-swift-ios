@@ -3,28 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #1 in LoginViewController.populateUser(urlString:):LoginViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ConfigViewController.unwindToSave(sender:):ConfigViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "AppData.instance.user.token">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeRoomTableViewCell.tableView(_:numberOfRowsInSection:):HomeRoomTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "room?.sensors?.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeViewController.addSensorToRoom(sensor:):HomeViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "HomeViewController.viewDidLoad():HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -36,37 +14,15 @@
          contextName = "HomeViewController.prepare(for:sender:):HomeViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DashboardViewController.deleteRoom(_:):DashboardViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "HomeViewController.tableView(_:heightForRowAt:):HomeViewController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "(home?.rooms[selectedIndex].sensors!.count)!">
+            </PersistentString>
             <PersistentString
                value = "AppData.instance.user">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeViewController.downloadSensorsByRoom():HomeViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "AppData.instance.home.rooms[index]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in TypeViewController.unwindToList(sender:):TypeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in HomeViewController.downloadSensorsByRoom():HomeViewController.swift">
@@ -75,6 +31,9 @@
                value = "home!.rooms[self.selectedIndex].id!">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.addSensorToRoom(sensor:):HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "TypeViewController.prepare(for:sender:):TypeViewController.swift">
@@ -99,6 +58,45 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HomeRoomTableViewCell.tableView(_:numberOfRowsInSection:):HomeRoomTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "room?.sensors?.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.sensorAdded(_:):HomeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in LoginViewController.populateUser(urlString:):LoginViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TypeViewController.unwindToList(sender:):TypeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AllSensorsCollectionViewController.handleTap(_:):AllSensorsCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.typeCollectionView?.indexPathForItem(at: sender.location(in: self.typeCollectionView)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.home.rooms[index]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeRoomTableViewCell.tableView(_:didSelectRowAt:):HomeRoomTableViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.downloadSensorsByRoom():HomeViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "TypeAddSensorViewController.viewDidLoad():TypeAddSensorViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -107,7 +105,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HomeRoomTableViewCell.tableView(_:didSelectRowAt:):HomeRoomTableViewCell.swift">
+         contextName = "DashboardViewController.deleteRoom(_:):DashboardViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ConfigViewController.unwindToSave(sender:):ConfigViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppData.instance.user.token">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -23,10 +23,9 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         sensorNameTextField.delegate = self
         
-        sensorType.optionArray = ["Led", "Camera", "Door", "Motion"]
+        sensorType.optionArray = ["Led", "Camera", "Door", "Plug"]
         sensorType.selectedRowColor = .white
         
         if let sensor = sensor {
@@ -48,7 +47,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 
                 sensorType.selectedIndex = 2
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
-            case "motion":
+            case "plug":
                 sensorType.selectedIndex = 3
                 sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
             default:
@@ -74,11 +73,11 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             case 0:
                 self.imageViewSensor.image = UIImage(named: "light_icon")
             case 1:
-                self.imageViewSensor.image = UIImage(named: "camera_new_icon")
+                self.imageViewSensor.image = UIImage(named: "camera_icon")
             case 2:
                 self.imageViewSensor.image = UIImage(named: "door_icon")
             case 3:
-                self.imageViewSensor.image = UIImage(named: "motion_icon")
+                self.imageViewSensor.image = UIImage(named: "plug_icon")
             default:
                 print("Default do select")
             }
@@ -108,13 +107,13 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 self.imageViewSensor.image = UIImage(named: "light_icon")
                 sensorTypeValue = "led"
             case 1:
-                self.imageViewSensor.image = UIImage(named: "camera_new_icon")
+                self.imageViewSensor.image = UIImage(named: "camera_icon")
                 sensorTypeValue = "camera"
             case 2:
                 self.imageViewSensor.image = UIImage(named: "door_icon")
                 sensorTypeValue = "servo"
             case 3:
-                self.imageViewSensor.image = UIImage(named: "motion_icon")
+                self.imageViewSensor.image = UIImage(named: "plug_icon")
                 sensorTypeValue = "motion"
             default:
                 return
@@ -130,6 +129,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             }else{
                 sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage, roomtype: sensor?.roomtype)
             }
+
         }
     }
     
@@ -143,16 +143,19 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         let isValidateName = self.validation.validateNames(name: name)
         if (isValidateName == false) {
             showMessage("Error", "The sensor name is invalid")
+            return false
         }
         
         let isValidateGPIO = self.validation.validateGpio(value: gpio)
         if (isValidateGPIO == false) {
             showMessage("Error", "The GPIO is invalid")
+            return false
         }
         
         let isValidateSensorType = self.validation.validateSensorType(value: sensorType.text ?? "")
         if (isValidateSensorType == false) {
             showMessage("Error", "The sensor type is invalid")
+            return false
         }
         return true
     }

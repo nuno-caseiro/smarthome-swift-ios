@@ -39,24 +39,47 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         roomsTable.estimatedRowHeight = 126
         roomsTable.rowHeight = UITableView.automaticDimension
+        
+        NotificationCenter.default.addObserver(self,selector: #selector(loginSuccess),name: NSNotification.Name ("com.user.login.success"),object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(sensorAdded),name: NSNotification.Name ("sensor added"),object: nil)
+
+    }
+    
+    
+    @objc func loginSuccess(_ notification: Notification){
+           
+        self.firstName.text = AppData.instance.user.firstname
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if self.selectedIndex == indexPath.row && isCollapsed == true {
+        if self.selectedIndex == indexPath.row && isCollapsed == true  {
             return 250
         } else {
             return 65
         }
     }
     
+    @objc func sensorAdded(_ notification: Notification){
+           
+        if let rooms = home?.rooms{
+            for room in rooms{
+                room.sensors?.removeAll()
+            }
+            roomsTable.reloadData()
+        }
+        
+        roomsTable.deselectRow(at: IndexPath(index: self.selectedIndex), animated: true)
+        self.selectedIndex = -1
+    }
+    
+    //MARK: TABLE VIEW
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return home?.rooms.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //MELHORAR
-        self.firstName.text = AppData.instance.user.firstname
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeRoomTableViewCell") as? HomeRoomTableViewCell else {
             fatalError("The dequeued cell is not an instance of HomeRoomTableViewCell.")
         }
@@ -87,6 +110,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+    fileprivate func addSensor(_ sensor: Sensor) {
+        // Add a new sensor.
+        home?.rooms[self.selectedIndex].sensors?.append(sensor)
+        //roomsTable.reloadData()
+        
+    }
+    //MARK: Navigation
     // ------------------------------------------------------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -114,6 +144,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    @IBAction func unwindToSensorListWithDelete(sender: UIStoryboardSegue) {
+        
+        let stringForDelete = HomeViewController.SensorsURL + "\(String(describing: self.home!.rooms[self.selectedIndex].sensors![ self.selectedIndexSensor].id!))/"
+        deleteSensor(urlString: stringForDelete)
+        
+        self.home?.rooms[self.selectedIndex].sensors?.remove(at: self.selectedIndexSensor)
+        roomsTable.reloadData()
+        
+       
+    }
+    
+    
     @IBAction func unwindToSensorList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? SensorViewController,
            let sensor = sourceViewController.sensor {
@@ -121,7 +163,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if  selectedIndexSensor != -1 {
                 // Update an existing sensor.
                 
-                let stringForUpdate = SensorTableViewController.SensorsURL + "\(String(describing: sensor.id!))/"
+                let stringForUpdate = HomeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
                 self.updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
                 home?.rooms[self.selectedIndex].sensors?[selectedIndexSensor] = sensor
@@ -130,13 +172,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             else {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
-                insertSensorRequest(urlString: SensorTableViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
+                insertSensorRequest(urlString: HomeViewController.SensorsURL, sensor: sensor, completionToInsertSensor: { (newSensor, error) in
                     sensor.id = newSensor?.id
                     sensor.roomtype = newSensor?.roomtype
                     DispatchQueue.main.async {
                         self.addSensor(sensor)
                     }
-                    self.insertSensorValueRequest(urlString: SensorTableViewController.SensorsValuesPostURL, sensor: sensor)
+                    self.insertSensorValueRequest(urlString: HomeViewController.SensorsValuesPostURL, sensor: sensor)
                     
                 })
            
@@ -146,12 +188,41 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     }
 
-fileprivate func addSensor(_ sensor: Sensor) {
-    // Add a new sensor.
-    home?.rooms[self.selectedIndex].sensors?.append(sensor)
-    //roomsTable.reloadData()
+
     
-}
+    //MARK: Requests
+    
+    func deleteSensor(urlString: String){
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        // Create the request
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Token \(String(describing: AppData.instance.user.token!))", forHTTPHeaderField: "Authorization")
+     
+        //MAKE REQUEST
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: error calling PUT")
+                print(error!)
+                return
+            }
+            guard data != nil else {
+                print("Error: Did not receive data")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+        }.resume()
+    }
         
 
 func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSensor: ( (_ newSensor: Sensor?, _ error: Error?)->())?){
@@ -326,6 +397,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Token \(AppData.instance.user.token!)", forHTTPHeaderField: "Authorization")
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
@@ -411,11 +483,11 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
                     case "led":
                         sensor.image = UIImage(named: "light_icon")
                     case "camera":
-                        sensor.image = UIImage(named: "camera_new_icon")
+                        sensor.image = UIImage(named: "camera_icon")
                     case "servo":
                         sensor.image = UIImage(named: "door_icon")
-                    case "motion":
-                        sensor.image = UIImage(named: "motion_icon")
+                    case "plug":
+                        sensor.image = UIImage(named: "plug_icon")
                     default:
                         return
                     }
@@ -435,6 +507,9 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         self.home!.rooms[self.selectedIndex].sensors?.append(sensor)
     
     }
+    
+    
+    
     
     // ------------------------------------------------------------------------
     

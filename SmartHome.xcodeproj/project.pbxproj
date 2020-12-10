@@ -12,7 +12,6 @@
 		2A0B33D8257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0B33D7257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift */; };
 		2A1C260E257D814100EF9F14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C260D257D814100EF9F14 /* LaunchScreen.storyboard */; };
 		2A1D7D6F257A9A7E003B220A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */; };
-		2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34004B257C0CCC00210C50 /* RoomViewController.swift */; };
 		2A3B54E3257FD8AB003652A2 /* TypeAddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3B54E2257FD8AB003652A2 /* TypeAddSensorViewController.swift */; };
 		2A3B54E725802330003652A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3B54E625802330003652A2 /* User.swift */; };
 		2A3B54EB2580555F003652A2 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3B54EA2580555F003652A2 /* EditProfileViewController.swift */; };
@@ -29,16 +28,12 @@
 		2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */; };
 		2AC4479F257D5B660041D44C /* Pods_SmartHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFCD5376C8FC3574EB8E57B /* Pods_SmartHome.framework */; };
 		2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F244256600BE003A93BA /* SceneDelegate.swift */; };
-		2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6F246256600BE003A93BA /* DashboardViewController.swift */; };
 		2AC6F24A256600BE003A93BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F248256600BE003A93BA /* Main.storyboard */; };
 		2AC6F24C256600BF003A93BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC6F24B256600BF003A93BA /* Assets.xcassets */; };
 		2ACF255D25688F30008AD41E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF255C25688F30008AD41E /* Home.swift */; };
 		2ACF25612568900F008AD41E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25602568900F008AD41E /* Room.swift */; };
 		2ACF25642568902D008AD41E /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF25632568902D008AD41E /* Sensor.swift */; };
 		2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF257925689FB8008AD41E /* HomeName.swift */; };
-		2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */; };
-		2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */; };
-		2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */; };
 		2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE5E6625748B7D00596765 /* SensorViewController.swift */; };
 		2AF13CFE257EFAD100B830F9 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF13CFD257EFAD100B830F9 /* M13Checkbox.framework */; };
 		2AF13D00257EFAD400B830F9 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF13CFF257EFAD400B830F9 /* iOSDropDown.framework */; };
@@ -51,7 +46,6 @@
 		2A0B33D7257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSensorsCollectionViewController.swift; sourceTree = "<group>"; };
 		2A1C260D257D814100EF9F14 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1D7D6E257A9A7E003B220A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2A34004B257C0CCC00210C50 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		2A3B54E2257FD8AB003652A2 /* TypeAddSensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAddSensorViewController.swift; sourceTree = "<group>"; };
 		2A3B54E625802330003652A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A3B54EA2580555F003652A2 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +62,6 @@
 		2AB5E338257EDB750014DD67 /* TypePopupFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePopupFilterViewController.swift; sourceTree = "<group>"; };
 		2AC6F23F256600BE003A93BA /* SmartHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC6F244256600BE003A93BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2AC6F246256600BE003A93BA /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2AC6F249256600BE003A93BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AC6F24B256600BF003A93BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC6F250256600BF003A93BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,9 +69,6 @@
 		2ACF25602568900F008AD41E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		2ACF25632568902D008AD41E /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		2ACF257925689FB8008AD41E /* HomeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeName.swift; sourceTree = "<group>"; };
-		2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
-		2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
-		2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 		2AEE5E6625748B7D00596765 /* SensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewController.swift; sourceTree = "<group>"; };
 		2AF13CFD257EFAD100B830F9 /* M13Checkbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = M13Checkbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF13CFF257EFAD400B830F9 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,11 +130,6 @@
 				2ACF257925689FB8008AD41E /* HomeName.swift */,
 				2A3C8D3C2571A6B100EA4858 /* HomeName.xib */,
 				2AEE5E6625748B7D00596765 /* SensorViewController.swift */,
-				2AEE5E6225745CD400596765 /* SensorTableViewCell.swift */,
-				2AEE5E5F25745C8800596765 /* SensorTableViewController.swift */,
-				2AC6F246256600BE003A93BA /* DashboardViewController.swift */,
-				2A34004B257C0CCC00210C50 /* RoomViewController.swift */,
-				2AEE5E5B2573F21F00596765 /* RoomTableViewCell.swift */,
 				2A8DA950257AB8E900DA8A82 /* ConfigViewController.swift */,
 				2A8DA955257AE45600DA8A82 /* ConfigTableViewController.swift */,
 				2A0B33D7257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift */,
@@ -293,11 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACF257A25689FB9008AD41E /* HomeName.swift in Sources */,
-				2AEE5E6325745CD400596765 /* SensorTableViewCell.swift in Sources */,
-				2AC6F247256600BE003A93BA /* DashboardViewController.swift in Sources */,
 				2A1D7D6F257A9A7E003B220A /* LoginViewController.swift in Sources */,
 				2ACF25642568902D008AD41E /* Sensor.swift in Sources */,
-				2AEE5E6025745C8800596765 /* SensorTableViewController.swift in Sources */,
 				2A8DA956257AE45600DA8A82 /* ConfigTableViewController.swift in Sources */,
 				2AEE5E6725748B7D00596765 /* SensorViewController.swift in Sources */,
 				2A44EABB257E887D00D4F771 /* TypeCollectionViewCell.swift in Sources */,
@@ -305,12 +287,10 @@
 				2A0B33D5257DB6CB00CCBE4B /* Validation.swift in Sources */,
 				2A8DA951257AB8E900DA8A82 /* ConfigViewController.swift in Sources */,
 				2A3B54E3257FD8AB003652A2 /* TypeAddSensorViewController.swift in Sources */,
-				2AEE5E5C2573F21F00596765 /* RoomTableViewCell.swift in Sources */,
 				2AB38870258076DB00D330EB /* HomeViewController.swift in Sources */,
 				2AB5E339257EDB750014DD67 /* TypePopupFilterViewController.swift in Sources */,
 				2A44EAC3257EA97700D4F771 /* TypeTableViewCell.swift in Sources */,
 				2AC6F245256600BE003A93BA /* SceneDelegate.swift in Sources */,
-				2A34004C257C0CCC00210C50 /* RoomViewController.swift in Sources */,
 				2AB38871258076DB00D330EB /* HomeRoomTableViewCell.swift in Sources */,
 				2ACF25612568900F008AD41E /* Room.swift in Sources */,
 				2A0B33D8257DCA4C00CCBE4B /* AllSensorsCollectionViewController.swift in Sources */,

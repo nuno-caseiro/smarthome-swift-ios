@@ -194,16 +194,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "233A90AF-61D2-433E-B8B8-D1711DA761D6"
+            uuid = "2FAAF47F-C401-4B0C-B1C7-BA48D716F09D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SmartHome/TypeAddSensorViewController.swift"
+            filePath = "SmartHome/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "validate()"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "unwindToSensorListWithDelete(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
