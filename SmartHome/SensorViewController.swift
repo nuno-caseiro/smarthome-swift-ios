@@ -30,8 +30,8 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        let i = navigationController?.viewControllers.firstIndex(of: self)
-        let previousViewController = navigationController?.viewControllers[i!-1] as? TypeViewController
+        //let i = navigationController?.viewControllers.firstIndex(of: self)
+        //let previousViewController = navigationController?.viewControllers[i!-1] as? TypeViewController
         
         sensorNameTextField.delegate = self
         
