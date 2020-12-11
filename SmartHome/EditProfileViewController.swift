@@ -59,13 +59,13 @@ class EditProfileViewController: UIViewController {
         }
         let isValidateFirstName = self.validation.validateNames(name: firstName)
         if (isValidateFirstName == false) {
-            showMessage("Error", "The sensor name is invalid")
+            showMessage("Error", "The user firsname is invalid")
             return false
         }
         
         let isValidateLastName = self.validation.validateNames(name: lastName)
         if (isValidateLastName == false) {
-            showMessage("Error", "The GPIO is invalid")
+            showMessage("Error", "The user lastname is invalid")
             return false
         }
         
