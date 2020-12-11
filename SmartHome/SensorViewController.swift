@@ -71,25 +71,6 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             trashButton.isEnabled = false
             roomsDropdown.selectedIndex = 0
             sensorType.selectedIndex = 0
-           /* if(previousViewController?.restorationIdentifier == "typeViewControllerID"){
-                switch typeStr {
-                case "led":
-                    sensorType.selectedIndex = 0
-                    self.imageViewSensor.image = UIImage(named: "light_icon")
-                case "camera":
-                    sensorType.selectedIndex = 1
-                    self.imageViewSensor.image = UIImage(named: "camera_icon")
-                case "servo":
-                    sensorType.selectedIndex = 2
-                    self.imageViewSensor.image = UIImage(named: "door_icon")
-                case "plug":
-                    sensorType.selectedIndex = 3
-                    self.imageViewSensor.image = UIImage(named: "plug_icon")
-                default:
-                    print("Default do select1")
-                }
-                self.sensorType.isEnabled = false
-            }*/
         }
         sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
         roomsDropdown.text = roomsDropdown.optionArray[roomsDropdown.selectedIndex ?? 0]
