@@ -7,23 +7,30 @@
 
 import UIKit
 
-class AllSensorsCollectionViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AllSensorsCollectionViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UITabBarControllerDelegate {
    
     
     @IBOutlet weak var typeCollectionView: UICollectionView!
-    var types = ["Leds", "Camaras", "Doors", "Plug"]
+    var types = ["Leds", "Camaras", "Servos", "Plug"]
     var indexPathSelected: IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         typeCollectionView.delegate = self
         typeCollectionView.dataSource = self
-        
+        tabBarController?.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
 
         self.typeCollectionView.addGestureRecognizer(tap)
         self.typeCollectionView.isUserInteractionEnabled = true
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+            // im my example the desired view controller is the second one
+            // it might be different in your case...
+            let secondVC = tabBarController.viewControllers?[1] as! UINavigationController
+            secondVC.popToRootViewController(animated: false)
+        }
     
     //MARK: Collection view
     

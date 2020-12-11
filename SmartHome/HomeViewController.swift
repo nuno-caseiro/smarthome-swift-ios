@@ -36,7 +36,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         downloadRooms()
-
+        roomsTable.delegate = self
+        roomsTable.dataSource = self
         roomsTable.estimatedRowHeight = 126
         roomsTable.rowHeight = UITableView.automaticDimension
         
@@ -53,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if self.selectedIndex == indexPath.row && isCollapsed == true  {
+        if self.selectedIndex == indexPath.row && isCollapsed == true && home?.rooms[indexPath.row].sensors?.count ?? 1 > 0  {
             return 250
         } else {
             return 65
@@ -61,14 +62,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func sensorAdded(_ notification: Notification){
-           
+        
         if let rooms = home?.rooms{
             for room in rooms{
                 room.sensors?.removeAll()
             }
             roomsTable.reloadData()
         }
-        
         roomsTable.deselectRow(at: IndexPath(index: self.selectedIndex), animated: true)
         self.selectedIndex = -1
     }
@@ -105,9 +105,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.selectedIndex = indexPath.row
         
         selectedRoom = home?.rooms[self.selectedIndex]
-        downloadSensorsByRoom()
-        
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        downloadSensorsByRoom {
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
+        }
     }
     
     fileprivate func addSensor(_ sensor: Sensor) {
@@ -116,6 +118,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //roomsTable.reloadData()
         
     }
+    
     //MARK: Navigation
     // ------------------------------------------------------------------------
     
@@ -132,13 +135,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         case "AddItem":
             os_log("Adding a new sensor.", log: OSLog.default, type: .debug)
-            sensorDetailViewController.roomId = selectedRoom?.id
+            sensorDetailViewController.roomId = (selectedRoom?.id)!
             
         case "editSensor":
             
             let selectedSensor = selectedRoom?.sensors?[selectedIndexSensor]
             sensorDetailViewController.sensor = selectedSensor
-            sensorDetailViewController.roomId = selectedRoom?.id
+            sensorDetailViewController.roomId = (selectedRoom?.id)!
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
@@ -166,7 +169,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let stringForUpdate = HomeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
                 self.updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
+                
                 home?.rooms[self.selectedIndex].sensors?[selectedIndexSensor] = sensor
+                if ( home?.rooms[self.selectedIndex].name != sensor.roomname){
+                    home?.rooms[self.selectedIndex].sensors?.remove(at: selectedIndexSensor)
+                    if(home?.rooms[self.selectedIndex].sensors?.count==0){
+                        selectedIndex = -1
+                    }
+                }
                 roomsTable.reloadData()
                 
             }
@@ -187,8 +197,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         selectedIndexSensor = -1
     }
     }
-
-
     
     //MARK: Requests
     
@@ -437,7 +445,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
     
     // ------------------------------------------------------------------------
     
-    func downloadSensorsByRoom(){
+    func downloadSensorsByRoom(completion: (()->Void)?){
         // FIXME: if nill
         guard let url = URL(string: HomeViewController.SensorsRoomURL+"?room=\(String(describing: home!.rooms[self.selectedIndex].id!))") else {
             print("Error: cannot create URL")
@@ -469,12 +477,17 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
                 let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
                 //print(String(decoding: data, as: UTF8.self))
                 
+                for room in self.home!.rooms{
+                    room.sensors?.removeAll()
+                }
                 DispatchQueue.main.async {
-                    if(self.lastSelectedIndex == -1) {
+                    /*if(self.lastSelectedIndex == -1) {
                         self.home!.rooms[self.selectedIndex].sensors?.removeAll()
                     } else {
                         self.home!.rooms[self.lastSelectedIndex].sensors?.removeAll()
-                    }
+                    }*/
+                   
+                    self.roomsTable.reloadData()
                                         
                 }
                 
@@ -495,6 +508,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
                         self.addSensorToRoom(sensor: sensor)
                     }
                 }
+                completion?()
             } catch let parseError as NSError {
                 print(parseError.localizedDescription)
             }

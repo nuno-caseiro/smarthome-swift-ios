@@ -42,11 +42,14 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     fileprivate func addSensor(_ sensor: Sensor) {
         // Add a new sensor.
-        let newIndexPath = IndexPath(row: sensorOfType.count , section: 0)
-        sensorOfType.append(sensor)
-        sensorOfTypeBackup.append(sensor)
-        typeSensorTableView.insertRows(at: [newIndexPath], with: .automatic)
-        
+        if( sensor.sensorType == self.type){
+            let newIndexPath = IndexPath(row: sensorOfType.count , section: 0)
+            sensorOfType.append(sensor)
+            sensorOfTypeBackup.append(sensor)
+            typeSensorTableView.insertRows(at: [newIndexPath], with: .automatic)
+            
+        }
+       
     }
     
     
@@ -60,14 +63,14 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         case "showFilter":
             os_log("Showing filters.", log: OSLog.default, type: .debug)
         case "AddItem":
-            guard let sensorDetailViewController = segue.destination as? TypeAddSensorViewController else {
+            guard let sensorDetailViewController = segue.destination as? SensorViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             os_log("Adding a new sensor.", log: OSLog.default, type: .debug)
             sensorDetailViewController.typeStr = type
             
         case "ShowDetail":
-            guard let sensorDetailViewController = segue.destination as? TypeAddSensorViewController else {
+            guard let sensorDetailViewController = segue.destination as? SensorViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedSensorCell = sender as? TypeTableViewCell else {
@@ -86,7 +89,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    @IBAction func unwindToList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToSensorList(sender: UIStoryboardSegue) {
         
         
         if let sourceViewController = sender.source as? TypePopupFilterViewController{
@@ -115,7 +118,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             typeSensorTableView.reloadData()
         }
         
-        if let sourceViewController = sender.source as? TypeAddSensorViewController,
+        if let sourceViewController = sender.source as? SensorViewController,
            let sensor = sourceViewController.sensor {
             
             if let selectedIndexPath = typeSensorTableView.indexPathForSelectedRow {
@@ -125,7 +128,12 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                 updateSensorRequest(urlString: stringForUpdate, sensor: sensor)
                 sensorOfType[selectedIndexPath.row] = sensor
+                if(sensor.sensorType == self.type){
                 typeSensorTableView.reloadRows(at: [selectedIndexPath], with: .none)
+                }else{
+                    sensorOfType.remove(at: selectedIndexPath.row)
+                    typeSensorTableView.deleteRows(at: [selectedIndexPath], with: .none)
+                }
             }
             else {
                 //fazer post e editar id com a resposta; fazer método que recebe o id
@@ -139,11 +147,12 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                 })
             }
+            NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
         }
     }
     
-    @IBAction func unwindToDelete(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? TypeAddSensorViewController,
+    @IBAction func unwindToSensorListWithDelete(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? SensorViewController,
            let sensor = sourceViewController.sensor{
             let stringForDelete = TypeViewController.SensorsURL + "\(String(describing: sensor.id!))/"
 
@@ -277,6 +286,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         typeSensorTableView.reloadRows(at: [IndexPath(item: mySwitch.tag, section: 0)], with: .automatic)
         
         updateSensorValue(sensor: sensor, completionToInsertSensorValue: {() in        })
+        NotificationCenter.default.post(name: NSNotification.Name("sensor added"), object: nil)
        }
     
     

@@ -17,10 +17,10 @@
          contextName = "HomeViewController.tableView(_:heightForRowAt:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AppData.instance.user">
+               value = "(home?.rooms[selectedIndex].sensors!.count)!">
             </PersistentString>
             <PersistentString
-               value = "(home?.rooms[selectedIndex].sensors!.count)!">
+               value = "AppData.instance.user">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -58,6 +58,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HomeViewController.downloadSensorsByRoom(completion:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastSelectedIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HomeRoomTableViewCell.tableView(_:numberOfRowsInSection:):HomeRoomTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -67,6 +75,11 @@
       </ContextState>
       <ContextState
          contextName = "HomeViewController.sensorAdded(_:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedIndex">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in LoginViewController.populateUser(urlString:):LoginViewController.swift">
@@ -75,16 +88,24 @@
          contextName = "closure #1 in TypeViewController.unwindToList(sender:):TypeViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in HomeViewController.sensorAdded(_:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TypeViewController.tableView(_:cellForRowAt:):TypeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "sensor.roomname">
+               value = "sensor.roomname?.firstUppercased">
             </PersistentString>
             <PersistentString
                value = "cell.roomLabel.text">
             </PersistentString>
             <PersistentString
-               value = "sensor.roomname?.firstUppercased">
+               value = "sensor.roomname">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,6 +122,22 @@
          <PersistentStrings>
             <PersistentString
                value = "AppData.instance.home.rooms[index]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SensorViewController.viewDidLoad():SensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "previousViewController?.restorationIdentifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SensorViewController.selectImageView(_:):SensorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedText.firstCapitalized">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
