@@ -18,6 +18,10 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     var roomName: String?
     var validation = Validation()
     
+   
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        changeColors()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +29,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         
         sensorNameTextField.delegate = self
         
-        if(self.traitCollection.userInterfaceStyle == .dark){
-            roomsDropdown.selectedRowColor = .black
-            sensorType.selectedRowColor = .black
-            roomsDropdown.rowBackgroundColor = .black
-            sensorType.rowBackgroundColor = .black
-        }else{
-            roomsDropdown.selectedRowColor = .white
-            sensorType.selectedRowColor = .white
-            roomsDropdown.rowBackgroundColor = .white
-            sensorType.rowBackgroundColor = .white
-        }
+        changeColors()
         
         sensorType.optionArray = ["Led", "Camera", "Servo", "Plug"]
         //sensorType.selectedRowColor = .white
@@ -199,6 +193,21 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    
+    func changeColors() {
+        if(self.traitCollection.userInterfaceStyle == .dark){
+            roomsDropdown.selectedRowColor = .black
+            sensorType.selectedRowColor = .black
+            roomsDropdown.rowBackgroundColor = .black
+            sensorType.rowBackgroundColor = .black
+        }else{
+            roomsDropdown.selectedRowColor = .white
+            sensorType.selectedRowColor = .white
+            roomsDropdown.rowBackgroundColor = .white
+            sensorType.rowBackgroundColor = .white
+        }
     }
     
     
