@@ -40,7 +40,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         roomsTable.dataSource = self
         roomsTable.estimatedRowHeight = 126
         roomsTable.rowHeight = UITableView.automaticDimension
-        
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+
         NotificationCenter.default.addObserver(self,selector: #selector(loginSuccess),name: NSNotification.Name ("com.user.login.success"),object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(sensorAdded),name: NSNotification.Name ("sensor added"),object: nil)
 

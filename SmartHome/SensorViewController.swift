@@ -70,6 +70,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             valueSensorLabel.text = "None"
             trashButton.isEnabled = false
             roomsDropdown.selectedIndex = 0
+            sensorType.selectedIndex = 0
            /* if(previousViewController?.restorationIdentifier == "typeViewControllerID"){
                 switch typeStr {
                 case "led":
