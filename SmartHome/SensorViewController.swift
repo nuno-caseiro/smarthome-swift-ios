@@ -110,6 +110,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     //MARK: Navigation
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
+        
         let valid = validate()
         if valid {
             return true

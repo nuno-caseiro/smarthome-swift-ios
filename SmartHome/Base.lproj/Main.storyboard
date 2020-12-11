@@ -448,7 +448,7 @@
                 <navigationController id="KgJ-kn-DRe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="all_sensors" id="FLR-OK-UgL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jHF-Yy-Nrp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
