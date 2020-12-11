@@ -1,10 +1,3 @@
-//
-//  SensorViewController.swift
-//  SmartHome
-//
-//  Created by Nuno Caseiro on 30/11/2020.
-//
-
 import UIKit
 import os.log
 import iOSDropDown
@@ -30,18 +23,27 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        //let i = navigationController?.viewControllers.firstIndex(of: self)
-        //let previousViewController = navigationController?.viewControllers[i!-1] as? TypeViewController
-        
         sensorNameTextField.delegate = self
         
+        if(self.traitCollection.userInterfaceStyle == .dark){
+            roomsDropdown.selectedRowColor = .black
+            sensorType.selectedRowColor = .black
+            roomsDropdown.rowBackgroundColor = .black
+            sensorType.rowBackgroundColor = .black
+        }else{
+            roomsDropdown.selectedRowColor = .white
+            sensorType.selectedRowColor = .white
+            roomsDropdown.rowBackgroundColor = .white
+            sensorType.rowBackgroundColor = .white
+        }
+        
         sensorType.optionArray = ["Led", "Camera", "Servo", "Plug"]
-        sensorType.selectedRowColor = .white
+        //sensorType.selectedRowColor = .white
         roomsDropdown.isSearchEnable = false
         for room in AppData.instance.home.rooms {
             roomsDropdown.optionArray.append(room.name)
         }
-        roomsDropdown.selectedRowColor = .white
+        //roomsDropdown.selectedRowColor = .white
         
         if let sensor = sensor {
             navigationItem.title = sensor.name
@@ -84,6 +86,8 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         sensorType.didSelect{(selectedText , index ,id) in
             self.selectImageView(selectedText)
         }
+        
+      
     }
     
     func selectImageView(_ selectedText: String)  {

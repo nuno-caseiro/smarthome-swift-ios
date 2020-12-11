@@ -1,9 +1,3 @@
-//
-//  HomeTableViewCell.swift
-//  SmartHome
-//
-//  Created by João Marques on 07/12/2020.
-//
 
 import UIKit
 

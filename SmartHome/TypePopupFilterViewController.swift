@@ -35,7 +35,7 @@ class TypePopupFilterViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         statusDropDown.optionArray = ["Both" ,"On", "Off"]
-        statusDropDown.selectedRowColor = .blue
+        statusDropDown.selectedRowColor = .lightGray
         statusDropDown.selectedIndex = 0
         statusDropDown.text = statusDropDown.optionArray[statusDropDown.selectedIndex ?? 0]
         filtersView.layer.cornerRadius = 10

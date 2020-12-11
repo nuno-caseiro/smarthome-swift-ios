@@ -1,10 +1,3 @@
-//
-//  HomeViewController.swift
-//  SmartHome
-//
-//  Created by João Marques on 07/12/2020.
-//
-
 import UIKit
 import os.log
 
@@ -24,10 +17,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     static let SensorsValuesURL = "http://161.35.8.148/api/lastvaluesensor/"
     static let SensorsValuesPostURL = "http://161.35.8.148/api/sensorsvalues/"
     
-    var count = 0
-    static let SensorsRoomCountURL = "http://161.35.8.148/api/countSensorsByRoom/"
     var selectedRoom: Room?
-    var lastSelectedIndex = -1
     var selectedIndex = -1
     var selectedSensor: Sensor?
     var selectedIndexSensor = -1
@@ -60,7 +50,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if self.selectedIndex == indexPath.row && isCollapsed == true && home?.rooms[indexPath.row].sensors?.count ?? 1 > 0  {
             return 250
         } else {
-            return 65
+            return 60
         }
     }
     
@@ -104,7 +94,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             self.isCollapsed = true
         }
-        self.lastSelectedIndex = self.selectedIndex
         self.selectedIndex = indexPath.row
         
         selectedRoom = home?.rooms[self.selectedIndex]
@@ -504,43 +493,5 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
                
         self.home!.rooms[self.selectedIndex].sensors?.append(sensor)
     
-    }
-    
-    
-    
-    
-    // ------------------------------------------------------------------------
-    
-    func getSensorsCount(roomId: Int) {
-        guard let url = URL(string: HomeViewController.SensorsRoomCountURL+"?room=\(String(describing: home!.rooms[self.selectedIndex].id!))") else {
-            print("Error: cannot create URL")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        
-        // Create the request
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token \(AppData.instance.user.token!)", forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print("Error: error calling GET")
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            
-            let returnData = String(data: data, encoding: .utf8)
-            
-            self.count = Int(returnData!)!
-        }.resume()
     }
 }
