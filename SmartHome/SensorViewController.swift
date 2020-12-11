@@ -109,6 +109,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Navigation
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
         let valid = validate()
         if valid {
             return true
@@ -155,6 +156,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             }else{
                 sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId , gpio: gpioValue ?? 1 , image: sensorImage, roomname: self.roomName)
             }
+       
         
 
         }
