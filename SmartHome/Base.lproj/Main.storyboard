@@ -122,7 +122,7 @@
                     <tabBarItem key="tabBarItem" title="" image="home_icon" id="yue-vr-WtH"/>
                     <navigationItem key="navigationItem" id="eqb-3D-s9f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PNf-Y3-6QD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -139,7 +139,7 @@
                 <navigationController id="SBs-hU-QKa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="configurations_icon" id="6PK-gr-5tH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL2-PL-gSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -159,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaw-eK-OzF">
-                                <rect key="frame" x="0.0" y="44" width="320" height="392"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joP-mz-rNh">
                                         <rect key="frame" x="126" y="181" width="141" height="21"/>
@@ -238,7 +238,6 @@
                                     <constraint firstItem="EgL-uT-5Gu" firstAttribute="leading" secondItem="joP-mz-rNh" secondAttribute="leading" id="FVV-46-Ejz"/>
                                     <constraint firstAttribute="trailing" secondItem="QOM-NF-wr4" secondAttribute="trailing" constant="53" id="G6v-TM-30x"/>
                                     <constraint firstItem="EgL-uT-5Gu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5KZ-CH-rmV" secondAttribute="trailing" constant="8" symbolic="YES" id="Guu-YG-8Ka"/>
-                                    <constraint firstAttribute="bottom" secondItem="I6f-OB-bKi" secondAttribute="bottom" constant="46" id="Hyf-iM-Vm1"/>
                                     <constraint firstItem="I6f-OB-bKi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Rj-g1-5KE" secondAttribute="trailing" constant="8" symbolic="YES" id="Icp-Fr-UhX"/>
                                     <constraint firstItem="QOM-NF-wr4" firstAttribute="top" secondItem="joP-mz-rNh" secondAttribute="bottom" constant="11" id="JUJ-3z-qk6"/>
                                     <constraint firstItem="QOM-NF-wr4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dbr-O0-eEz" secondAttribute="trailing" constant="8" symbolic="YES" id="KVj-Os-ZcL"/>
@@ -262,13 +261,13 @@
                                     <constraint firstItem="E14-KA-Xjh" firstAttribute="top" secondItem="CVF-JG-BF3" secondAttribute="bottom" constant="19" id="hM9-bt-wEn"/>
                                     <constraint firstItem="5KZ-CH-rmV" firstAttribute="leading" secondItem="Gaw-eK-OzF" secondAttribute="leading" constant="53" id="jIg-xh-GEY"/>
                                     <constraint firstItem="dbr-O0-eEz" firstAttribute="leading" secondItem="Gaw-eK-OzF" secondAttribute="leading" constant="53" id="kWb-zE-4yI"/>
-                                    <constraint firstAttribute="bottom" secondItem="1Rj-g1-5KE" secondAttribute="bottom" constant="52" id="os2-mJ-RQm"/>
                                     <constraint firstAttribute="trailing" secondItem="zvp-ac-dm2" secondAttribute="trailing" constant="52.5" id="q32-bt-bCk"/>
                                     <constraint firstItem="zvp-ac-dm2" firstAttribute="leading" secondItem="CVF-JG-BF3" secondAttribute="trailing" constant="23.5" id="s4V-rb-nm5"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Rj-g1-5KE" secondAttribute="bottom" constant="47" id="sdi-qJ-DkL"/>
                                     <constraint firstItem="dbr-O0-eEz" firstAttribute="top" secondItem="E14-KA-Xjh" secondAttribute="bottom" constant="18.5" id="uFX-CL-g8f"/>
                                     <constraint firstItem="dbr-O0-eEz" firstAttribute="top" secondItem="E14-KA-Xjh" secondAttribute="bottom" constant="18.5" id="uXs-Uc-pHQ"/>
                                     <constraint firstItem="5KZ-CH-rmV" firstAttribute="top" secondItem="dbr-O0-eEz" secondAttribute="bottom" constant="28" id="wBp-uN-Sd9"/>
-                                    <constraint firstAttribute="height" constant="392" id="wFx-RG-H1N"/>
+                                    <constraint firstAttribute="height" constant="387" id="wFx-RG-H1N"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -308,7 +307,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-Ll-8Hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="byo-Tq-nhc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1125" y="2391"/>
+            <point key="canvasLocation" x="1125" y="2390"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="AR0-f6-RTL">
@@ -447,9 +446,9 @@
         <scene sceneID="1IR-4K-lFg">
             <objects>
                 <navigationController id="KgJ-kn-DRe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="all_icon" id="FLR-OK-UgL"/>
+                    <tabBarItem key="tabBarItem" title="" image="all_sensors" id="FLR-OK-UgL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jHF-Yy-Nrp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -479,7 +478,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erf-5R-v1b">
-                                                    <rect key="frame" x="20" y="11" width="456" height="22"/>
+                                                    <rect key="frame" x="16" y="11" width="304" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -618,14 +617,14 @@
                                                             <rect key="frame" x="102" y="15" width="41.5" height="20.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxh-om-P5H">
                                                             <rect key="frame" x="102" y="50" width="42" height="20.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1064,10 +1063,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aEx-gS-C7U"/>
+        <segue reference="mF8-Tf-XWZ"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="all_icon" width="29" height="25"/>
+        <image name="all_sensors" width="40" height="40"/>
         <image name="configurations_icon" width="24" height="25"/>
         <image name="home_icon" width="29" height="25"/>
         <image name="logo2" width="512" height="350"/>
