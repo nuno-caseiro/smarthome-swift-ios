@@ -16,17 +16,32 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var imageViewSensor: UIImageView!
     @IBOutlet weak var gpioTextField: UITextField!
+    @IBOutlet weak var trashButton: UIBarButtonItem!
     @IBOutlet weak var valueSensorLabel: UILabel!
+    @IBOutlet weak var roomsDropdown: DropDown!
     var sensor: Sensor?
-    var roomId: Int? = nil
+    var roomId: Int = 0
+    var typeStr: String = ""
+    var roomName: String?
     var validation = Validation()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let i = navigationController?.viewControllers.firstIndex(of: self)
+        let previousViewController = navigationController?.viewControllers[i!-1] as? TypeViewController
+        
         sensorNameTextField.delegate = self
         
-        sensorType.optionArray = ["Led", "Camera", "Door", "Plug"]
+        sensorType.optionArray = ["Led", "Camera", "Servo", "Plug"]
         sensorType.selectedRowColor = .white
+        roomsDropdown.isSearchEnable = false
+        for room in AppData.instance.home.rooms {
+            roomsDropdown.optionArray.append(room.name)
+        }
+        roomsDropdown.selectedRowColor = .white
         
         if let sensor = sensor {
             navigationItem.title = sensor.name
@@ -34,55 +49,83 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             imageViewSensor.image = sensor.image
             gpioTextField.text = String(sensor.gpio)
             let value = sensor.value ?? 0
-            switch sensor.sensorType {
-            case "led":
-                
-                sensorType.selectedIndex = 0
-                sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
-            case "camera":
-                
-                sensorType.selectedIndex = 1
-                sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
-            case "servo":
-                
-                sensorType.selectedIndex = 2
-                sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
-            case "plug":
-                sensorType.selectedIndex = 3
-                sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
-            default:
-                print("Default do select1")
-            }
             
-            //it works well for this atual types
+            self.selectImageView(sensor.sensorType)
+
             if(value > 0){
                 valueSensorLabel.text = "Ligado"
             }else{
                 valueSensorLabel.text = "Desligado"
             }
             
+            for i in 0..<roomsDropdown.optionArray.count {
+                if ( sensor.roomname == roomsDropdown.optionArray[i] ){
+                    roomsDropdown.selectedIndex = i
+                    self.roomName = sensor.roomname
+                }
+            }
+            
         }else{
             imageViewSensor.image = UIImage(named: "no_image_icon")
             valueSensorLabel.text = "None"
+            trashButton.isEnabled = false
+            roomsDropdown.selectedIndex = 0
+           /* if(previousViewController?.restorationIdentifier == "typeViewControllerID"){
+                switch typeStr {
+                case "led":
+                    sensorType.selectedIndex = 0
+                    self.imageViewSensor.image = UIImage(named: "light_icon")
+                case "camera":
+                    sensorType.selectedIndex = 1
+                    self.imageViewSensor.image = UIImage(named: "camera_icon")
+                case "servo":
+                    sensorType.selectedIndex = 2
+                    self.imageViewSensor.image = UIImage(named: "door_icon")
+                case "plug":
+                    sensorType.selectedIndex = 3
+                    self.imageViewSensor.image = UIImage(named: "plug_icon")
+                default:
+                    print("Default do select1")
+                }
+                self.sensorType.isEnabled = false
+            }*/
         }
-        
+        sensorType.text = sensorType.optionArray[sensorType.selectedIndex ?? 0]
+        roomsDropdown.text = roomsDropdown.optionArray[roomsDropdown.selectedIndex ?? 0]
+        self.roomId = AppData.instance.home.rooms[roomsDropdown.selectedIndex ?? 0].id ?? 7
        
-        sensorType.didSelect{(selectedText , index ,id) in
+        roomsDropdown.didSelect{(selectedText , index ,id) in
             
-            switch index{
-            case 0:
-                self.imageViewSensor.image = UIImage(named: "light_icon")
-            case 1:
-                self.imageViewSensor.image = UIImage(named: "camera_icon")
-            case 2:
-                self.imageViewSensor.image = UIImage(named: "door_icon")
-            case 3:
-                self.imageViewSensor.image = UIImage(named: "plug_icon")
-            default:
-                print("Default do select")
-            }
+            self.roomId = AppData.instance.home.rooms[index].id ?? 0
+            self.roomName = AppData.instance.home.rooms[index].name
             
             print("Selected String: \(selectedText) \n index: \(index)")
+        }
+        
+        sensorType.didSelect{(selectedText , index ,id) in
+            
+            self.selectImageView(selectedText)
+            
+            print("Selected String: \(selectedText) \n index: \(index)")
+        }
+    }
+    
+    func selectImageView(_ selectedText: String)  {
+        switch selectedText.lowercased(){
+        case "led":
+            self.imageViewSensor.image = UIImage(named: "light_icon")
+            self.sensorType.selectedIndex = 0
+        case "camera":
+            self.imageViewSensor.image = UIImage(named: "camera_icon")
+            self.sensorType.selectedIndex = 1
+        case "servo":
+            self.imageViewSensor.image = UIImage(named: "door_icon")
+            self.sensorType.selectedIndex = 2
+        case "plug":
+            self.imageViewSensor.image = UIImage(named: "plug_icon")
+            self.sensorType.selectedIndex = 3
+        default:
+            print("Default do select")
         }
     }
     
@@ -121,22 +164,22 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
                 sensorTypeValue = "servo"
             case 3:
                 self.imageViewSensor.image = UIImage(named: "plug_icon")
-                sensorTypeValue = "motion"
+                sensorTypeValue = "plug"
             default:
                 return
             }
            
-            
             
             let gpioValue = Int(gpioTextField.text ?? "")
             let sensorImage = self.imageViewSensor.image
            
             //se existir, ja tem id => update
             if let sensor = sensor {
-                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: sensor.room , gpio: gpioValue ?? 1, image: sensorImage, roomname: sensor.roomname)
+                self.sensor = Sensor(id: sensor.id ?? 0 ,name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId , gpio: gpioValue ?? 1, image: sensorImage, roomname: self.roomName)
             }else{
-                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId ?? 1 , gpio: gpioValue ?? 1 , image: sensorImage, roomname: sensor?.roomname)
+                sensor = Sensor(name: name, sensorType: sensorTypeValue , value: 1.0, room: self.roomId , gpio: gpioValue ?? 1 , image: sensorImage, roomname: self.roomName)
             }
+        
 
         }
     
@@ -144,7 +187,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     //Mark: Validations
     
     func validate() -> Bool {
-        guard let name = sensorNameTextField.text, let gpio = gpioTextField.text else {
+        guard let name = sensorNameTextField.text, let gpio = gpioTextField.text, let sensorType = sensorType.text else {
             return false
         }
         
@@ -160,11 +203,18 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         
-        let isValidateSensorType = self.validation.validateSensorType(value: sensorType.text ?? "")
+        let isValidateSensorType = self.validation.validateSensorType(value: sensorType)
         if (isValidateSensorType == false) {
             showMessage("Error", "The sensor type is invalid")
             return false
         }
+        
+        let isValidateRoom = self.validation.validateRoom(value: roomId )
+        if (isValidateRoom == false) {
+            showMessage("Error", "The room is invalid")
+            return false
+        }
+        
         return true
     }
     
