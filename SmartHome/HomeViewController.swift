@@ -69,12 +69,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             roomsTable.reloadData()
         }
-        
-        downloadSensorsByRoom {
-            DispatchQueue.main.async {
-                self.roomsTable.reloadData()
-            }
-        }
+        roomsTable.deselectRow(at: IndexPath(index: self.selectedIndex), animated: true)
+        self.selectedIndex = -1
     }
     
     //MARK: TABLE VIEW
