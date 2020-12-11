@@ -52,8 +52,7 @@ import UIKit
         request.addValue("Token \(AppData.instance.user.token!)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling GET")
                 return
             }
             guard let data = data else {

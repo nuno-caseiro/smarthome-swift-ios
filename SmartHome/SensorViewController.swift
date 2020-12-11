@@ -77,18 +77,12 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         self.roomId = AppData.instance.home.rooms[roomsDropdown.selectedIndex ?? 0].id ?? 7
        
         roomsDropdown.didSelect{(selectedText , index ,id) in
-            
             self.roomId = AppData.instance.home.rooms[index].id ?? 0
             self.roomName = AppData.instance.home.rooms[index].name
-            
-            print("Selected String: \(selectedText) \n index: \(index)")
         }
         
         sensorType.didSelect{(selectedText , index ,id) in
-            
             self.selectImageView(selectedText)
-            
-            print("Selected String: \(selectedText) \n index: \(index)")
         }
     }
     
@@ -207,7 +201,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
+            
         })
         
         //Add OK button to a dialog message

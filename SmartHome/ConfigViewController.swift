@@ -46,23 +46,19 @@ class ConfigViewController: UIViewController {
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard let data = data else {
                 print("Error: Did not receive data")
                 return
             }
-            print(String(data: data, encoding: String.Encoding.utf8)!)
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                
                 print("Error: HTTP request failed")
                 return
             }
             
             do{
-                let user = try JSONDecoder().decode(User.self, from: data)
-                print("todoItemModel id: \(String(describing: user.id))")
+                _ = try JSONDecoder().decode(User.self, from: data)
             }catch let jsonErr{
                 print(jsonErr)
             }

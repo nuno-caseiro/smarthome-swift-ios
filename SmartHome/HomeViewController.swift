@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         NotificationCenter.default.addObserver(self,selector: #selector(loginSuccess),name: NSNotification.Name ("com.user.login.success"),object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(sensorAdded),name: NSNotification.Name ("sensor added"),object: nil)
+        
 
     }
     
@@ -217,8 +218,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling DELETE")
                 return
             }
             guard data != nil else {
@@ -260,8 +260,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
     //MAKE REQUEST
     URLSession.shared.dataTask(with: request) { data, response, error in
         guard error == nil else {
-            print("Error: error calling PUT")
-            print(error!)
+            print("Error: error calling POST")
             return
         }
         guard let data = data else {
@@ -275,8 +274,6 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         do{
             newSensor = try JSONDecoder().decode(Sensor.self, from: data)
             completionToInsertSensor!(newSensor, error)
-            
-            print("todoItemModel id: \(newSensor?.id ?? 0)")
         }catch let jsonErr{
             print(jsonErr)
         }
@@ -305,13 +302,11 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
             print(parseError.localizedDescription)
         }
         
-        var newSensor: Sensor? = nil
         
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard let data = data else {
@@ -324,8 +319,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
             }
             
             do{
-                newSensor = try JSONDecoder().decode(Sensor.self, from: data)
-                print("todoItemModel id: \(newSensor?.id ?? 0)")
+                _ = try JSONDecoder().decode(Sensor.self, from: data)
             }catch let jsonErr{
                 print(jsonErr)
             }
@@ -368,8 +362,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling POST")
                 return
             }
             guard let data = data else {
@@ -381,11 +374,10 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
                 return
             }
                 do{
-                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    guard (try JSONSerialization.jsonObject(with: data) as? [String: Any]) != nil else {
                         print("Error: Cannot convert data to JSON object")
                         return
                     }
-                    print(jsonObject)
                 }catch let jsonErr{
                     print(jsonErr)
                 }
@@ -409,8 +401,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling GET")
                 return
             }
             guard let data = data else {
@@ -463,7 +454,6 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard let data = data else {
@@ -476,20 +466,12 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
             }
             do {
                 let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
-                //print(String(decoding: data, as: UTF8.self))
                 
                 for room in self.home!.rooms{
                     room.sensors?.removeAll()
                 }
                 DispatchQueue.main.async {
-                    /*if(self.lastSelectedIndex == -1) {
-                        self.home!.rooms[self.selectedIndex].sensors?.removeAll()
-                    } else {
-                        self.home!.rooms[self.lastSelectedIndex].sensors?.removeAll()
-                    }*/
-                   
                     self.roomsTable.reloadData()
-                                        
                 }
                 
                 for sensor in newSensors {
@@ -543,8 +525,7 @@ func insertSensorRequest(urlString: String, sensor: Sensor, completionToInsertSe
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling GET")
                 return
             }
             guard let data = data else {

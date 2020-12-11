@@ -46,7 +46,6 @@ class LoginViewController: UIViewController {
         let userPassword = passwordTextField.text
         
         if (userName?.isEmpty)! || (userPassword?.isEmpty)!{
-            print("Username \(String(describing: userName)) or password \(String(describing: userPassword)) is empty")
             showMessage("Invalid credentials", "Required fields are empty")
             return
         }
@@ -94,14 +93,12 @@ class LoginViewController: UIViewController {
             }
             guard error == nil else {
                 print("Error: error calling POST")
-                print(error!)
                 return
             }
             guard let data = data else {
                 print("Error: Did not receive data")
                 return
             }
-            print(String(decoding: data, as: UTF8.self))
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
                 print("Error: HTTP request failed")
                 DispatchQueue.main.async {
@@ -122,7 +119,6 @@ class LoginViewController: UIViewController {
                 }
                 
                 AppData.instance.user.token = acessToken
-                print(LoginViewController.UserDetails + "?username=\(userName!)")
                 self.populateUser(urlString: LoginViewController.UserDetails + "?username=\( userName!)")
                 
                 DispatchQueue.main.async {
@@ -159,8 +155,7 @@ class LoginViewController: UIViewController {
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                print("Error: error calling PUT")
-                print(error!)
+                print("Error: error calling GET")
                 return
             }
             guard let data = data else {
@@ -174,7 +169,6 @@ class LoginViewController: UIViewController {
             
             do{
                 let user = try JSONDecoder().decode([User].self, from: data)
-                print("user id: \(user[0].id ?? 0)")
                 
                 DispatchQueue.main.async {
                 AppData.instance.user.id = user[0].id
@@ -198,7 +192,7 @@ class LoginViewController: UIViewController {
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
+            //print("Ok button tapped")
         })
         
         //Add OK button to a dialog message

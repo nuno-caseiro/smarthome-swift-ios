@@ -268,12 +268,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-   
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        print("hi")
-    }
-    
     @objc func valueChange(mySwitch: UISwitch) {
            let sensor = sensorOfType[mySwitch.tag]
             
@@ -323,7 +317,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling POST")
-                print(error!)
                 return
             }
             guard let data = data else {
@@ -336,12 +329,11 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             do{
-                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                guard (try JSONSerialization.jsonObject(with: data) as? [String: Any]) != nil else {
                     print("Error: Cannot convert data to JSON object")
                     return
                 }
                 completionToInsertSensorValue!()
-                print(jsonObject)
             }catch let jsonErr{
                 print(jsonErr)
             }
@@ -366,7 +358,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard let data = data else {
@@ -379,7 +370,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             do {
                 let newSensors: [Sensor] = try JSONDecoder().decode([Sensor].self, from: data)
-                print(newSensors)
                 
                 DispatchQueue.main.async {
                     /* if (newSensors.count != self.room?.sensors?.count && self.room?.sensors?.count != 0) {
@@ -435,17 +425,13 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             request.httpBody = jsonData
             
         } catch let parseError as NSError {
-            
             print(parseError.localizedDescription)
         }
-        
-        var newSensor: Sensor? = nil
         
         //MAKE REQUEST
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard let data = data else {
@@ -458,8 +444,7 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             do{
-                newSensor = try JSONDecoder().decode(Sensor.self, from: data)
-                print("todoItemModel id: \(newSensor?.id ?? 0)")
+                _ = try JSONDecoder().decode(Sensor.self, from: data)
             }catch let jsonErr{
                 print(jsonErr)
             }
@@ -508,8 +493,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 do{
                     newSensor = try JSONDecoder().decode(Sensor.self, from: data)
                     completionToInsertSensor!(newSensor, error)
-                    
-                    print("todoItemModel id: \(newSensor?.id ?? 0)")
                 }catch let jsonErr{
                     print(jsonErr)
                 }
@@ -562,11 +545,10 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
                 do{
-                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    guard (try JSONSerialization.jsonObject(with: data) as? [String: Any]) != nil else {
                         print("Error: Cannot convert data to JSON object")
                         return
                     }
-                    print(jsonObject)
                 }catch let jsonErr{
                     print(jsonErr)
                 }
@@ -590,7 +572,6 @@ class TypeViewController: UIViewController, UITableViewDelegate, UITableViewData
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 print("Error: error calling PUT")
-                print(error!)
                 return
             }
             guard data != nil else {

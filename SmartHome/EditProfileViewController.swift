@@ -71,7 +71,7 @@ class EditProfileViewController: UIViewController {
         
         let isValidateEmail = self.validation.validateEmail(value:  email)
         if (isValidateEmail == false) {
-            showMessage("Error", "The sensor type is invalid")
+            showMessage("Error", "The email is invalid")
             return false
         }
         return true
@@ -83,7 +83,7 @@ class EditProfileViewController: UIViewController {
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
+            
         })
         
         //Add OK button to a dialog message

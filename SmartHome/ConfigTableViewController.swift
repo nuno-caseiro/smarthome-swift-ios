@@ -66,14 +66,12 @@ class ConfigTableViewController: UITableViewController {
             URLSession.shared.dataTask(with: request) { data, response, error in
                 guard error == nil else {
                     print("Error: error calling POST")
-                    print(error!)
                     return
                 }
-                guard let data = data else {
+                guard data != nil else {
                     print("Error: Did not receive data")
                     return
                 }
-                print(String(decoding: data, as: UTF8.self))
                 guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
                     print("Error: HTTP request failed")
                     return
