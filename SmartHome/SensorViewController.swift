@@ -26,9 +26,7 @@ class SensorViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         sensorNameTextField.delegate = self
-        
         changeColors()
         
         sensorType.optionArray = ["Led", "Camera", "Servo", "Plug"]
